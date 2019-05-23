@@ -3,9 +3,6 @@ package com.devguide.jfx.view.main;
 public interface MainViewUtils {
 
     int WIDTH = 500;
-    int HEIGHT = 350;
-    String MAIN_TITLE = "Dev Guide";
-
-
+    int HEIGHT = 500;
 
 }

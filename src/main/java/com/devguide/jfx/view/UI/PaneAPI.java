@@ -18,7 +18,7 @@ import static com.devguide.jfx.view.UI.PaneFactory.*;
 /***
  * Pane Utils - Utils Functions for all kinds of panes
  */
-public interface PaneUtils {
+public interface PaneAPI {
 
     /**
      * Takes :
