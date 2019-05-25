@@ -12,7 +12,9 @@ import java.util.function.BiConsumer;
 import static com.devguide.jfx.utils.BasicUtils.isNull;
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.utils.BasicUtils.*;
-
+/***
+ * Label API - Functions for all kinds of Labels
+ */
 public interface LabelAPI {
 
     /***
@@ -54,8 +56,10 @@ public interface LabelAPI {
     /***
      * Set Text Color to Label
      */
-    BiConsumer<Label, String> setTextColor =
+    BiConsumer<Label, String> setLabelTextColor =
             (label, color) -> label.setTextFill(Color.web(color));
 
 
 }
+
+

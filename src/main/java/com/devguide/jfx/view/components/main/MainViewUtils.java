@@ -1,4 +1,4 @@
-package com.devguide.jfx.view.main;
+package com.devguide.jfx.view.components.main;
 
 public interface MainViewUtils {
 

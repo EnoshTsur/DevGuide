@@ -1,8 +1,9 @@
-package com.devguide.jfx.view.main;
+package com.devguide.jfx.view.components.main;
 
-import com.devguide.jfx.view.TitleBar.TitleBar;
-import com.devguide.jfx.view.UI.PaneAlignment;
+import com.devguide.jfx.view.components.titlebar.TitleBar;
+import com.devguide.jfx.view.UI.BorderPaneAlignment;
 import com.devguide.jfx.view.UI.PaneAPI;
+import com.devguide.jfx.view.containers.MainContainer;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -12,28 +13,40 @@ import javafx.stage.StageStyle;
 
 import java.util.HashMap;
 
-import static com.devguide.jfx.view.main.MainViewUtils.*;
+import static com.devguide.jfx.view.components.main.MainViewUtils.*;
 import static com.devguide.jfx.view.shared.SharedUtils.APP_NAME;
+import static com.devguide.jfx.view.shared.SharedUtils.setStageDraggable;
 
 /***
  * Main Component for all UI
  */
 public class MainView {
 
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    private final static double[] offsets = {xOffset, yOffset};
+
     // Singleton
     private static MainView instance = null;
 
     // Components
     private final TitleBar titleBar;
+    private final MainContainer mainContainer;
 
     /***
      * Private CTOR - Singleton
      */
     private MainView() {
         titleBar = new TitleBar(APP_NAME);
+        mainContainer = MainContainer.getInstance();
     }
 
 
+    /***
+     * Application Main View
+     * @return Stage
+     */
     public final Stage getView() {
         // Window
         Stage window = buildWindow();
@@ -41,21 +54,26 @@ public class MainView {
         // Title Bar
         GridPane titleView = titleBar.createView();
 
+        // Main Container
+        BorderPane mainView = mainContainer.createView();
+
         // Main Pane
         BorderPane mainPane = PaneAPI.createBorderPane.apply(
-                new HashMap<PaneAlignment, Pane>(){{
-                    put(PaneAlignment.TOP, titleView);
+                new HashMap<BorderPaneAlignment, Pane>() {{
+                    put(BorderPaneAlignment.TOP, titleView);
+                    put(BorderPaneAlignment.CENTER, mainView);
                 }}
         );
 
-
         Scene scene = new Scene(mainPane);
+        setStageDraggable(mainPane, window, offsets, true);
         window.setScene(scene);
         return window;
     }
 
     /**
      * Get Instance - Singleton
+     *
      * @return Main View
      */
     public static final synchronized MainView getInstance() {

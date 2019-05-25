@@ -1,6 +1,9 @@
 package com.devguide.jfx.view.UI;
 
-public enum PaneAlignment {
+/**
+ *  Border Pane Children Alignment
+ */
+public enum BorderPaneAlignment {
     TOP,
     CENTER,
     LEFT,

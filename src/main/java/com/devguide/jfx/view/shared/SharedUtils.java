@@ -1,19 +1,20 @@
 package com.devguide.jfx.view.shared;
 
-import io.vavr.Function1;
-import io.vavr.Function2;
-import io.vavr.Function3;
+import io.vavr.*;
+import io.vavr.collection.List;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 
+import java.awt.*;
+import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import static com.devguide.jfx.utils.StringUtils.*;
-import static com.devguide.jfx.utils.BasicUtils.*;
 
 /***
  * Shared Utils for App UI
@@ -21,15 +22,21 @@ import static com.devguide.jfx.utils.BasicUtils.*;
 public interface SharedUtils {
 
     String APP_NAME = "Dev Bible";
-    String FONT_TYPE = "Verdana";
+
     int HEADER_FONT_SIZE = 23;
+
+    int DEFAULT_SPACING = 10;
+
+    String SHADOW_STYLE = "-fx-effect: dropshadow(three-pass-box, " +
+            "rgba(0,0,0,0.8), 10, 0, 0, 0);";
 
 
     Insets DEFAULT_INSETS = new Insets(10, 10, 10, 10);
 
 
     Function1<String, String> createBgColorStyle = color ->
-            f("-fx-background-color: {0}",color);
+            f("-fx-background-color: {0}", color);
+
 
     /***
      * Get BackgroundImage ( Object ) by javafx Object sizes
@@ -64,9 +71,18 @@ public interface SharedUtils {
     /***
      * Set style if exist
      */
-    BiConsumer<Region, String> setStyle = (javafxObject, style) -> {
+    BiConsumer<Region, String> addStyle = (javafxObject, style) -> {
         if (isEmpty.apply(style)) return;
-        javafxObject.setStyle(f("{0}{1}", javafxObject.getStyle(), style));
+        javafxObject.setStyle(f("{0};{1};", javafxObject.getStyle(), style));
+    };
+
+    /***
+     * Add  many styles to JavaFX Object
+     * If Empty ignored
+     */
+    BiConsumer<Region, List<String>> addManyStyles = (javafxObjects, styles) -> {
+        if (styles.isEmpty()) return;
+        styles.forEach(style -> addStyle.accept(javafxObjects, style));
     };
 
     /***
@@ -79,7 +95,41 @@ public interface SharedUtils {
      * Set Background color to JavaFX Element
      */
     BiConsumer<Region, String> setBackgroundColor = (javafxObject, color) ->
-        setStyle.accept(javafxObject, createBgColorStyle.apply(color));
+            addStyle.accept(javafxObject, createBgColorStyle.apply(color));
 
+
+    /***
+     * Add Shadow to JavaFX Objects
+     */
+    Consumer<Region> addShadow = javafxObject ->
+            addStyle.accept(javafxObject, SHADOW_STYLE);
+
+    /**
+     * Takes :
+     * Region = JavaFX Object such as Border Pane.. invoked mouse hold
+     * Tuple2 = _1 Scale x, _2 Scale y
+     * Boolean = Set Draggable true || false
+     * Returns:
+     * Draggable Object
+     */
+    static void setStageDraggable(Region clickInvoker,
+                                  Stage window,
+                                  double[] offsets,
+                                  boolean draggable) {
+        if (!draggable) {
+            clickInvoker.setOnMousePressed(event -> {});
+            clickInvoker.setOnMouseDragged(event -> {});
+            return;
+        }
+
+        clickInvoker.setOnMousePressed(event -> {
+            offsets[0] = window.getX() - event.getScreenX();
+            offsets[1] = window.getY() - event.getScreenY();
+        });
+        clickInvoker.setOnMouseDragged(event -> {
+            window.setX(event.getScreenX() + offsets[0]);
+            window.setY(event.getScreenY() + offsets[1]);
+        });
+    }
 
 }

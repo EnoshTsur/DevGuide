@@ -1,14 +1,11 @@
 package com.devguide.jfx;
 
-import com.devguide.jfx.view.main.MainView;
+import com.devguide.jfx.view.components.main.MainView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
-
-import static com.devguide.jfx.utils.StringUtils.*;
 
 
 @SpringBootApplication
@@ -33,6 +30,7 @@ public class MyApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         Stage window = mainView.getView();
         window.show();
+
     }
 
     @Override
