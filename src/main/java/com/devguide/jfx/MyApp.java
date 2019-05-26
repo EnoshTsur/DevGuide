@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.awt.*;
+
 
 @SpringBootApplication
 public class MyApp extends Application {
@@ -30,7 +32,7 @@ public class MyApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         Stage window = mainView.getView();
         window.show();
-
+        System.out.println(javafx.scene.text.Font.getFamilies());
     }
 
     @Override

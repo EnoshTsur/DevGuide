@@ -6,7 +6,6 @@ import io.vavr.collection.List;
 import io.vavr.control.Option;
 import javafx.event.Event;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;

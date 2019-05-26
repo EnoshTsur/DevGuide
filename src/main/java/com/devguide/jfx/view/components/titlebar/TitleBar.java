@@ -38,9 +38,6 @@ public class TitleBar {
         this.title = title;
     }
 
-    private static Pane apply(Pane bar) {
-        return setContainerStyles.apply((GridPane) bar);
-    }
 
     /***
      * Create Title bar view:
@@ -98,12 +95,8 @@ public class TitleBar {
                 );
 
         // Pane
-        HBox pane = (HBox) createPaneWithRule.apply(
-                Option.of(buttonsPane -> {
-                    buttonsPane.getChildren().addAll(hide, close);
-                    return buttonsPane;
-                }),
-                PaneTypes.HBOX);
+        HBox pane = (HBox) createPane.apply(PaneTypes.HBOX);
+        pane.getChildren().addAll(hide, close);
         pane.setSpacing(DEFAULT_SPACING);
 
         return pane;
@@ -121,7 +114,6 @@ public class TitleBar {
                         container -> setContainerStyles
                                 .apply((GridPane) container)
                 ),
-
                 PaneTypes.GRID_PANE
         );
         pane.getChildren().addAll(logo, title, buttons);

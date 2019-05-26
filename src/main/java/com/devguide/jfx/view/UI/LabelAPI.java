@@ -11,7 +11,6 @@ import java.util.function.BiConsumer;
 
 import static com.devguide.jfx.utils.BasicUtils.isNull;
 import static com.devguide.jfx.utils.StringUtils.*;
-import static com.devguide.jfx.utils.BasicUtils.*;
 /***
  * Label API - Functions for all kinds of Labels
  */

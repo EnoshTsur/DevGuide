@@ -8,14 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.util.HashMap;
 
 import static com.devguide.jfx.view.components.main.MainViewUtils.*;
-import static com.devguide.jfx.view.shared.SharedUtils.APP_NAME;
-import static com.devguide.jfx.view.shared.SharedUtils.setStageDraggable;
+import static com.devguide.jfx.view.shared.SharedUtils.*;
 
 /***
  * Main Component for all UI
@@ -65,7 +65,10 @@ public class MainView {
                 }}
         );
 
+        addStyle.accept(mainPane, "-fx-background-color: transparent;");
+        mainPane.setOnKeyPressed(e -> handleKeyboard.apply(e, mainPane, window));
         Scene scene = new Scene(mainPane);
+        scene.setFill(Color.TRANSPARENT);
         setStageDraggable(mainPane, window, offsets, true);
         window.setScene(scene);
         return window;
@@ -91,6 +94,7 @@ public class MainView {
         window.setHeight(HEIGHT);
         window.setResizable(false);
         window.initStyle(StageStyle.UNDECORATED);
+        window.initStyle(StageStyle.TRANSPARENT);
         return window;
     }
 }

@@ -3,8 +3,11 @@ package com.devguide.jfx.view.shared;
 import io.vavr.*;
 import io.vavr.collection.List;
 import javafx.geometry.Insets;
+import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -21,21 +24,19 @@ import static com.devguide.jfx.utils.StringUtils.*;
  */
 public interface SharedUtils {
 
-    String APP_NAME = "Dev Bible";
 
-    int HEADER_FONT_SIZE = 23;
+    String APP_NAME = "Dev Bible";
+    String HEADER_FONT_TYPE = "Lucida Calligraphy";
+    String SEARCH_FONT_TYPE ="Kristen ITC";
 
     int DEFAULT_SPACING = 10;
+    int HEADER_FONT_SIZE = 23;
 
     String SHADOW_STYLE = "-fx-effect: dropshadow(three-pass-box, " +
             "rgba(0,0,0,0.8), 10, 0, 0, 0);";
 
 
     Insets DEFAULT_INSETS = new Insets(10, 10, 10, 10);
-
-
-    Function1<String, String> createBgColorStyle = color ->
-            f("-fx-background-color: {0}", color);
 
 
     /***
@@ -50,6 +51,10 @@ public interface SharedUtils {
                     new BackgroundSize(javafxObject.getWidth(), javafxObject.getHeight(),
                             true, true,
                             true, false));
+
+    Function1<String, String> createBgColorStyle = color ->
+            f("-fx-background-color: {0}", color);
+
 
     /***
      * Get Image ( Object ) by javafx Object sizes
@@ -131,5 +136,52 @@ public interface SharedUtils {
             window.setY(event.getScreenY() + offsets[1]);
         });
     }
+
+    /***
+     * Create Style Opacity
+     */
+    Function1<Double, String> createStyleOpacity =
+            amount -> f("-fx-opacity: {0}", amount);
+
+    /***
+     * Font by Size
+     */
+    Function1<Integer, Font> haaretzFontBySize = size ->
+            createFont.apply(
+                    HEADER_FONT_TYPE,
+                    FontWeight.SEMI_BOLD,
+                    size
+            );
+
+    /***
+     * Haaretz header font
+     */
+    Font HAARETZ_HEADER_FONT = haaretzFontBySize
+            .apply(HEADER_FONT_SIZE);
+
+    /***
+     * Get Shadow effect
+     * @return Shadow
+     */
+    Function1<String, DropShadow>  createShadow = color -> {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(5.0);
+        dropShadow.setOffsetX(1.0);
+        dropShadow.setOffsetY(1.0);
+        dropShadow.setColor(Color.web(color));
+        return dropShadow;
+    };
+
+    /***
+     * Create Tool Tip
+     * @param message
+     * @return Tool Rip
+     */
+    Function1<String, Tooltip> createToolTip = message  -> {
+        Tooltip tooltip = new Tooltip(message);
+        tooltip.setStyle("-fx-font-size: 16px;" +
+                "-fx-shape: M24 1h-24v16.981h4v5.019l7-5.019h13;");
+        return tooltip;
+    };
 
 }

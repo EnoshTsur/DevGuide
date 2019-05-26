@@ -14,11 +14,10 @@ import static com.devguide.jfx.view.UI.ButtonAPI.CURSOR_MOVE;
 import static com.devguide.jfx.view.UI.ButtonAPI.CURSOR_POINTER;
 import static com.devguide.jfx.view.UI.LabelAPI.setLabelFont;
 import static com.devguide.jfx.view.UI.LabelAPI.setLabelTextColor;
-import static com.devguide.jfx.view.shared.Colors.HAARETZ_BLUE;
-import static com.devguide.jfx.view.shared.Colors.WHITE;
+import static com.devguide.jfx.view.shared.Colors.*;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 import static com.devguide.jfx.view.shared.SharedUtils.DEFAULT_INSETS;
-import static com.devguide.jfx.view.shared.AppStylesUtils.HAARETZ_HEADER_FONT;
+import static com.devguide.jfx.view.shared.SharedUtils.HAARETZ_HEADER_FONT;
 
 public interface TitleBarUtils {
 
@@ -29,7 +28,7 @@ public interface TitleBarUtils {
     String CLOSE_LOGO_PATH = "assets/close_button.png";
     String HIDE_LOGO_PATH = "assets/hide_button.png";
 
-    int HEADER_MIN_WIDTH = 360;
+    int HEADER_MIN_WIDTH = 560;
     int BUTTON_MIN_WIDTH = 30;
     int BUTTON_MIN_HEIGHT = 30;
 
@@ -48,6 +47,7 @@ public interface TitleBarUtils {
 
         // text color
         setLabelTextColor.accept(label, WHITE);
+        label.setEffect(createShadow.apply("lightblue"));
         // text width
         label.setMinWidth(HEADER_MIN_WIDTH);
         return label;

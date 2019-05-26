@@ -1,14 +1,18 @@
 package com.devguide.jfx.view.components.search;
 
 import com.devguide.jfx.view.UI.*;
+import com.devguide.jfx.view.shared.AutoCompleteComboBoxListener;
 import io.vavr.Tuple;
+import io.vavr.collection.List;
 import io.vavr.control.Option;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 import static com.devguide.jfx.utils.StringUtils.*;
+import static com.devguide.jfx.view.UI.ButtonAPI.*;
+import static com.devguide.jfx.view.UI.ComboBoxAPI.*;
 import static com.devguide.jfx.view.UI.LabelAPI.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.UI.PaneTypes.*;
@@ -33,20 +37,31 @@ public class SearchBar {
                 );
 
         // Text Field
-        TextField input = TextFieldAPI.createTextFieldWithRule
+        ComboBox<String> input = createComboBoxWithRule
                 .apply(
-                        Option.of(setInputTextSytles::apply),
+                        Option.of(setInputTextStyles::apply),
+                        List.of(
+                                "React",
+                                "Fela",
+                                "Graphql",
+                                "Git",
+                                "Linux",
+                                "Spring boot",
+                                "Grid",
+                                "Apache VM",
+                                "Node JS"
+                        ),
 
                         Tuple.of(
                                 TEXT_FIELD_INPUT_WIDTH,
                                 TEXT_FIELD_INPUT_HEIGHT
                         ),
-                        EMPTY_STRING,
                         event -> System.out.println(event)
                 );
+        new AutoCompleteComboBoxListener<>(input);
 
         // Button
-        Button submit = ButtonAPI.createButtonWithBackground
+        Button submit = createButtonWithBackground
                 .apply(
                         Option.of(SEARCH_ICON_PATH),
                         EMPTY_STRING,

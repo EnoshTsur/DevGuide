@@ -7,6 +7,9 @@ import java.util.function.Function;
 
 public interface BasicUtils {
 
+    Function1<Double, Double> addOne = number -> number + 0.1;
+    Function1<Double, Double> minusOne = number -> number - 0.1;
+
     /**
      * Null validation : return true if object is null
      */
