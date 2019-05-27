@@ -1,17 +1,15 @@
 package com.devguide.jfx;
 
-import com.devguide.jfx.model.dao.UserDAO;
 import com.devguide.jfx.view.components.main.MainView;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.awt.*;
-
-
+/***
+ * Main
+ */
 @SpringBootApplication
 public class MyApp extends Application {
 

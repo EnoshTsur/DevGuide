@@ -21,5 +21,9 @@ public class UserDAO {
         return afterSave;
     };
 
+    public void createUserMethod(String name) { ;
+        repository.save(new User(name));
+    }
+
 
 }

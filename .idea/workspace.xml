@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7ae3e1e-dbaa-47b1-ad79-0adc782bb765" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/repositories/SkillsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/repositories/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/tests/DBTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/MyApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/MyApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/model/beans/Skills.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/model/beans/Skills.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/model/beans/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/model/beans/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/model/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/model/dao/UserDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/Skills.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/Skills.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/dao/UserDAO.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -52,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="37" column="75" selection-start-line="37" selection-start-column="75" selection-end-line="37" selection-end-column="75" />
+            <state relative-caret-position="73">
+              <caret line="42" column="75" selection-start-line="42" selection-start-column="75" selection-end-line="42" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -70,9 +71,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+            <state relative-caret-position="124">
+              <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
               <folding>
+                <element signature="e#387#388#0" expanded="true" />
                 <element signature="e#412#413#0" expanded="true" />
                 <element signature="e#446#447#0" expanded="true" />
                 <element signature="e#474#475#0" expanded="true" />
@@ -89,13 +91,31 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+            <state relative-caret-position="223">
+              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#586#587#0" expanded="true" />
+                <element signature="e#614#615#0" expanded="true" />
+                <element signature="e#992#993#0" expanded="true" />
+                <element signature="e#1028#1029#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/tests/DBTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="148">
+              <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#319#320#0" expanded="true" />
+                <element signature="e#368#369#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/Skills.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="650">
-              <caret line="26" column="18" lean-forward="true" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+              <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
               <folding>
                 <element signature="e#504#505#0" expanded="true" />
                 <element signature="e#529#530#0" expanded="true" />
@@ -172,11 +192,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/dao/UserDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+            <state relative-caret-position="149">
+              <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -204,8 +224,8 @@
         <option value="FxmlFile" />
         <option value="CSS File" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -220,7 +240,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/UI/BorderPaneAlignments.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/UI/BorderPaneAlignment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/UI/PaneAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/TitleBar/TitleBarUtils.java" />
@@ -262,15 +281,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/TechnologyType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/search/TechnologiesTypes.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/search/SearchBar.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/TechnologyType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/repositories/UserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/repositories/SkillsRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/Skills.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/dao/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/tests/DBTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/dao/UserDAO.java" />
       </list>
     </option>
   </component>
@@ -338,16 +358,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="jfx" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="beans" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevBible" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevBible" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -357,7 +367,7 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -373,7 +383,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558903412963" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558934800809" />
     <property name="last.edited.regexp" value="hi im ${enohs} and ${90}" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../HTZ-HEB" />
@@ -408,7 +418,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MyApp">
+  <component name="RunManager" selected="JUnit.DBTests.test">
     <configuration name="com.devguide [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -428,6 +438,22 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="DBTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.devguide_main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.devguide.jfx.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.devguide.jfx.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.devguide.jfx.tests.DBTests" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MyApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="com.devguide_main" />
       <extension name="coverage">
@@ -443,6 +469,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DBTests.test" />
         <item itemvalue="Spring Boot.MyApp" />
         <item itemvalue="Gradle.com.devguide [build]" />
       </list>
@@ -463,14 +490,28 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="DBTests_test - 2019.05.27 at 08h 22m 40s.xml">
+      <configuration name="DBTests.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBTests_test - 2019.05.27 at 08h 25m 12s.xml">
+      <configuration name="DBTests.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBTests_test - 2019.05.27 at 08h 25m 45s.xml">
+      <configuration name="DBTests.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBTests_test - 2019.05.27 at 08h 26m 00s.xml">
+      <configuration name="DBTests.test" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134630000" />
+    <option name="totallyTimeSpent" value="136337000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17315437" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17315437" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -480,7 +521,7 @@
       <window_info anchor="bottom" id="Duplicate detector" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4036827" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4036827" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -509,7 +550,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/java/jdk1.8.0_131/src.zip!/java/util/function/Function.java" />
     <entry file="jar:///usr/java/jdk1.8.0_131/javafx-src.zip!/javafx/scene/layout/StackPane.java" />
     <entry file="jar:///usr/java/jdk1.8.0_131/javafx-src.zip!/javafx/scene/layout/VBox.java" />
     <entry file="jar:///usr/java/jdk1.8.0_131/javafx-src.zip!/javafx/scene/layout/Region.java" />
@@ -819,13 +859,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="37" column="75" selection-start-line="37" selection-start-column="75" selection-end-line="37" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -853,30 +886,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-          <folding>
-            <element signature="e#412#413#0" expanded="true" />
-            <element signature="e#446#447#0" expanded="true" />
-            <element signature="e#474#475#0" expanded="true" />
-            <element signature="e#505#506#0" expanded="true" />
-            <element signature="e#532#533#0" expanded="true" />
-            <element signature="e#572#573#0" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
-            <element signature="e#637#638#0" expanded="true" />
-            <element signature="e#666#667#0" expanded="true" />
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/Skills.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="650">
-          <caret line="26" column="18" lean-forward="true" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
           <folding>
             <element signature="e#504#505#0" expanded="true" />
             <element signature="e#529#530#0" expanded="true" />
@@ -925,20 +938,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/dao/UserDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+        <state relative-caret-position="223">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+            <element signature="e#614#615#0" expanded="true" />
+            <element signature="e#992#993#0" expanded="true" />
+            <element signature="e#1028#1029#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+        <state relative-caret-position="73">
+          <caret line="42" column="75" selection-start-line="42" selection-start-column="75" selection-end-line="42" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/beans/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+          <folding>
+            <element signature="e#387#388#0" expanded="true" />
+            <element signature="e#412#413#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#505#506#0" expanded="true" />
+            <element signature="e#532#533#0" expanded="true" />
+            <element signature="e#572#573#0" expanded="true" />
+            <element signature="e#604#605#0" expanded="true" />
+            <element signature="e#637#638#0" expanded="true" />
+            <element signature="e#666#667#0" expanded="true" />
+            <element signature="e#710#711#0" expanded="true" />
+            <element signature="e#746#747#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/tests/DBTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#319#320#0" expanded="true" />
+            <element signature="e#368#369#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/model/dao/UserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -986,7 +1043,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.8</last-edited>
+          <last-edited>11</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -998,7 +1055,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>com.devguide_main|com.devguide</last-edited>
+          <last-edited>DevBible</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

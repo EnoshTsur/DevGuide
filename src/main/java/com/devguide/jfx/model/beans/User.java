@@ -41,4 +41,12 @@ public class User {
     public void setSkills(Skills skills) {
         this.skills = skills;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
