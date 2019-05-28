@@ -10,20 +10,9 @@ import org.springframework.stereotype.Service;
 public class UserDAO {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
-    /***
-     * Creating new User
-     */
-    public Function1<String, User> createUser = name -> {
-        User user = new User(name);
-        User afterSave = repository.save(user);
-        return afterSave;
-    };
-
-    public void createUserMethod(String name) { ;
-        repository.save(new User(name));
-    }
-
+    Function1<String, User> createUser = name ->
+        userRepository.save(new User(name));
 
 }

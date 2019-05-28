@@ -32,6 +32,7 @@ public class MyApp extends Application {
         window.show();
         System.out.println(javafx.scene.text.Font.getFamilies());
 
+
     }
 
     @Override

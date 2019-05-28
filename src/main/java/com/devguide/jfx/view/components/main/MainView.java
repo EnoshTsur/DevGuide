@@ -1,9 +1,10 @@
 package com.devguide.jfx.view.components.main;
 
+import com.devguide.jfx.model.dao.UserDAO;
 import com.devguide.jfx.view.components.titlebar.TitleBar;
 import com.devguide.jfx.view.UI.BorderPaneAlignment;
 import com.devguide.jfx.view.UI.PaneAPI;
-import com.devguide.jfx.view.containers.MainContainer;
+import com.devguide.jfx.view.containers.main.MainContainer;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -11,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 

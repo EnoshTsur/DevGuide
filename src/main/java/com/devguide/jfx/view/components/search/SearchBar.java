@@ -1,6 +1,5 @@
 package com.devguide.jfx.view.components.search;
 
-import com.devguide.jfx.view.UI.*;
 import com.devguide.jfx.view.shared.AutoCompleteComboBoxListener;
 import io.vavr.Tuple;
 import io.vavr.collection.List;
@@ -32,14 +31,14 @@ public class SearchBar {
         // Text
         Label searchText = createLabelWithRule
                 .apply(
-                        Option.of(setInputLabelStyles::apply),
+                        Option.of(setInputLabelStyles),
                         HEADER_TEXT
                 );
 
         // Text Field
         ComboBox<String> input = createComboBoxWithRule
                 .apply(
-                        Option.of(setInputTextStyles::apply),
+                        Option.of(setInputTextStyles),
                         List.of(
                                 "React",
                                 "Fela",
@@ -56,7 +55,7 @@ public class SearchBar {
                                 TEXT_FIELD_INPUT_WIDTH,
                                 TEXT_FIELD_INPUT_HEIGHT
                         ),
-                        event -> System.out.println(event)
+                        System.out::println
                 );
         new AutoCompleteComboBoxListener<>(input);
 

@@ -69,7 +69,7 @@ public interface TitleBarUtils {
      * Header label styles
      */
     Function1<GridPane, GridPane> setContainerStyles = container -> {
-        setBackgroundColor.accept(container, HAARETZ_BLUE);
+        setBackgroundColor.accept(container, DARK_PURPLE);
         addShadow.accept(container);
         container.setPadding(DEFAULT_INSETS);
         String oldStyle = container.getStyle();

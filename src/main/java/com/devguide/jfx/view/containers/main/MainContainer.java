@@ -1,4 +1,4 @@
-package com.devguide.jfx.view.containers;
+package com.devguide.jfx.view.containers.main;
 
 import com.devguide.jfx.view.UI.BorderPaneAlignment;
 import com.devguide.jfx.view.UI.PaneAPI;
@@ -9,7 +9,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class MainContainer {
 

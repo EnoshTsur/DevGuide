@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 
 
 import java.util.function.Consumer;
@@ -86,6 +85,7 @@ public class TitleBar {
                         CLOSE_LOGO_PATH,
                         event -> handleCloseRequest.accept(event)
         );
+        addShadow.accept(close);
 
         // Hide Button
         Button hide = createTitleBarButton
