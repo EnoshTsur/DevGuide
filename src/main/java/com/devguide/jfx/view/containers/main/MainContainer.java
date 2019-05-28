@@ -1,25 +1,29 @@
 package com.devguide.jfx.view.containers.main;
 
 import com.devguide.jfx.view.UI.BorderPaneAlignment;
-import com.devguide.jfx.view.UI.PaneAPI;
 import com.devguide.jfx.view.components.search.SearchBar;
-import io.vavr.control.Option;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import com.devguide.jfx.view.containers.technologies.Technologies;
+import javafx.scene.layout.*;
 
 import java.util.HashMap;
+
+import static com.devguide.jfx.view.UI.PaneAPI.*;
 
 public class MainContainer {
 
     // Singleton
     private static MainContainer instance = null;
 
+    // Components
+    private final Technologies technologies;
+
     /***
      * Private CTOR
      * Singleton
      */
-    private MainContainer(){}
+    private MainContainer(){
+        technologies = new Technologies();
+    }
 
     /***
      * Create Main Container View
@@ -29,11 +33,14 @@ public class MainContainer {
         // Top
         GridPane searchView = SearchBar.createSearchBar();
 
+        VBox container = technologies.createTechContainer();
+
+
         // Container
-        BorderPane mainContainer = PaneAPI.createBorderPaneWithRule.apply(
-                Option.none(),
+        BorderPane mainContainer = createBorderPane.apply(
                 new HashMap<BorderPaneAlignment, Pane>() {{
                     put(BorderPaneAlignment.TOP, searchView);
+                    put(BorderPaneAlignment.LEFT, container);
                 }}
         );
 

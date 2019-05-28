@@ -2,7 +2,6 @@ package com.devguide.jfx.view.UI;
 
 import io.vavr.*;
 import io.vavr.collection.List;
-import io.vavr.control.Option;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -10,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
+import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.view.UI.PaneFactory.*;
 
 /***
@@ -20,14 +20,14 @@ public interface PaneAPI {
     /**
      * Takes :
      * PaneType  HBox | VBox | Border | Pane | Stack | Pane | Grid Pane
-     * Function = Option of Function: Pane -> Pane ( Edit Pane dynamically )
+     * Function = Function: Pane -> Pane ( Edit Pane dynamically )
      * Returns:
      * New Edited Pane
      */
-    Function2<Option<Function1<Pane, ? extends Pane>>, PaneTypes, ? extends Pane> createPaneWithRule =
+    Function2<Function1<Pane, ? extends Pane>, PaneTypes, ? extends Pane> createPaneWithRule =
             (paneRuleOption, paneType) -> {
-                if (paneRuleOption.isEmpty()) return getPane.apply(paneType);
-                return paneRuleOption.get().apply(getPane.apply(paneType));
+                if (isNull.apply(paneRuleOption)) return getPane.apply(paneType);
+                return paneRuleOption.apply(getPane.apply(paneType));
             };
 
     /***
@@ -38,7 +38,7 @@ public interface PaneAPI {
     Function1<PaneTypes, ? extends Pane> createPane =
             createPaneWithRule
                     .curried()
-                    .apply(Option.none());
+                    .apply(null);
 
     /**
      * Add Pane to Border Pane by alignment
@@ -69,7 +69,7 @@ public interface PaneAPI {
      * Takes: Map ( Pane Alignment, Option Function [ Border Pane rule ] )
      * Returns: Border Pane
      */
-    Function2<Option<Function1<Pane, ? extends Pane>>, Map<BorderPaneAlignment, Pane>, BorderPane> createBorderPaneWithRule =
+    Function2<Function1<Pane, ? extends Pane>, Map<BorderPaneAlignment, Pane>, BorderPane> createBorderPaneWithRule =
             (paneRule, innerPanes) -> {
                 BorderPane pane = (BorderPane) createPaneWithRule.apply(paneRule, PaneTypes.BORDER_PANE);
                 if (innerPanes.isEmpty()) return pane;
@@ -77,11 +77,12 @@ public interface PaneAPI {
                 return pane;
             };
 
+
     /***
      * Create Simple Border Pane
      */
     Function1<Map<BorderPaneAlignment, Pane>, BorderPane> createBorderPane =
-            createBorderPaneWithRule.curried().apply(Option.none());
+            createBorderPaneWithRule.curried().apply(null);
 
     /***
      * Build Panes
@@ -95,7 +96,7 @@ public interface PaneAPI {
         list.forEach(
                 tuple3 -> panesMap.put(
                         tuple3._2,
-                        createPaneWithRule.apply(Option.of(tuple3._3), tuple3._1)
+                        createPaneWithRule.apply(tuple3._3, tuple3._1)
                 )
         );
         return panesMap;

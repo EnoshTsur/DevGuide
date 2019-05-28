@@ -16,7 +16,7 @@ public interface MainViewUtils {
 
     // Size
     int WIDTH = 700;
-    int HEIGHT = 700;
+    int HEIGHT = 600;
 
 
     /***

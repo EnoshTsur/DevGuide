@@ -1,5 +1,6 @@
 package com.devguide.jfx.view.shared;
 
+import com.devguide.jfx.utils.StringUtils;
 import io.vavr.*;
 import io.vavr.collection.List;
 import javafx.geometry.Insets;
@@ -52,6 +53,7 @@ public interface SharedUtils {
                             true, true,
                             true, false));
 
+
     Function1<String, String> createBgColorStyle = color ->
             f("-fx-background-color: {0}", color);
 
@@ -101,6 +103,17 @@ public interface SharedUtils {
      */
     BiConsumer<Region, String> setBackgroundColor = (javafxObject, color) ->
             addStyle.accept(javafxObject, createBgColorStyle.apply(color));
+
+    /***
+     * Set Background with linear gradient
+     */
+    Function3<Region, String, String, Region> setBackgroundLinearGradient = (javafxObject, colorA, colorB) -> {
+        addStyle.accept(
+                javafxObject,
+                f("-fx-background-color: linear-gradient({0}, {1});", colorA, colorB)
+        );
+        return javafxObject;
+    };
 
 
     /***

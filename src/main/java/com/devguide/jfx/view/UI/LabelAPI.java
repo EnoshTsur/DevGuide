@@ -8,9 +8,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 import static com.devguide.jfx.utils.BasicUtils.isNull;
 import static com.devguide.jfx.utils.StringUtils.*;
+
 /***
  * Label API - Functions for all kinds of Labels
  */
@@ -19,44 +21,49 @@ public interface LabelAPI {
     /***
      * Set text if not empty
      */
-    BiConsumer<Label, String> setLabelText = (label, text) -> {
-        if (isEmpty.apply(text)) return;
+    Function2<Label, String, Label> setLabelText = (label, text) -> {
+        if (isEmpty.apply(text)) return label;
         label.setText(text);
+        return label;
     };
 
     /***
      * Set Font if not Null
      */
-    BiConsumer<Label, Font> setLabelFont = (label, font) -> {
-        if (isNull.apply(font)) return;
+    Function2<Label, Font, Label> setLabelFont = (label, font) -> {
+        if (isNull.apply(font)) return label;
         label.setFont(font);
+        return label;
     };
 
     /***
      * Create Label with rule
      */
-    Function2<Option<Function1<Label, Label>>, String, Label> createLabelWithRule =
-            ( ruleOption, text) -> {
+    Function2<Function1<Label, Label>, String, Label> createLabelWithRule =
+            (ruleOption, text) -> {
                 Label label = new Label();
-                if(!isEmpty.apply(text)) label.setText(text);
-                if(ruleOption.isEmpty()) return label;
-                return ruleOption.get().apply(label);
+                if (!isEmpty.apply(text)) label.setText(text);
+                if (isNull.apply(ruleOption)) return label;
+                return ruleOption.apply(label);
             };
 
     /***
      * Create Label with no rule
      */
     Function1<String, Label> createLabel =
-             createLabelWithRule
+            createLabelWithRule
                     .curried()
-                    .apply(Option.none());
+                    .apply(null);
 
 
     /***
      * Set Text Color to Label
      */
-    BiConsumer<Label, String> setLabelTextColor =
-            (label, color) -> label.setTextFill(Color.web(color));
+    Function2<Label, String, Label> setLabelTextColor =
+            (label, color) -> {
+                label.setTextFill(Color.web(color));
+                return label;
+            };
 
 
 }

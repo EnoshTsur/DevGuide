@@ -44,7 +44,7 @@ public interface SearchBarUtils {
      * Search Label styles
      */
     Function1<Label, Label> setInputLabelStyles = label -> {
-        setLabelFont.accept(
+        setLabelFont.apply(
                         label,
                         createFont.apply(
                                 SEARCH_FONT_TYPE,
@@ -53,7 +53,7 @@ public interface SearchBarUtils {
                                 )
                 );
         label.setPadding(SEARCH_LABEL_PADDING);
-        setLabelTextColor.accept(label, WHITE);
+        setLabelTextColor.apply(label, WHITE);
         addShadow.accept(label);
         return label;
     };

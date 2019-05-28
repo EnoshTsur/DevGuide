@@ -1,6 +1,5 @@
 package com.devguide.jfx.view.UI;
 
-import com.devguide.jfx.utils.StringUtils;
 import io.vavr.*;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
@@ -11,7 +10,6 @@ import javafx.scene.control.ComboBox;
 
 import java.util.function.Consumer;
 
-import static com.devguide.jfx.utils.StringUtils.*;
 
 /***
  * ComboBox API - Functions for all kinds of combo box

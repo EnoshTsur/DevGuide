@@ -57,7 +57,7 @@ public class TitleBar {
      */
     private final Label createHeaderLabel() {
         return createLabelWithRule.apply(
-                Option.of(setHeaderStyles::apply),
+                setHeaderStyles,
                 // title
                 title);
     }
@@ -68,7 +68,7 @@ public class TitleBar {
      */
     private final Label createHaaretzLogo() {
         return createLabelWithRule.apply(
-                Option.of(setHaaretzLogoStyles::apply),
+                setHaaretzLogoStyles,
                 EMPTY_STRING
         );
     }
@@ -84,7 +84,7 @@ public class TitleBar {
                 .apply(
                         CLOSE_LOGO_PATH,
                         event -> handleCloseRequest.accept(event)
-        );
+                );
         addShadow.accept(close);
 
         // Hide Button
@@ -109,13 +109,15 @@ public class TitleBar {
      * @return Grid pane with all inside elements
      */
     private final GridPane createContainer(Label logo, Label title, HBox buttons) {
+
         GridPane pane = (GridPane) createPaneWithRule.apply(
-                Option.of(
-                        container -> setContainerStyles
-                                .apply((GridPane) container)
-                ),
+
+                container -> setContainerStyles.apply((GridPane) container),
                 PaneTypes.GRID_PANE
         );
+
+
+
         pane.getChildren().addAll(logo, title, buttons);
         GridPane.setConstraints(logo, 0, 0);
         GridPane.setConstraints(title, 2, 0);

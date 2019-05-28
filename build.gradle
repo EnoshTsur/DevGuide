@@ -42,8 +42,4 @@ dependencies {
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
     compile 'org.junit.jupiter:junit-jupiter-api:5.1.0'
-
-
-
-
 }

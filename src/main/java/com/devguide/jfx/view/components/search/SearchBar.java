@@ -31,7 +31,7 @@ public class SearchBar {
         // Text
         Label searchText = createLabelWithRule
                 .apply(
-                        Option.of(setInputLabelStyles),
+                        setInputLabelStyles,
                         HEADER_TEXT
                 );
 
@@ -73,10 +73,7 @@ public class SearchBar {
         // Pane
         GridPane pane = (GridPane) createPaneWithRule
                 .apply(
-                        Option.of(
-                                container -> setContainerStyles
-                                        .apply((GridPane) container)
-                        ),
+                        container -> setContainerStyles.apply((GridPane) container),
                         GRID_PANE
                 );
 

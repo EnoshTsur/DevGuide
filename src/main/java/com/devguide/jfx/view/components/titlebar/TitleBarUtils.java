@@ -38,7 +38,7 @@ public interface TitleBarUtils {
      */
     Function1<Label, Label> setHeaderStyles = label ->  {
         // Font
-        setLabelFont.accept(
+        setLabelFont.apply(
                 label,
                 HAARETZ_HEADER_FONT
         );
@@ -46,7 +46,7 @@ public interface TitleBarUtils {
         label.setAlignment(Pos.CENTER);
 
         // text color
-        setLabelTextColor.accept(label, WHITE);
+        setLabelTextColor.apply(label, WHITE);
         label.setEffect(createShadow.apply("lightblue"));
         // text width
         label.setMinWidth(HEADER_MIN_WIDTH);
@@ -69,7 +69,7 @@ public interface TitleBarUtils {
      * Header label styles
      */
     Function1<GridPane, GridPane> setContainerStyles = container -> {
-        setBackgroundColor.accept(container, DARK_PURPLE);
+        setBackgroundLinearGradient.apply(container, HAARETZ_BLUE, HAARETZ_DARKBLUE);
         addShadow.accept(container);
         container.setPadding(DEFAULT_INSETS);
         String oldStyle = container.getStyle();
