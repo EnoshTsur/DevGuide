@@ -4,7 +4,6 @@ import com.devguide.jfx.view.UI.PaneAPI;
 import com.devguide.jfx.view.UI.PaneTypes;
 import com.devguide.jfx.view.components.technologies.TechUtils;
 import com.devguide.jfx.view.components.technologies.TechView;
-import com.devguide.jfx.view.components.front.FrontList;
 import javafx.collections.FXCollections;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
