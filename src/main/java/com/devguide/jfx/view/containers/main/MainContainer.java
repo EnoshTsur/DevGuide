@@ -1,6 +1,8 @@
 package com.devguide.jfx.view.containers.main;
 
 import com.devguide.jfx.view.UI.BorderPaneAlignment;
+import com.devguide.jfx.view.UI.PaneTypes;
+import com.devguide.jfx.view.components.choice.ChoiceView;
 import com.devguide.jfx.view.components.search.SearchBar;
 import com.devguide.jfx.view.containers.technologies.Technologies;
 import javafx.scene.layout.*;
@@ -16,6 +18,7 @@ public class MainContainer {
 
     // Components
     private final Technologies technologies;
+    private final ChoiceView choice;
 
     /***
      * Private CTOR
@@ -23,6 +26,7 @@ public class MainContainer {
      */
     private MainContainer(){
         technologies = new Technologies();
+        choice = ChoiceView.getInstance();
     }
 
     /***
@@ -33,14 +37,17 @@ public class MainContainer {
         // Top
         GridPane searchView = SearchBar.createSearchBar();
 
-        VBox container = technologies.createTechContainer();
+        VBox techContainer = technologies.createTechContainer();
 
+        GridPane choiceView = choice.createView();
 
         // Container
         BorderPane mainContainer = createBorderPane.apply(
                 new HashMap<BorderPaneAlignment, Pane>() {{
                     put(BorderPaneAlignment.TOP, searchView);
-                    put(BorderPaneAlignment.LEFT, container);
+                    put(BorderPaneAlignment.LEFT, techContainer);
+                    put(BorderPaneAlignment.RIGHT, choiceView);
+                    put(BorderPaneAlignment.CENTER, createPane.apply(PaneTypes.HBOX));
                 }}
         );
 

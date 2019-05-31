@@ -1,8 +1,6 @@
 package com.devguide.jfx.view.UI;
 
-import com.devguide.jfx.utils.BasicUtils;
 import io.vavr.*;
-import io.vavr.control.Option;
 import javafx.event.Event;
 import javafx.scene.control.TextField;
 
@@ -19,21 +17,29 @@ public interface TextFieldAPI {
 
     /**
      * Takes :
-     * Option Function Text Filed = Rule
+     * Function Text Filed = Rule
      * Tuple2 Integer = Size ( width, height )
      * String = Prompt Text
      * Consumer Event = On key pressed
      * Returns:
      * New Text Field
      */
-    Function4<Function1<TextField, TextField>, Tuple2<Integer, Integer>, String, Consumer<Event>, TextField>
-        createTextFieldWithRule = (ruleOption, size, promptText, eventHandler) -> {
+    Function4<Function1<TextField, TextField>, Tuple2<Integer, Integer>,
+            String,
+            Consumer<Event>,
+            TextField>
+
+        createTextFieldWithRule = (rule, size, promptText, eventHandler) -> {
         TextField textField = new TextField();
-        if (!isEmpty.apply(promptText)) textField.setPromptText(promptText);
+
+        if (!isNull.apply(promptText) && !isEmpty.apply(promptText))
+            textField.setPromptText(promptText);
+
         textField.setMaxSize(size._1, size._2);
         textField.setOnKeyPressed( event -> eventHandler.accept(event));
-        if (isNull.apply(ruleOption)) return textField;
-        return ruleOption.apply(textField);
+
+        if (isNull.apply(rule)) return textField;
+        return rule.apply(textField);
     };
 
     /**

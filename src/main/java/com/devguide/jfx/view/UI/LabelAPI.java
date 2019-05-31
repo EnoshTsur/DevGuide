@@ -2,13 +2,10 @@ package com.devguide.jfx.view.UI;
 
 import io.vavr.Function1;
 import io.vavr.Function2;
-import io.vavr.control.Option;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 import static com.devguide.jfx.utils.BasicUtils.isNull;
 import static com.devguide.jfx.utils.StringUtils.*;

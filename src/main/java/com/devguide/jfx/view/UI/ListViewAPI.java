@@ -1,12 +1,10 @@
 package com.devguide.jfx.view.UI;
 
-import com.devguide.jfx.utils.BasicUtils;
 import io.vavr.Function1;
 import io.vavr.Function2;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 
-import java.util.function.Function;
 
 import static com.devguide.jfx.utils.BasicUtils.*;
 

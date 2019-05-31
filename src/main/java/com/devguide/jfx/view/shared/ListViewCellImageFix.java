@@ -2,13 +2,21 @@ package com.devguide.jfx.view.shared;
 
 import io.vavr.Function1;
 import io.vavr.Function2;
+import io.vavr.collection.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
-import java.io.File;
+import java.awt.*;
+
+import static com.devguide.jfx.utils.StringUtils.*;
+import static com.devguide.jfx.view.UI.ButtonAPI.CURSOR_POINTER;
+import static com.devguide.jfx.view.shared.Colors.*;
+import static com.devguide.jfx.view.shared.ListCellStyles.*;
+import static com.devguide.jfx.view.shared.SharedUtils.*;
 
 /***
  * Tool to initial List View with Images
@@ -16,10 +24,67 @@ import java.io.File;
  */
 public interface ListViewCellImageFix {
 
+    int ICON_WIDTH = 20;
+    int ICON_HEIGHT = 20;
 
-    // Images
-    Image IMAGE_BRANCH = new Image("file:assets/branch_icon.png");
-    Image IMAGE_FOLDER = new Image("file:assets/folder_icon.jpg");
+    /***
+     * Creates Image View by Path
+     */
+    Function1<String, Image> createImageByPath =
+            path ->  new Image(path);
+
+    /***
+     * Creates Image Under Assets folder
+     */
+    Function1<String, Image> createImageUnderAssets =
+            image -> createImageByPath.apply(f("assets/{0}", image));
+
+
+    /***
+     * Set Image by Technology type
+     */
+    Function2<ImageView, String, ImageView> setImageByTechonology
+            = (icon, item) -> {
+
+        switch (item) {
+            case "CSS":
+                icon.setImage(createImageUnderAssets.apply("css.png"));
+                break;
+            case "Fela":
+                icon.setImage(createImageUnderAssets.apply("fela.png"));
+                break;
+            case "HTML5":
+                icon.setImage(createImageUnderAssets.apply("html5.png"));
+                break;
+            case "React":
+                icon.setImage(createImageUnderAssets.apply("react.png"));
+                break;
+            case "Java Script":
+                icon.setImage(createImageUnderAssets.apply("js.jpg"));
+                break;
+            case "Apache Velocity":
+                icon.setImage(createImageUnderAssets.apply("vm.png"));
+                break;
+            case "Node JS":
+                icon.setImage(createImageUnderAssets.apply("nodejs.png"));
+                break;
+            case "Polopoly":
+                icon.setImage(createImageUnderAssets.apply("polopoly.jpg"));
+                break;
+            case "Vavr":
+                icon.setImage(createImageUnderAssets.apply("vavr.png"));
+                break;
+            case "Spring Boot":
+                icon.setImage(createImageUnderAssets.apply("spring.png"));
+                break;
+            case "GraphQL":
+                icon.setImage(createImageUnderAssets.apply("graphql.png"));
+        }
+
+        icon.setFitHeight(ICON_HEIGHT);
+        icon.setFitWidth(ICON_WIDTH);
+        return icon;
+    };
 
     /**
      * Set List View Icons
@@ -27,8 +92,8 @@ public interface ListViewCellImageFix {
      * @param items
      * @return List View with Icons
      */
-    Function2<ObservableList<String>, Image, ListView<String>> seListViewtIcons
-    = (items, icon) -> {
+    Function1<ObservableList<String>, ListView<String>> seListViewtIcons
+            = items -> {
 
         ListView<String> listView = new ListView<>();
         listView.setItems(items);
@@ -44,11 +109,11 @@ public interface ListViewCellImageFix {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    imageView.setImage(icon);
-                    imageView.setFitWidth(20);
-                    imageView.setFitHeight(20);
+                    setImageByTechonology.apply(imageView, name);
                     setText(name);
                     setGraphic(imageView);
+                    setListCellsStyles.apply(this);
+
                 }
             }
         });

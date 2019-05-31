@@ -21,7 +21,7 @@ import static com.devguide.jfx.view.shared.SharedUtils.HAARETZ_HEADER_FONT;
 
 public interface TitleBarUtils {
 
-    String HAARETZ_LOGO_PATH = "assets/haaretz_logo.jpg";
+    String HAARETZ_LOGO_PATH = "assets/Haaretz.svg.png";
     int HAARETZ_LOGO_WIDTH = 50;
     int HAARETZ_LOGO_HEIGHT = 50;
 
@@ -46,8 +46,7 @@ public interface TitleBarUtils {
         label.setAlignment(Pos.CENTER);
 
         // text color
-        setLabelTextColor.apply(label, WHITE);
-        label.setEffect(createShadow.apply("lightblue"));
+        setLabelTextColor.apply(label, HAARETZ_WEIRD_ORANGE);
         // text width
         label.setMinWidth(HEADER_MIN_WIDTH);
         return label;

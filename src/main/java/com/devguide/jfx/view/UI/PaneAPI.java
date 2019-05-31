@@ -7,10 +7,8 @@ import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import static com.devguide.jfx.utils.BasicUtils.*;
-import static com.devguide.jfx.view.UI.PaneFactory.*;
 
 /***
  * Pane API - Functions for all kinds of panes
@@ -26,8 +24,8 @@ public interface PaneAPI {
      */
     Function2<Function1<Pane, ? extends Pane>, PaneTypes, ? extends Pane> createPaneWithRule =
             (paneRuleOption, paneType) -> {
-                if (isNull.apply(paneRuleOption)) return getPane.apply(paneType);
-                return paneRuleOption.apply(getPane.apply(paneType));
+                if (isNull.apply(paneRuleOption)) return PaneFactory.getPane.apply(paneType);
+                return paneRuleOption.apply(PaneFactory.getPane.apply(paneType));
             };
 
     /***
@@ -43,7 +41,7 @@ public interface PaneAPI {
     /**
      * Add Pane to Border Pane by alignment
      */
-    BiConsumer<Map.Entry<BorderPaneAlignment, ? extends Pane>, BorderPane> addPaneToBorderPane =
+    Function2<Map.Entry<BorderPaneAlignment, ? extends Pane>, BorderPane, BorderPane> addPaneToBorderPane =
             (entry, borderPane) -> {
                 switch (entry.getKey()) {
                     case TOP:
@@ -62,6 +60,7 @@ public interface PaneAPI {
                         borderPane.setCenter(entry.getValue());
                         break;
                 }
+                return borderPane;
             };
 
     /***
@@ -73,7 +72,7 @@ public interface PaneAPI {
             (paneRule, innerPanes) -> {
                 BorderPane pane = (BorderPane) createPaneWithRule.apply(paneRule, PaneTypes.BORDER_PANE);
                 if (innerPanes.isEmpty()) return pane;
-                innerPanes.entrySet().forEach(entry -> addPaneToBorderPane.accept(entry, pane));
+                innerPanes.entrySet().forEach(entry -> addPaneToBorderPane.apply(entry, pane));
                 return pane;
             };
 

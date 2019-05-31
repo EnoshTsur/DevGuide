@@ -28,7 +28,6 @@ public class FooterView {
                 // Styles
                 pane -> {
                     pane.setMinHeight(MIN_HEIGHT);
-                    pane.setMinWidth(WIDTH);
 
                     // Background
                     setBackgroundColor.accept(

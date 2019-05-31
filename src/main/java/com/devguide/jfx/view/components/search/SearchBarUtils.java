@@ -1,20 +1,21 @@
 package com.devguide.jfx.view.components.search;
 
 import io.vavr.Function1;
+import io.vavr.collection.List;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.util.Callback;
 
 import java.util.function.Consumer;
 
+import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.view.UI.ButtonAPI.*;
 import static com.devguide.jfx.view.UI.LabelAPI.*;
 import static com.devguide.jfx.view.shared.Colors.*;
+import static com.devguide.jfx.view.shared.ListCellStyles.*;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 
 public interface SearchBarUtils {
@@ -23,8 +24,6 @@ public interface SearchBarUtils {
     int SEARCH_LABEL_FONT_SIZE = 25;
 
     Insets SEARCH_LABEL_PADDING = new Insets(0, 10, 0, 10);
-
-
 
 
     String SEARCH_ICON_PATH = "assets/search.png";
@@ -36,7 +35,7 @@ public interface SearchBarUtils {
     int TEXT_FIELD_INPUT_WIDTH = 200;
     int TEXT_FIELD_INPUT_HEIGHT = 40;
 
-    Font buttonFont = createFont.apply(HEADER_FONT_TYPE, FontWeight.MEDIUM, 16);
+    Font buttonFont = createFont.apply(DEFAULT_FONT_TYPE, FontWeight.MEDIUM, 16);
 
 
     /****
@@ -45,29 +44,65 @@ public interface SearchBarUtils {
      */
     Function1<Label, Label> setInputLabelStyles = label -> {
         setLabelFont.apply(
-                        label,
-                        createFont.apply(
-                                SEARCH_FONT_TYPE,
-                                        FontWeight.EXTRA_BOLD,
-                                        SEARCH_LABEL_FONT_SIZE
-                                )
-                );
+                label,
+                createFont.apply(
+                        DEFAULT_FONT_TYPE,
+                        FontWeight.LIGHT,
+                        SEARCH_LABEL_FONT_SIZE
+                )
+        );
         label.setPadding(SEARCH_LABEL_PADDING);
-        setLabelTextColor.apply(label, WHITE);
-        addShadow.accept(label);
+        setLabelTextColor.apply(label, HAARETZ_LIGHT_TEXT_COLOR);
         return label;
     };
+
+
+    /***
+     * Set Combo Box Styles
+     */
+    Function1<ComboBox<String>, ComboBox<String>> setComboBoxStyles =
+            combobox -> {
+                combobox.setTooltip(createToolTip.apply(INPUT_MESSAGE));
+                combobox.setFocusTraversable(false);
+                combobox.setEditable(true);
+                setBackgroundColor.accept(combobox.getEditor(), HAARETZ_DARKEST);
+                combobox.getEditor().setFont(HAARETZ_TITLE_FONT);
+                addManyStyles.accept(combobox.getEditor(), List.of("-fx-text-fill: #99d6ff;"));
+                addStyle.accept(combobox, "-fx-font: Monospaced 30px;");
+
+                return combobox;
+            };
 
     /****
      * Search Bar Utils
      * Text Field styles
      */
     Function1<ComboBox<String>, ComboBox<String>> setInputTextStyles = input -> {
-        input.setTooltip(createToolTip.apply(INPUT_MESSAGE));
-        input.setFocusTraversable(false);
-        input.setEditable(true);
-        addStyle.accept(input, "-fx-font: 30px Arial Rounded MT Bold;");
-        addStyle.accept(input, createBgColorStyle.apply(WHITE));
+        setComboBoxStyles.apply(input);
+        input.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                final ListCell<String> cell = new ListCell<String>() {
+                    {
+                        super.setPrefWidth(100);
+                    }
+
+                    @Override
+                    public void updateItem(String item,
+                                           boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (isNull.apply(item) && empty) setText(null);
+                        else setText(item);
+
+                        setText(item);
+                        setListCellsStyles.apply(this);
+
+                    }
+                };
+                return cell;
+            }
+        });
         return input;
     };
 

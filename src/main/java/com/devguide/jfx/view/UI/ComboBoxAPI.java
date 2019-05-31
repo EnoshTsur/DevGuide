@@ -1,5 +1,6 @@
 package com.devguide.jfx.view.UI;
 
+import com.devguide.jfx.utils.BasicUtils;
 import io.vavr.*;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
@@ -24,7 +25,7 @@ public interface ComboBoxAPI {
      * Returns:
      * New Combo Box
      */
-    Function4<Option<Function1<ComboBox<String>, ComboBox<String>>>,
+    Function4<Function1<ComboBox<String>, ComboBox<String>>,
             List<String>,
                     Tuple2<Integer, Integer>,
                     Consumer<Event>,
@@ -37,7 +38,7 @@ public interface ComboBoxAPI {
                 comboBox.setMinWidth(widthAndHeight._1);
                 comboBox.setMinHeight(widthAndHeight._2);
                 comboBox.setOnKeyPressed( event -> eventHandler.accept(event));
-                if (!rule.isEmpty()) return rule.get().apply(comboBox);
+                if (!BasicUtils.isNull.apply(rule)) return rule.apply(comboBox);
                 return comboBox;
             };
 

@@ -1,22 +1,25 @@
 package com.devguide.jfx.view.components.main;
 
+import com.devguide.jfx.utils.StringUtils;
 import com.devguide.jfx.view.components.footer.FooterView;
 import com.devguide.jfx.view.components.titlebar.TitleBar;
 import com.devguide.jfx.view.UI.BorderPaneAlignment;
 import com.devguide.jfx.view.containers.main.MainContainer;
+import com.devguide.jfx.view.shared.Colors;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.util.HashMap;
 
+import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.components.main.MainViewUtils.*;
+import static com.devguide.jfx.view.shared.Colors.*;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 
 /***
@@ -75,12 +78,13 @@ public class MainView {
         );
 
         addStyle.accept(mainPane, "-fx-background-color: transparent;");
+        addStyle.accept(mainPane, f("-fx-border-color: {0}", HAARETZ_BLUE));
         mainPane.setOnKeyPressed(e -> handleKeyboard.apply(e, mainPane, window));
         Scene scene = new Scene(mainPane);
         scene.setFill(Color.TRANSPARENT);
         setStageDraggable(mainPane, window, offsets, true);
         window.setScene(scene);
-        return window;
+         return window;
     }
 
     /**

@@ -1,6 +1,5 @@
 package com.devguide.jfx.view.shared;
 
-import com.devguide.jfx.utils.StringUtils;
 import io.vavr.*;
 import io.vavr.collection.List;
 import javafx.geometry.Insets;
@@ -13,8 +12,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -27,11 +24,13 @@ public interface SharedUtils {
 
 
     String APP_NAME = "Dev Bible";
-    String HEADER_FONT_TYPE = "Lucida Calligraphy";
-    String SEARCH_FONT_TYPE ="Kristen ITC";
+    String DEFAULT_FONT_TYPE = "-apple-system";
+    String HEADER_FONT_TYPE = "-apple-system";
+
 
     int DEFAULT_SPACING = 10;
     int HEADER_FONT_SIZE = 23;
+    int TITLE_FONT_SIZE = 18;
 
     String SHADOW_STYLE = "-fx-effect: dropshadow(three-pass-box, " +
             "rgba(0,0,0,0.8), 10, 0, 0, 0);";
@@ -161,16 +160,26 @@ public interface SharedUtils {
      */
     Function1<Integer, Font> haaretzFontBySize = size ->
             createFont.apply(
-                    HEADER_FONT_TYPE,
+                    DEFAULT_FONT_TYPE,
                     FontWeight.SEMI_BOLD,
                     size
             );
 
     /***
-     * Haaretz header font
+     * Haaretz header font ( 23 )
      */
-    Font HAARETZ_HEADER_FONT = haaretzFontBySize
-            .apply(HEADER_FONT_SIZE);
+    Font HAARETZ_HEADER_FONT = createFont.apply(
+            HEADER_FONT_TYPE,
+            FontWeight.LIGHT,
+            HEADER_FONT_SIZE
+    );
+
+
+    /**
+     * Haaretz title font ( 18 )
+     */
+    Font HAARETZ_TITLE_FONT = haaretzFontBySize
+            .apply(TITLE_FONT_SIZE);
 
     /***
      * Get Shadow effect

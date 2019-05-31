@@ -1,8 +1,9 @@
 package com.devguide.jfx.view.components.search;
 
+import com.devguide.jfx.view.containers.technologies.Technologies;
+import com.devguide.jfx.view.containers.technologies.TechnologiesUtils;
 import com.devguide.jfx.view.shared.AutoCompleteComboBoxListener;
 import io.vavr.Tuple;
-import io.vavr.collection.List;
 import io.vavr.control.Option;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -38,18 +39,8 @@ public class SearchBar {
         // Text Field
         ComboBox<String> input = createComboBoxWithRule
                 .apply(
-                        Option.of(setInputTextStyles),
-                        List.of(
-                                "React",
-                                "Fela",
-                                "Graphql",
-                                "Git",
-                                "Linux",
-                                "Spring boot",
-                                "Grid",
-                                "Apache VM",
-                                "Node JS"
-                        ),
+                        setInputTextStyles,
+                        TechnologiesUtils.frontAndBack,
 
                         Tuple.of(
                                 TEXT_FIELD_INPUT_WIDTH,
