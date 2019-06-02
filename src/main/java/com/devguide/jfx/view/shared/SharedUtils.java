@@ -24,13 +24,13 @@ public interface SharedUtils {
 
 
     String APP_NAME = "Dev Bible";
-    String DEFAULT_FONT_TYPE = "-apple-system";
-    String HEADER_FONT_TYPE = "-apple-system";
+    String DEFAULT_FONT_TYPE = "Droid Sans Fallback";
+    String HEADER_FONT_TYPE = "Sans Typewriter";
 
 
     int DEFAULT_SPACING = 10;
-    int HEADER_FONT_SIZE = 23;
-    int TITLE_FONT_SIZE = 18;
+    int HEADER_FONT_SIZE = 18;
+    int TITLE_FONT_SIZE = 15;
 
     String SHADOW_STYLE = "-fx-effect: dropshadow(three-pass-box, " +
             "rgba(0,0,0,0.8), 10, 0, 0, 0);";

@@ -8,9 +8,6 @@ import io.vavr.Tuple2;
 import io.vavr.collection.List;
 import javafx.collections.FXCollections;
 import javafx.scene.layout.VBox;
-
-import java.util.function.Function;
-
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.containers.technologies.TechnologiesUtils.*;
 

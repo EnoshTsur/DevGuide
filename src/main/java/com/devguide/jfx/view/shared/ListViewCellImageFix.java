@@ -8,7 +8,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import static com.devguide.jfx.utils.StringUtils.*;
-import static com.devguide.jfx.view.shared.ListCellStyles.*;
 
 /***
  * Tool to initial List View with Images
@@ -104,8 +103,6 @@ public interface ListViewCellImageFix {
                     setImageByTechonology.apply(imageView, name);
                     setText(name);
                     setGraphic(imageView);
-                    setListCellsStyles.apply(this);
-
                 }
             }
         });

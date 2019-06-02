@@ -1,14 +1,9 @@
 package com.devguide.jfx.view.components.footer;
 
-import com.devguide.jfx.view.UI.PaneAPI;
 import com.devguide.jfx.view.UI.PaneTypes;
-import com.devguide.jfx.view.components.main.MainViewUtils;
-import com.devguide.jfx.view.shared.Colors;
-import com.devguide.jfx.view.shared.SharedUtils;
 import javafx.scene.layout.HBox;
 
 import static com.devguide.jfx.view.UI.PaneAPI.*;
-import static com.devguide.jfx.view.components.main.MainViewUtils.*;
 import static com.devguide.jfx.view.shared.Colors.*;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 
@@ -32,7 +27,7 @@ public class FooterView {
                     // Background
                     setBackgroundColor.accept(
                             pane,
-                            HAARETS_LIGHTEST
+                            LIGHTEST
                     );
 
                     return pane;

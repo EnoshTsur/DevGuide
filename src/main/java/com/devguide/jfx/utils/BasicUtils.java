@@ -2,6 +2,8 @@ package com.devguide.jfx.utils;
 
 import io.vavr.Function1;
 
+import java.util.Objects;
+
 /***
  * Basic Utils
  */
@@ -13,7 +15,7 @@ public interface BasicUtils {
     /**
      * Null validation : return true if object is null
      */
-    Function1<Object, Boolean> isNull = object -> object == null;
+    Function1<Object, Boolean> isNull = Objects::isNull;
 
     /***
      * Not - returns the opposite of the input function output

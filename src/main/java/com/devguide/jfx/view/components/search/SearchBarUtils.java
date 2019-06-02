@@ -5,7 +5,6 @@ import io.vavr.collection.List;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Callback;
 
@@ -15,13 +14,12 @@ import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.view.UI.ButtonAPI.*;
 import static com.devguide.jfx.view.UI.LabelAPI.*;
 import static com.devguide.jfx.view.shared.Colors.*;
-import static com.devguide.jfx.view.shared.ListCellStyles.*;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 
 public interface SearchBarUtils {
 
     int CONTAINER_MIN_HEIGHT = 40;
-    int SEARCH_LABEL_FONT_SIZE = 25;
+    int SEARCH_LABEL_FONT_SIZE = 18;
 
     Insets SEARCH_LABEL_PADDING = new Insets(0, 10, 0, 10);
 
@@ -29,14 +27,10 @@ public interface SearchBarUtils {
     String SEARCH_ICON_PATH = "assets/search.png";
 
     String HEADER_TEXT = "Search";
-    String BUTTON_TEXT = "Submit";
     String INPUT_MESSAGE = "Buzz Words\nSuch as React / VM...";
 
     int TEXT_FIELD_INPUT_WIDTH = 200;
     int TEXT_FIELD_INPUT_HEIGHT = 40;
-
-    Font buttonFont = createFont.apply(DEFAULT_FONT_TYPE, FontWeight.MEDIUM, 16);
-
 
     /****
      * Search Bar Utils
@@ -52,7 +46,7 @@ public interface SearchBarUtils {
                 )
         );
         label.setPadding(SEARCH_LABEL_PADDING);
-        setLabelTextColor.apply(label, HAARETZ_LIGHT_TEXT_COLOR);
+        setLabelTextColor.apply(label, LIGHT_TEXT_COLOR);
         return label;
     };
 
@@ -65,7 +59,7 @@ public interface SearchBarUtils {
                 combobox.setTooltip(createToolTip.apply(INPUT_MESSAGE));
                 combobox.setFocusTraversable(false);
                 combobox.setEditable(true);
-                setBackgroundColor.accept(combobox.getEditor(), HAARETZ_DARKEST);
+                setBackgroundColor.accept(combobox.getEditor(), DARKEST);
                 combobox.getEditor().setFont(HAARETZ_TITLE_FONT);
                 addManyStyles.accept(combobox.getEditor(), List.of("-fx-text-fill: #99d6ff;"));
                 addStyle.accept(combobox, "-fx-font: Monospaced 30px;");
@@ -96,8 +90,6 @@ public interface SearchBarUtils {
                         else setText(item);
 
                         setText(item);
-                        setListCellsStyles.apply(this);
-
                     }
                 };
                 return cell;
@@ -112,7 +104,7 @@ public interface SearchBarUtils {
      */
     Consumer<Button> setButtonStyles = button -> {
         button.setMaxSize(30, 30);
-        setButtonOnMouseEntered.accept(button);
+        setCursorPointer.accept(button);
     };
 
     /****
@@ -122,7 +114,7 @@ public interface SearchBarUtils {
     Function1<GridPane, GridPane> setContainerStyles = container -> {
         container.setPadding(DEFAULT_INSETS);
         container.setMinHeight(CONTAINER_MIN_HEIGHT);
-        setBackgroundColor.accept(container, HAARETZ_LIGHTBLUE);
+        setBackgroundColor.accept(container, PRIMARY_LIGHT);
         return container;
     };
 }

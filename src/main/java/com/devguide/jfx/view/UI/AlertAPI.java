@@ -1,18 +1,19 @@
 package com.devguide.jfx.view.UI;
 
-import com.devguide.jfx.view.shared.SharedUtils;
 import io.vavr.*;
 import io.vavr.collection.List;
 import javafx.event.Event;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -22,6 +23,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static com.devguide.jfx.utils.KeyBoardUtils.*;
 import static com.devguide.jfx.view.UI.ButtonAPI.*;
 import static com.devguide.jfx.view.UI.LabelAPI.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
@@ -34,23 +36,15 @@ import static com.devguide.jfx.view.shared.SharedUtils.DEFAULT_INSETS;
  */
 public interface AlertAPI {
 
-    /***
-     * Header Container Styles
-     */
-    Function3<Pane, Integer, Integer, ? extends Pane> setHeaderContainerStyles =
-            (pane, width, height) -> {
-                pane.setMinWidth(width);
-                pane.setMinHeight(height);
-                return pane;
-            };
+
 
     /**
      * Header Label Styles
      */
     Function2<Label, Font, Label> setHeaderLabelStyles = (label, font) -> {
         label.setFont(font);
-        setLabelPadding.apply(label, Tuple.of(15.0, 15.0, 15.0, 15.0));
-        setLabelTextColor.apply(label, HAARETZ_WEIRD_ORANGE);
+        setDefaultLabelPadding.apply(label);
+        setLabelTextColor.apply(label, LIGHT_PINK_PURPLE);
 
         return label;
     };
@@ -62,7 +56,7 @@ public interface AlertAPI {
             (pane, width, height) -> {
                 pane.setMinWidth(width);
                 pane.setMinHeight(height);
-                setBackgroundColor.accept(pane, HAARETZ_DARKBLUE);
+                setBackgroundColor.accept(pane, PRIMARY_DARK);
                 String oldStyle = pane.getStyle();
                 pane.setOnMouseEntered(event -> addStyle.accept(pane, CURSOR_MOVE));
                 pane.setOnMouseExited(event -> pane.setStyle(oldStyle));
@@ -77,6 +71,7 @@ public interface AlertAPI {
                 setBackgroundColor.accept(button, DARK_PURPLE_BLUE);
                 setButtonTextColor.accept(button, LIGHT_PURPLE_BLUE);
                 setButtonDefaultPadding.apply(button);
+                setCursorPointer.accept(button);
                 return button;
             });
 
@@ -91,10 +86,9 @@ public interface AlertAPI {
                         text
                 );
 
-                HBox pane = (HBox) createPaneWithRule
+                HBox pane = (HBox) createPane
                         // Initialize pane
                         .apply(
-                                pane1 -> setHeaderContainerStyles.apply(pane1, width, height),
                                 PaneTypes.HBOX
                         );
 
@@ -153,11 +147,12 @@ public interface AlertAPI {
                         BUTTONS_END
                 ).forEach(index -> {
                     Button current = buttons.get(index);
-                    addStyle.accept(current, CURSOR_POINTER);
                     container.getChildren().add(current);
                     GridPane.setConstraints(current, index, ROW_COUNT);
                 });
 
+                container.setHgap(10);
+                container.setVgap(0);
                 return container;
             };
 
@@ -173,7 +168,8 @@ public interface AlertAPI {
                 stage.setHeight(height);
                 stage.setResizable(false);
                 stage.initStyle(StageStyle.TRANSPARENT);
-                setStageDraggable((Region) container.getTop(), stage, offsets, true);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                setStageDraggable(container, stage, offsets, true);
                 return stage;
             };
 
@@ -188,6 +184,8 @@ public interface AlertAPI {
             HashMap<BorderPaneAlignment, Pane>> setComponentsMap
             = (width, height, title, text, options) ->
             new HashMap<BorderPaneAlignment, Pane>() {{
+
+                // Top
                 put(BorderPaneAlignment.TOP,
                         createHeader.apply(
                                 title,
@@ -196,6 +194,8 @@ public interface AlertAPI {
                                 HAARETZ_HEADER_FONT
                         )
                 );
+
+                // Center
                 put(BorderPaneAlignment.CENTER,
                         createHeader.apply(
                                 text,
@@ -204,6 +204,8 @@ public interface AlertAPI {
                                 HAARETZ_HEADER_FONT
                         )
                 );
+
+                // Bottom
                 put(BorderPaneAlignment.BOTTOM,
                         createButtonsContainer.apply(
                                 width,
@@ -234,20 +236,19 @@ public interface AlertAPI {
                 rect.setArcHeight(15);
                 rect.setArcWidth(15);
 
-                BorderPane container = createBorderPane
-                        .apply(setComponentsMap.apply(
+                BorderPane container = createBorderPane.apply(
+                        setComponentsMap.apply(
                                 WIDTH, HEIGHT,
                                 title, text,
                                 options
                         ));
 
 
-                Stage window = setAlertDefaultStage.apply(600, 300, container);
+                Stage window = setAlertDefaultStage.apply(WIDTH, HEIGHT, container);
                 setContainerStyles.apply(container, WIDTH, HEIGHT);
+                container.setOnKeyPressed(event -> handleKeyboard.apply(event, container, window));
                 container.setClip(rect);
-                container.setOpacity(0.90);
                 Scene scene = new Scene(container);
-                scene.setFill(Color.TRANSPARENT);
                 window.setScene(scene);
 
                 return window;

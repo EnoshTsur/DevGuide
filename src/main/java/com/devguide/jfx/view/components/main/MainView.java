@@ -12,6 +12,7 @@ import javafx.stage.StageStyle;
 
 import java.util.HashMap;
 
+import static com.devguide.jfx.utils.KeyBoardUtils.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.components.main.MainViewUtils.*;
@@ -70,10 +71,11 @@ public class MainView {
         );
 
         addStyle.accept(mainPane, "-fx-background-color: transparent;");
-        addStyle.accept(mainPane, f("-fx-border-color: {0}", HAARETZ_BLUE));
+        addStyle.accept(mainPane, f("-fx-border-color: {0}", PRIMARY));
         mainPane.setOnKeyPressed(e -> handleKeyboard.apply(e, mainPane, window));
         Scene scene = new Scene(mainPane);
         scene.setFill(Color.TRANSPARENT);
+        scene.getStylesheets().add("file:/home/ibo1.com/enosh.tsur/com.devguide/src/main/java/com/devguide/jfx/style.css");
         setStageDraggable(mainPane, window, offsets, true);
         window.setScene(scene);
          return window;

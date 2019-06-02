@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 import static com.devguide.jfx.view.UI.LabelAPI.*;
 import static com.devguide.jfx.view.UI.PaneAPI.createPaneWithRule;
 import static com.devguide.jfx.view.shared.Colors.*;
-import static com.devguide.jfx.view.shared.Colors.HAARETS_LIGHTEST;
+import static com.devguide.jfx.view.shared.Colors.LIGHTEST;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 import static com.devguide.jfx.view.shared.SharedUtils.DEFAULT_INSETS;
 import static com.devguide.jfx.view.shared.SharedUtils.setBackgroundColor;
@@ -74,14 +74,18 @@ public interface TechnologiesUtils {
      */
     Function1<Label, Label> setLabelStyles = label -> {
         setLabelFont.apply(label, HAARETZ_TITLE_FONT);
-        setLabelTextColor.apply(label, HAARETZ_TEXT_COLOR);
+        setLabelTextColor.apply(label, TEXT_COLOR);
         return label;
     };
 
     /**
      * Set List View Styles
      */
-    Function1<ListView<String>, ListView<String>> setListViewStyles = list -> list;
+    Function1<ListView<String>, ListView<String>> setListViewStyles = list -> {
+        list.setMaxWidth(180);
+        list.setMaxHeight(150);
+        return list;
+    };
 
     /***
      * Set Front Pane Styles
@@ -89,7 +93,7 @@ public interface TechnologiesUtils {
     Function1<Pane, ? extends Pane> setContainerStyles =
             pane -> {
                 pane.setPadding(DEFAULT_INSETS);
-                setBackgroundColor.accept(pane, HAARETS_LIGHTEST);
+                setBackgroundColor.accept(pane, LIGHTEST);
 
                 return pane;
             };

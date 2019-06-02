@@ -53,7 +53,7 @@ public class SearchBar {
         // Button
         Button submit = createButtonWithBackground
                 .apply(
-                        Option.of(SEARCH_ICON_PATH),
+                        SEARCH_ICON_PATH,
                         EMPTY_STRING,
                         setButtonStyles,
                         event -> {
@@ -69,9 +69,8 @@ public class SearchBar {
                 );
 
         pane.getChildren().addAll(searchText, input, submit);
-        GridPane.setConstraints(searchText, 0, 0);
-        GridPane.setConstraints(input, 1, 0);
-        GridPane.setConstraints(submit, 2, 0);
+        GridPane.setConstraints(input, 0, 0);
+        GridPane.setConstraints(submit, 1, 0);
         pane.setHgap(10);
         return pane;
     }

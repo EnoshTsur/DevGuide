@@ -46,7 +46,7 @@ public interface TitleBarUtils {
         label.setAlignment(Pos.CENTER);
 
         // text color
-        setLabelTextColor.apply(label, HAARETZ_WEIRD_ORANGE);
+        setLabelTextColor.apply(label, LIGHT_PINK_PURPLE);
         // text width
         label.setMinWidth(HEADER_MIN_WIDTH);
         return label;
@@ -68,7 +68,7 @@ public interface TitleBarUtils {
      * Header label styles
      */
     Function1<GridPane, GridPane> setContainerStyles = container -> {
-        setBackgroundLinearGradient.apply(container, HAARETZ_BLUE, HAARETZ_DARKBLUE);
+        setBackgroundLinearGradient.apply(container, PRIMARY, PRIMARY_DARK);
         addShadow.accept(container);
         container.setPadding(DEFAULT_INSETS);
         String oldStyle = container.getStyle();
@@ -87,6 +87,6 @@ public interface TitleBarUtils {
         addStyle.accept(button, CURSOR_POINTER);
         final String OLD_STYLE = button.getStyle();
         button.setStyle(OLD_STYLE);
-        setButtonOnMouseEntered.accept(button);
+        setCursorPointer.accept(button);
     };
 }

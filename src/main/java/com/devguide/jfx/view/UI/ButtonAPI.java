@@ -33,14 +33,14 @@ public interface ButtonAPI {
      * Returns:
      * New Button
      */
-    Function4<Option<String>, String, Consumer<Button>, Consumer<Event>, Button>
+    Function4<String, String, Consumer<Button>, Consumer<Event>, Button>
             createButtonWithBackground = (backgroundPath, text, rule, clickHandler) -> {
         Button button = new Button();
         if (isNotEmpty.apply(text)) button.setText(text);
         if (isNotNull.apply(rule)) rule.accept(button);
         button.setOnAction(event -> clickHandler.accept(event));
-        if (backgroundPath.isEmpty()) return button;
-        setBackground.accept(button, backgroundPath.get());
+        if (isEmpty.apply(backgroundPath) || isNull.apply(backgroundPath)) return button;
+        setBackground.accept(button, backgroundPath);
         return button;
     };
 
@@ -54,7 +54,7 @@ public interface ButtonAPI {
      */
     Function3<String, Consumer<Button>, Consumer<Event>, Button> createButton =
             createButtonWithBackground
-                    .apply(Option.none());
+                    .apply(EMPTY_STRING);
 
     /***
      * Minimize the window
@@ -96,7 +96,7 @@ public interface ButtonAPI {
      * Sets Cursor to be pointer and add shadow
      * while mouse over givven button
      */
-    Consumer<Button> setButtonOnMouseEntered = button -> {
+    Consumer<Button> setCursorPointer = button -> {
         final String OLD_STYLE = button.getStyle();
         button.setOnMouseEntered(e -> addManyStyles
                 .accept(button, List.of(SHADOW_STYLE, CURSOR_POINTER)));

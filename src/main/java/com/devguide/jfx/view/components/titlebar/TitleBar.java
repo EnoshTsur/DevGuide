@@ -31,7 +31,7 @@ public interface TitleBar {
     Function2<String, Consumer<Event>, Button> createTitleBarButton =
             (backgroundPath, clickHandler) -> {
                 Button button = createButtonWithBackground.apply(
-                        Option.of(backgroundPath),
+                        backgroundPath,
                         EMPTY_STRING,
                         setButtonStyles,
                         event -> clickHandler.accept(event)
