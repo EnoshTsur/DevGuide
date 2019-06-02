@@ -249,6 +249,7 @@ public interface AlertAPI {
                 container.setOnKeyPressed(event -> handleKeyboard.apply(event, container, window));
                 container.setClip(rect);
                 Scene scene = new Scene(container);
+                scene.setFill(Color.TRANSPARENT);
                 window.setScene(scene);
 
                 return window;

@@ -2,15 +2,13 @@ package com.devguide.jfx;
 
 import com.devguide.jfx.execute.Execute;
 import com.devguide.jfx.execute.ShellType;
-import com.devguide.jfx.ioutils.FileSystem;
-import com.devguide.jfx.view.UI.AlertAPI;
-import com.devguide.jfx.view.UI.ButtonAPI;
+import com.devguide.jfx.utils.FileSystem;
+import com.devguide.jfx.utils.StringUtils;
 import com.devguide.jfx.view.components.main.MainView;
-import io.vavr.collection.List;
+import io.vavr.control.Try;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -45,8 +43,8 @@ public class MyApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Stage alert = createAlertWithButtons.apply(
-                "Operation System:",
-                FileSystem.getOperationSystem(),
+                StringUtils.f("Is exists {0}", FileSystem.getAbsolutePath.apply("com/devguide/jfx/style.css")),
+                FileSystem.getOperationSystem.get(),
 
                 new HashMap<Button, Consumer<Event>>() {{
                     put(new Button("Close"), handleCloseRequest);
@@ -57,11 +55,12 @@ public class MyApp extends Application {
         alert.showAndWait();
 
 
+
         Stage window = mainView.getView();
         window.show();
         System.out.println(javafx.scene.text.Font.getFamilies());
-        System.out.println(FileSystem.getOperationSystem());
-        Execute.run.apply("git s", new File("/home/ibo1.com/enosh.tsur"), ShellType.BASH);
+        System.out.println(FileSystem.getOperationSystem.get());
+        // Execute.run.apply("git s", new File("/home/ibo1.com/enosh.tsur"), ShellType.BASH);
     }
 
     @Override

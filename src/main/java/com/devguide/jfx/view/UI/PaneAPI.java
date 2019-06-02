@@ -1,7 +1,9 @@
 package com.devguide.jfx.view.UI;
 
+import com.devguide.jfx.utils.BasicUtils;
 import io.vavr.*;
 import io.vavr.collection.List;
+import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -83,22 +85,18 @@ public interface PaneAPI {
     Function1<Map<BorderPaneAlignment, Pane>, BorderPane> createBorderPane =
             createBorderPaneWithRule.curried().apply(null);
 
-    /***
-     * Build Panes
-     * Takes: List of  Tuple3 ( Pane Type, Pane Alignment, Function rule )
-     * Returns Map of < Pane Alignment, Pane >
-     */
-    Function1<List<Tuple3<PaneTypes, BorderPaneAlignment, Function1<Pane, Pane>>>, Map<BorderPaneAlignment, Pane>>
-            buildPanes = list -> {
 
-        Map<BorderPaneAlignment, Pane> panesMap = new HashMap<>();
-        list.forEach(
-                tuple3 -> panesMap.put(
-                        tuple3._2,
-                        createPaneWithRule.apply(tuple3._3, tuple3._1)
-                )
-        );
-        return panesMap;
+    /***
+     * Set Custom Padding
+     */
+    Function2<Pane, Tuple4<Double, Double, Double, Double>, Pane>
+            setPanePadding = (pane, insets) -> {
+        double up = doubleOrZero.apply(insets._1);
+        double right = doubleOrZero.apply(insets._2);
+        double down = doubleOrZero.apply(insets._3);
+        double left = doubleOrZero.apply(insets._4);
+        pane.setPadding(new Insets(up, right, down, left));
+        return pane;
     };
 
 }

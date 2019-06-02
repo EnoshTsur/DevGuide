@@ -1,17 +1,16 @@
 package com.devguide.jfx.view.components.titlebar;
 
+import com.devguide.jfx.view.UI.BorderPaneAlignment;
 import com.devguide.jfx.view.UI.PaneTypes;
 import io.vavr.*;
-import io.vavr.control.Option;
 import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-
-
+import javafx.scene.layout.Pane;
+import java.util.HashMap;
 import java.util.function.Consumer;
-
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.components.titlebar.TitleBarUtils.*;
 import static com.devguide.jfx.view.UI.ButtonAPI.*;
@@ -45,43 +44,39 @@ public interface TitleBar {
      * Grid Pane Container
      * @return Grid Pane
      */
-    Function4<Function3<Label, Label, HBox, GridPane>,
-            Function1<Function1<Label, Label>, Label>,
-            Function2<Function1<Label, Label>, String, Label>,
-            HBox, GridPane> buildComponent =
+    Function3<Function2<HBox, HBox, BorderPane>,
+            Function1<Function1<Label, Label>, HBox>,
+            HBox, BorderPane> buildComponent =
 
-            (createContainer, createLogo, createHeader, buttons) ->
+            (createContainer, createLogo, buttons) ->
                     createContainer.apply(
                             createLogo.apply(setHaaretzLogoStyles),
-                            createHeader.apply(setHeaderStyles, APP_NAME),
                             buttons
 
                     );
 
-    // title
-    /***
-     * Create Header Label
-     * @return Styled Label with text
-     */
-    Function2<Function1<Label, Label>, String, Label> createHeaderLabel =
-            createLabelWithRule;
 
     /***
      * Create Haaretz Logo ( Label )
      * @return Label - haaretz logo
      */
-    Function1<Function1<Label, Label>, Label> createHaaretzLogo =
-            styleFunction -> createLabelWithRule.apply(
-                    styleFunction,
-                    EMPTY_STRING
-            );
+    Function1<Function1<Label, Label>, HBox> createHaaretzLogo =
+            styleFunction -> {
 
+                // Container
+                HBox container = (HBox) createPane.apply(PaneTypes.HBOX);
 
-    /***
-     * Creator for button
-     */
-    Function2<String, Consumer<Event>, Button> createFunction =
-            createTitleBarButton;
+                // Logo
+                Label logo = createLabelWithRule.apply(
+                        styleFunction,
+                        EMPTY_STRING
+                );
+
+                // Add Stuff And Return HA HA :)
+                container.getChildren().add(logo);
+                return container;
+            };
+
 
     /***
      * Create a HBox with Close & Hide Buttons
@@ -110,7 +105,7 @@ public interface TitleBar {
      */
     Function2<String, String, HBox> createButtons =
             createCloseAndHidePanel.apply(
-                    createFunction
+                    createTitleBarButton
             );
 
     /***
@@ -122,19 +117,18 @@ public interface TitleBar {
     );
 
     /***
-     * Create Grid Pane Container
+     * Create Border Pane Container
      */
-    Function3<Label, Label, HBox, GridPane> createContainer =
-            (logo, title, buttons) -> {
-                GridPane pane = (GridPane) createPaneWithRule.apply(
+    Function2<HBox, HBox, BorderPane> createContainer =
+            (logo, buttons) -> {
+                BorderPane pane = createBorderPaneWithRule.apply(
 
-                        container -> setContainerStyles.apply((GridPane) container),
-                        PaneTypes.GRID_PANE
+                        container -> setContainerStyles.apply((BorderPane) container),
+                        new HashMap<BorderPaneAlignment, Pane>() {{
+                            put(BorderPaneAlignment.LEFT, logo);
+                            put(BorderPaneAlignment.RIGHT, buttons);
+                        }}
                 );
-                pane.getChildren().addAll(logo, title, buttons);
-                GridPane.setConstraints(logo, 0, 0);
-                GridPane.setConstraints(title, 2, 0);
-                GridPane.setConstraints(buttons, 3, 0);
                 return pane;
             };
 
@@ -142,10 +136,9 @@ public interface TitleBar {
     /***
      * Title Bar View
      */
-    GridPane view = buildComponent.apply(
+    BorderPane view = buildComponent.apply(
             createContainer,
             createHaaretzLogo,
-            createHeaderLabel,
             buttons
     );
 

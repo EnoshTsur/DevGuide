@@ -1,11 +1,13 @@
 package com.devguide.jfx.view.components.titlebar;
 
 
+import com.devguide.jfx.view.UI.PaneAPI;
 import io.vavr.Function1;
+import io.vavr.Tuple;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 
 import java.util.function.Consumer;
 
@@ -29,8 +31,8 @@ public interface TitleBarUtils {
     String HIDE_LOGO_PATH = "assets/hide_button.png";
 
     int HEADER_MIN_WIDTH = 560;
-    int BUTTON_MIN_WIDTH = 30;
-    int BUTTON_MIN_HEIGHT = 30;
+    int BUTTON_MAX_WIDTH = 40;
+    int BUTTON_MAX_HEIGHT = 40;
 
     /****
      * Title bar Utils
@@ -67,10 +69,10 @@ public interface TitleBarUtils {
      * Title bar Utils
      * Header label styles
      */
-    Function1<GridPane, GridPane> setContainerStyles = container -> {
+    Function1<BorderPane, BorderPane> setContainerStyles = container -> {
         setBackgroundLinearGradient.apply(container, PRIMARY, PRIMARY_DARK);
         addShadow.accept(container);
-        container.setPadding(DEFAULT_INSETS);
+        PaneAPI.setPanePadding.apply(container, Tuple.of(0.0,5.0, 0.0, 5.0));
         String oldStyle = container.getStyle();
         container.setOnMouseEntered(event -> addStyle.accept(container,CURSOR_MOVE ));
         container.setOnMouseExited(event -> container.setStyle(oldStyle));
@@ -83,7 +85,7 @@ public interface TitleBarUtils {
      */
     Consumer<Button> setButtonStyles = button -> {
         button.setPadding(DEFAULT_INSETS);
-        button.setMinSize(BUTTON_MIN_WIDTH, BUTTON_MIN_HEIGHT);
+        button.setMaxSize(BUTTON_MAX_WIDTH, BUTTON_MAX_HEIGHT);
         addStyle.accept(button, CURSOR_POINTER);
         final String OLD_STYLE = button.getStyle();
         button.setStyle(OLD_STYLE);
