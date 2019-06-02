@@ -2,21 +2,13 @@ package com.devguide.jfx.view.shared;
 
 import io.vavr.Function1;
 import io.vavr.Function2;
-import io.vavr.collection.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-
-import java.awt.*;
-
 import static com.devguide.jfx.utils.StringUtils.*;
-import static com.devguide.jfx.view.UI.ButtonAPI.CURSOR_POINTER;
-import static com.devguide.jfx.view.shared.Colors.*;
 import static com.devguide.jfx.view.shared.ListCellStyles.*;
-import static com.devguide.jfx.view.shared.SharedUtils.*;
 
 /***
  * Tool to initial List View with Images

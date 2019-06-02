@@ -1,5 +1,7 @@
 package com.devguide.jfx.utils;
 
+import io.vavr.Function1;
+
 import java.text.MessageFormat;
 import java.util.function.Function;
 
@@ -23,5 +25,16 @@ public interface StringUtils {
     /**
      * Returns true if given String is empty
      */
-    Function<String, Boolean> isEmpty = str -> str.equals(EMPTY_STRING);
+    Function1<String, Boolean> isEmpty = str -> str.equals(EMPTY_STRING);
+
+    /***
+     * Not Returns the opposite of the input function output
+     */
+    Function1<Function1<String, Boolean>, Function1<String, Boolean>> not =
+            fn -> str -> !fn.apply(str);
+
+    /***
+     * Return true if String is not empty
+     */
+    Function1<String, Boolean> isNotEmpty = not.apply(isEmpty);
 }

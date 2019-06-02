@@ -15,4 +15,22 @@ public interface BasicUtils {
      */
     Function1<Object, Boolean> isNull = object -> object == null;
 
+    /***
+     * Not - returns the opposite of the input function output
+     * Takes : Function < Object, Boolean >
+     * Returns: Not Function < Object , Boolean ></>
+     */
+    Function1<Function1<Object, Boolean>, Function1<Object, Boolean>> not =
+            fn -> object -> !fn.apply(object);
+
+    /***
+     * Is Not Null
+     */
+    Function1<Object, Boolean> isNotNull = not.apply(isNull);
+    /***
+     * Double or zero
+     */
+    Function1<Double, Double> doubleOrZero =
+            value -> isNull.apply(value) ? 0 : value;
+
 }

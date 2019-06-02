@@ -3,7 +3,6 @@ package com.devguide.jfx.view.UI;
 import com.devguide.jfx.utils.BasicUtils;
 import io.vavr.*;
 import io.vavr.collection.List;
-import io.vavr.control.Option;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -38,7 +37,7 @@ public interface ComboBoxAPI {
                 comboBox.setMinWidth(widthAndHeight._1);
                 comboBox.setMinHeight(widthAndHeight._2);
                 comboBox.setOnKeyPressed( event -> eventHandler.accept(event));
-                if (!BasicUtils.isNull.apply(rule)) return rule.apply(comboBox);
+                if (BasicUtils.isNotNull.apply(rule)) return rule.apply(comboBox);
                 return comboBox;
             };
 

@@ -36,8 +36,8 @@ public interface ButtonAPI {
     Function4<Option<String>, String, Consumer<Button>, Consumer<Event>, Button>
             createButtonWithBackground = (backgroundPath, text, rule, clickHandler) -> {
         Button button = new Button();
-        if (!isEmpty.apply(text)) button.setText(text);
-        if (!isNull.apply(rule)) rule.accept(button);
+        if (isNotEmpty.apply(text)) button.setText(text);
+        if (isNotNull.apply(rule)) rule.accept(button);
         button.setOnAction(event -> clickHandler.accept(event));
         if (backgroundPath.isEmpty()) return button;
         setBackground.accept(button, backgroundPath.get());

@@ -1,14 +1,10 @@
 package com.devguide.jfx.view.components.main;
 
-import com.devguide.jfx.utils.StringUtils;
 import com.devguide.jfx.view.components.footer.FooterView;
 import com.devguide.jfx.view.components.titlebar.TitleBar;
 import com.devguide.jfx.view.UI.BorderPaneAlignment;
 import com.devguide.jfx.view.containers.main.MainContainer;
-import com.devguide.jfx.view.shared.Colors;
 import javafx.scene.Scene;
-import javafx.scene.effect.BlurType;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -36,17 +32,13 @@ public class MainView {
     private static MainView instance = null;
 
     // Components
-    private final TitleBar titleBar;
-    private final MainContainer mainContainer;
     private final FooterView footerBar;
 
     /***
      * Private CTOR - Singleton
      */
     private MainView() {
-        titleBar = new TitleBar(APP_NAME);
         footerBar = new FooterView();
-        mainContainer = MainContainer.getInstance();
     }
 
 
@@ -59,10 +51,10 @@ public class MainView {
         Stage window = buildWindow();
 
         // Title Bar
-        GridPane titleView = titleBar.createView();
+        GridPane titleView = TitleBar.view;
 
         // Main Container
-        BorderPane mainView = mainContainer.createView();
+        BorderPane mainView = MainContainer.view;
 
         // Footer
         HBox footerView = footerBar.createFooter();

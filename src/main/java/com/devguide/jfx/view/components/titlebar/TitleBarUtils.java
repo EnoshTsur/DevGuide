@@ -78,7 +78,9 @@ public interface TitleBarUtils {
     };
 
 
-
+    /**
+     * Buttons Styles ( Size, Padding, Pointer,  )
+     */
     Consumer<Button> setButtonStyles = button -> {
         button.setPadding(DEFAULT_INSETS);
         button.setMinSize(BUTTON_MIN_WIDTH, BUTTON_MIN_HEIGHT);

@@ -1,7 +1,6 @@
 package com.devguide.jfx.view.containers.technologies;
 
 import com.devguide.jfx.view.UI.PaneTypes;
-import com.devguide.jfx.view.shared.Colors;
 import com.devguide.jfx.view.shared.ListViewCellImageFix;
 import io.vavr.Function1;
 import io.vavr.Function2;
@@ -14,8 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-
 import java.util.stream.Stream;
 
 import static com.devguide.jfx.view.UI.LabelAPI.*;

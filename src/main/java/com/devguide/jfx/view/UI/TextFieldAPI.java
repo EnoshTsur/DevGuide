@@ -32,7 +32,7 @@ public interface TextFieldAPI {
         createTextFieldWithRule = (rule, size, promptText, eventHandler) -> {
         TextField textField = new TextField();
 
-        if (!isNull.apply(promptText) && !isEmpty.apply(promptText))
+        if (isNotNull.apply(promptText) && isNotEmpty.apply(promptText))
             textField.setPromptText(promptText);
 
         textField.setMaxSize(size._1, size._2);
@@ -50,7 +50,7 @@ public interface TextFieldAPI {
      * Returns:
      * New Text Field
      */
-    Function3<Tuple2<Integer, Integer>, String, Consumer<Event>, TextField> createTextField =
-            createTextFieldWithRule.apply(null);
+    Function3<Tuple2<Integer, Integer>, String, Consumer<Event>, TextField>
+            createTextField = createTextFieldWithRule.apply(null);
 
 }

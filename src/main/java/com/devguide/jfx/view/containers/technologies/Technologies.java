@@ -1,8 +1,15 @@
 package com.devguide.jfx.view.containers.technologies;
 
 import com.devguide.jfx.view.UI.PaneTypes;
+import io.vavr.Function1;
+import io.vavr.Function2;
+import io.vavr.Tuple;
+import io.vavr.Tuple2;
+import io.vavr.collection.List;
 import javafx.collections.FXCollections;
 import javafx.scene.layout.VBox;
+
+import java.util.function.Function;
 
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.containers.technologies.TechnologiesUtils.*;
@@ -11,41 +18,52 @@ import static com.devguide.jfx.view.containers.technologies.TechnologiesUtils.*;
  * Technologies section
  * Front & Back
  */
-public class Technologies {
+public interface Technologies {
 
-    /**
-     *Create View
-     * @return VBox contains Front List & Back List
+
+    /***
+     * Create Component View
+     * Takes name ( front / back )
+     * Returns VBox
      */
-    public final VBox createTechContainer() {
-        // Container
+    Function2<String, List<String>, VBox> createComponentView = (name, data) ->
+            createView.apply(
+                    FXCollections.observableArrayList(
+                    data.asJava()
+            ),
+            name
+    );
+
+    /***
+     * View Builder
+     */
+    Function1<Function2<String, List<String>, VBox>,
+            Function1<Tuple2<String, String>, VBox>> buildView
+
+            = createFunction ->  frontAndBackText ->
+
+    {
+        VBox frontBox = createFunction.apply(
+                frontAndBackText._1,
+                frontTechnologies
+        );
+        VBox backBox = createFunction.apply(
+                frontAndBackText._2,
+                backTechnologies
+        );
         VBox container = (VBox) createPane.apply(PaneTypes.VBOX);
-
-        // Front List
-        VBox frontView = createView.apply(
-
-                FXCollections.observableArrayList(
-                        frontTechnologies.asJava()
-                ),
-                FRONT
-        );
-
-
-        // Back List
-        VBox backView = createView.apply(
-
-                FXCollections.observableArrayList(
-                        backTechnologies.asJava()
-                ),
-                BACK
-        );
-
-        // Adding Components
-        container.getChildren().addAll(
-                frontView,
-                backView
-        );
-
+        container.getChildren().addAll(frontBox, backBox);
         return container;
-    }
+    };
+
+    /***
+     * Creates The Actual View
+     */
+    Function1<Tuple2<String, String>, VBox> createTechView =
+            buildView.apply(createComponentView);
+
+    /***
+     * View
+     */
+    VBox view = createTechView.apply(Tuple.of(FRONT, BACK));
 }
