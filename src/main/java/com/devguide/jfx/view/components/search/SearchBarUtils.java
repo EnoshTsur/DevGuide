@@ -112,7 +112,7 @@ public interface SearchBarUtils {
      */
     Consumer<Button> setButtonStyles = button -> {
         button.setMaxSize(30, 30);
-        setOnMouseEntered.accept(button);
+        setButtonOnMouseEntered.accept(button);
     };
 
     /****

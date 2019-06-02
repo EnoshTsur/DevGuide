@@ -16,4 +16,7 @@ public interface Colors {
     String HAARETZ_DARK_TEXT_COLOR = "#5c00e6";
     String HAARETZ_LIGHT_TEXT_COLOR = "#99d6ff";
     String HAARETZ_WEIRD_ORANGE = "#d7aae6";
+
+    String DARK_PURPLE_BLUE = "#3d0099";
+    String LIGHT_PURPLE_BLUE = "#b380ff";
 }

@@ -27,6 +27,7 @@ public interface BasicUtils {
      * Is Not Null
      */
     Function1<Object, Boolean> isNotNull = not.apply(isNull);
+
     /***
      * Double or zero
      */

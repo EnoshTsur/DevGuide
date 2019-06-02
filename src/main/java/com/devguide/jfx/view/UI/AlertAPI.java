@@ -69,6 +69,17 @@ public interface AlertAPI {
                 return pane;
             };
 
+    /**
+     * Set Buttons Styles
+     */
+    Function1<List<Button>, List<Button>> setButtonsStyles =
+            buttons -> buttons.map( button -> {
+                setBackgroundColor.accept(button, DARK_PURPLE_BLUE);
+                setButtonTextColor.accept(button, LIGHT_PURPLE_BLUE);
+                setButtonDefaultPadding.apply(button);
+                return button;
+            });
+
     /***
      * Create Message Area for alert
      */
@@ -117,6 +128,8 @@ public interface AlertAPI {
      */
     Function3<Integer, Integer, Map<Button, Consumer<Event>>, GridPane> createButtonsContainer =
             (width, height, options) -> {
+
+                // Container
                 GridPane container = (GridPane) createPaneWithRule.apply(
                         pane -> {
                             pane.setPadding(DEFAULT_INSETS);
@@ -129,6 +142,7 @@ public interface AlertAPI {
 
                 // Buttons
                 List<Button> buttons = setEventsListeners.apply(options);
+                setButtonsStyles.apply(buttons);
 
                 final int BUTTONS_START = 0;
                 final int ROW_COUNT = 0;
@@ -138,11 +152,11 @@ public interface AlertAPI {
                         BUTTONS_START,
                         BUTTONS_END
                 ).forEach(index -> {
-                                    Button current = buttons.get(index);
-                                    addStyle.accept(current, CURSOR_POINTER);
-                                    container.getChildren().add(current);
-                                    GridPane.setConstraints(current, index, ROW_COUNT);
-                                });
+                    Button current = buttons.get(index);
+                    addStyle.accept(current, CURSOR_POINTER);
+                    container.getChildren().add(current);
+                    GridPane.setConstraints(current, index, ROW_COUNT);
+                });
 
                 return container;
             };
@@ -150,7 +164,7 @@ public interface AlertAPI {
     /***
      * Ser Alert Default Stage
      */
-    Function3<Integer, Integer,BorderPane, Stage> setAlertDefaultStage =
+    Function3<Integer, Integer, BorderPane, Stage> setAlertDefaultStage =
             (width, height, container) -> {
                 Stage stage;
                 final double[] offsets = new double[]{width, height};
@@ -164,7 +178,7 @@ public interface AlertAPI {
             };
 
     /***
-     * Set Components Map
+     * Set Container Components Map
      */
     Function5<Integer,
             Integer,
@@ -172,33 +186,35 @@ public interface AlertAPI {
             String,
             Map<Button, Consumer<Event>>,
             HashMap<BorderPaneAlignment, Pane>> setComponentsMap
-            = (width, height, title , text, options) ->
+            = (width, height, title, text, options) ->
             new HashMap<BorderPaneAlignment, Pane>() {{
-            put(BorderPaneAlignment.TOP,
-                    createHeader.apply(
-                            title,
-                            width,
-                            height,
-                            HAARETZ_HEADER_FONT
-                    )
-            );
-            put(BorderPaneAlignment.CENTER,
-                    createHeader.apply(
-                            text,
-                            width,
-                            height,
-                            HAARETZ_HEADER_FONT
-                    )
-            );
-            put(BorderPaneAlignment.BOTTOM,
-                    createButtonsContainer.apply(
-                            width,
-                            height,
-                            options
-                    )
-            );
+                put(BorderPaneAlignment.TOP,
+                        createHeader.apply(
+                                title,
+                                width,
+                                height,
+                                HAARETZ_HEADER_FONT
+                        )
+                );
+                put(BorderPaneAlignment.CENTER,
+                        createHeader.apply(
+                                text,
+                                width,
+                                height,
+                                HAARETZ_HEADER_FONT
+                        )
+                );
+                put(BorderPaneAlignment.BOTTOM,
+                        createButtonsContainer.apply(
+                                width,
+                                height,
+                                options
+                        )
+                );
 
-        }};
+            }};
+
+
 
 
     /***************************
@@ -209,7 +225,10 @@ public interface AlertAPI {
      */
     Function3<String, String, Map<Button, Consumer<Event>>, Stage> createAlertWithButtons =
             (title, text, options) -> {
+
+                // Size
                 final int WIDTH = 600, HEIGHT = 300;
+
                 // Rectangle - for radius bounds
                 Rectangle rect = new Rectangle(WIDTH, HEIGHT);
                 rect.setArcHeight(15);
@@ -217,10 +236,12 @@ public interface AlertAPI {
 
                 BorderPane container = createBorderPane
                         .apply(setComponentsMap.apply(
-                        WIDTH, HEIGHT,
-                        title, text,
-                        options
-                ));
+                                WIDTH, HEIGHT,
+                                title, text,
+                                options
+                        ));
+
+
                 Stage window = setAlertDefaultStage.apply(600, 300, container);
                 setContainerStyles.apply(container, WIDTH, HEIGHT);
                 container.setClip(rect);

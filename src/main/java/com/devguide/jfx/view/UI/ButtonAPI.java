@@ -1,10 +1,10 @@
 package com.devguide.jfx.view.UI;
 
-import io.vavr.Function3;
-import io.vavr.Function4;
+import io.vavr.*;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
 import javafx.event.Event;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -96,11 +96,34 @@ public interface ButtonAPI {
      * Sets Cursor to be pointer and add shadow
      * while mouse over givven button
      */
-    Consumer<Button> setOnMouseEntered = button -> {
+    Consumer<Button> setButtonOnMouseEntered = button -> {
         final String OLD_STYLE = button.getStyle();
         button.setOnMouseEntered(e -> addManyStyles
                 .accept(button, List.of(SHADOW_STYLE, CURSOR_POINTER)));
         button.setOnMouseExited(e -> button.setStyle(OLD_STYLE));
     };
+
+    /***
+     * Set Button default padding
+     */
+    Function1<Button, Button> setButtonDefaultPadding = button -> {
+        button.setPadding(DEFAULT_INSETS);
+        return button;
+    };
+
+    /***
+     * Set Button Padding bu size
+     */
+    Function2<Button, Tuple4<Double, Double, Double, Double>, Button>
+            setButtonPadding = (button , insets) -> {
+        double up = doubleOrZero.apply(insets._1);
+        double right = doubleOrZero.apply(insets._2);
+        double down = doubleOrZero.apply(insets._3);
+        double left = doubleOrZero.apply(insets._4);
+        button.setPadding(new Insets(up, right, down, left));
+        return button;
+    };
+
+
 
 }

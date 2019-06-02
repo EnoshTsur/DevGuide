@@ -1,5 +1,7 @@
 package com.devguide.jfx;
 
+import com.devguide.jfx.execute.Execute;
+import com.devguide.jfx.execute.ShellType;
 import com.devguide.jfx.ioutils.FileSystem;
 import com.devguide.jfx.view.UI.AlertAPI;
 import com.devguide.jfx.view.UI.ButtonAPI;
@@ -14,6 +16,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
@@ -58,7 +61,7 @@ public class MyApp extends Application {
         window.show();
         System.out.println(javafx.scene.text.Font.getFamilies());
         System.out.println(FileSystem.getOperationSystem());
-//        Execute.run.apply("git s", new File("/home/ibo1.com/enosh.tsur"), ShellType.BASH);
+        Execute.run.apply("git s", new File("/home/ibo1.com/enosh.tsur"), ShellType.BASH);
     }
 
     @Override

@@ -87,6 +87,6 @@ public interface TitleBarUtils {
         addStyle.accept(button, CURSOR_POINTER);
         final String OLD_STYLE = button.getStyle();
         button.setStyle(OLD_STYLE);
-        setOnMouseEntered.accept(button);
+        setButtonOnMouseEntered.accept(button);
     };
 }
