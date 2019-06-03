@@ -40,7 +40,7 @@ public interface MainContainer {
     BorderPane view = buildComponent.apply(
             SearchBar.createSearchBar(),
             Technologies.view,
-            ChoiceView.getInstance().createView()
+            ChoiceView.view
     );
 
 }

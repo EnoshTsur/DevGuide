@@ -30,4 +30,11 @@ public interface ListViewAPI {
      */
     Function1<ObservableList<String>, ListView<String>> createListView =
             createListViewWithRule.apply(null);
+
+    /***
+     * Get Selected item from List View
+     */
+    Function1<ListView<String>, String> getSelectedItem =
+            list -> list.getSelectionModel().getSelectedItem();
+
 }

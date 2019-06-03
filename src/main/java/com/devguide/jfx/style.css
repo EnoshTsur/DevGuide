@@ -52,3 +52,28 @@
     -fx-background-color:#18181b;
     -fx-cursor: hand;
 }
+
+.text-area {
+    -fx-font-family: Consolas;
+    -fx-font-size: 15;
+    -fx-text-fill: #4db8ff;
+    -fx-font-family: Monospaced;
+    -fx-display-caret:true;
+}
+
+.text-area .content {
+    -fx-background-color: #302f37, #000000;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.text-field {
+    -fx-background-color: #302f37 , #000000;
+    -fx-text-fill: #4db8ff;
+}
+
+.text-field:focused {
+    -fx-border-color: #4db8ff;
+}
+
+

@@ -1,8 +1,15 @@
 package com.devguide.jfx.utils;
 
 import io.vavr.Function1;
+import io.vavr.Function2;
+import io.vavr.collection.List;
+import javafx.event.Event;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 
 import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.stream.IntStream;
 
 /***
  * Basic Utils
@@ -35,5 +42,7 @@ public interface BasicUtils {
      */
     Function1<Double, Double> doubleOrZero =
             value -> isNull.apply(value) ? 0 : value;
+
+
 
 }

@@ -1,45 +1,41 @@
 package com.devguide.jfx.view.components.choice;
 
 import com.devguide.jfx.utils.BasicUtils;
+import com.devguide.jfx.utils.StringUtils;
 import com.devguide.jfx.view.UI.PaneAPI;
 import com.devguide.jfx.view.UI.PaneTypes;
+import com.devguide.jfx.view.components.console.Console;
+import io.vavr.Function1;
 import javafx.scene.layout.GridPane;
 
 import static com.devguide.jfx.utils.BasicUtils.*;
+import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.components.choice.ChoiceUtils.setContainerStyles;
 
 /**
  * Choice Component
  */
-public class ChoiceView {
+public interface ChoiceView {
 
-    // Singleton
-    private static ChoiceView instance = null;
-
-    /**
-     * Private CTOR
-     * Singleton
-     */
-    private ChoiceView() {}
+    // Components
+    Console console = new Console();
 
     /***
-     *
-     * @return
+     * View Function
      */
-    public static final synchronized ChoiceView getInstance() {
-        return isNull.apply(instance) ? new ChoiceView() : instance;
-    }
-
-    /***
-     * Create Choice Component View
-     * @return
-     */
-    public GridPane createView() {
+    Function1<String, GridPane> buildComponent = str -> {
         GridPane container = (GridPane) createPaneWithRule.apply(
                 setContainerStyles,
                 PaneTypes.GRID_PANE
         );
+        container.getChildren().addAll(console);
+        GridPane.setConstraints(console, 0 , 0);
         return container;
-    }
+    };
+
+    /***
+     * View
+     */
+    GridPane view = buildComponent.apply(EMPTY_STRING);
 }

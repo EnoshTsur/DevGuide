@@ -5,6 +5,7 @@ import javafx.event.Event;
 import javafx.scene.control.TextField;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.utils.StringUtils.*;
@@ -52,5 +53,10 @@ public interface TextFieldAPI {
      */
     Function3<Tuple2<Integer, Integer>, String, Consumer<Event>, TextField>
             createTextField = createTextFieldWithRule.apply(null);
+
+    /***
+     * Get Text by Text Field
+     */
+    Function1<TextField, String> getTextFieldText = input -> input.getText();
 
 }
