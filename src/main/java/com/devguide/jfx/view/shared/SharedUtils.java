@@ -188,8 +188,8 @@ public interface SharedUtils {
     Function1<String, DropShadow>  createShadow = color -> {
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
-        dropShadow.setOffsetX(1.0);
-        dropShadow.setOffsetY(1.0);
+        dropShadow.setOffsetX(5.0);
+        dropShadow.setOffsetY(10.0);
         dropShadow.setColor(Color.web(color));
         return dropShadow;
     };

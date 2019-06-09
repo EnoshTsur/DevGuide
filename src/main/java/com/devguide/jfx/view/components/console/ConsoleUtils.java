@@ -5,10 +5,21 @@ import com.devguide.jfx.utils.StringUtils;
 import io.vavr.Function1;
 import io.vavr.collection.List;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static com.devguide.jfx.utils.FileSystem.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 
 public interface ConsoleUtils {
+
+    /**
+     * Get all drivers ( A B C )
+     */
+    List<String> allDrivers = List.ofAll(
+            Stream.of(ABC.split(EMPTY_STRING))
+                    .map(driver -> f("{0}:", driver))
+                    .collect(Collectors.toList()));
 
     /***
      * Linux Commands
@@ -42,7 +53,7 @@ public interface ConsoleUtils {
     double OUTPUT_WIDTH = 780,
             OUTPUT_HEIGHT = 610,
             INPUT_WIDTH = OUTPUT_WIDTH,
-            INPUT_HEIGHT = 50;
+            INPUT_HEIGHT = 40;
 
 
     List<String> basicCommands = List.of(

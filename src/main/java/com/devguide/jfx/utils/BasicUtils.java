@@ -10,6 +10,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 /***
@@ -52,17 +53,11 @@ public interface BasicUtils {
      */
     Function1<Number, Boolean> isZero = number -> number.equals(0);
 
-    /***
-     * Return true if second string contains the first one
-     */
-    Function2<String, String, Boolean> doesItContains = (str1, str2) ->
-            str2.toLowerCase().contains(str1.toLowerCase());
 
 
     /***
      * Returns true if equal
      */
     Function2<Object,Object, Boolean> doesItEqualTo = Object::equals;
-
 
 }

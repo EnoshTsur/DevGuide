@@ -47,6 +47,7 @@ public interface Technologies {
         );
 
         VBox devBox = createFunction.apply(
+
                 frontAndBackText._3,
                 installations
         );

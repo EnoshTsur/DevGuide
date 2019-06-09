@@ -1,14 +1,18 @@
 package com.devguide.jfx.utils;
 
 import io.vavr.Function1;
+import io.vavr.Function2;
 
 import java.text.MessageFormat;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /***
  * String Utils Functions
  */
 public interface StringUtils {
+
+    String ABC = "abcdefghijklmnopqrstuvwxyz";
 
     String EMPTY_STRING = "";
 
@@ -42,6 +46,24 @@ public interface StringUtils {
      * Trim & Lower
      */
     Function1<String, String> trimAndLower = str -> str.trim().toLowerCase();
+
+    /***
+     * Trim & Upper
+     */
+    Function1<String, String> trimAndUpper = str -> str.trim().toUpperCase();
+
+    /***
+     * Return true if second string contains the first one
+     */
+    Function2<String, String, Boolean> doesItContains = (str1, str2) ->
+            str2.toLowerCase().contains(str1.toLowerCase());
+
+    /***
+     * Returns true if String is null or empty
+     */
+    Predicate<String> doesItNullOrEmpty = str ->
+            isEmpty.apply(str) || BasicUtils.isNull.apply(str);
+
 
 
 }

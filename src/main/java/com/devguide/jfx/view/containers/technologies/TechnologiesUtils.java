@@ -100,7 +100,7 @@ public interface TechnologiesUtils {
      */
     Function1<ListView<String>, ListView<String>> setListViewStyles = list -> {
         list.setMaxWidth(200);
-        list.setMaxHeight(180);
+        list.setMaxHeight(200);
         return list;
     };
 

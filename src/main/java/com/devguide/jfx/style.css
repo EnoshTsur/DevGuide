@@ -59,10 +59,11 @@
     -fx-text-fill: #4db8ff;
     -fx-font-family: Monospaced;
     -fx-display-caret:true;
+    -fx-effect: dropshadow( gaussian , rgba(165, 224, 255, 0.5), 0,0,0,1 );
 }
 
 .text-area .content {
-    -fx-background-color: #302f37, #000000;
+    -fx-background-color: linear-gradient(to bottom, black, #0f0614);
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
@@ -78,4 +79,46 @@
     -fx-border-color: #4db8ff;
 }
 
+.scroll-pane {
+    -fx-background-color: linear-gradient(black, #0f0614);;
+}
 
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.text-area .scroll-bar:horizontal .track,
+.text-area .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.text-area .scroll-bar:horizontal .thumb,
+.text-area .scroll-bar:vertical .thumb {
+    -fx-background-color: #0986ff;
+    -fx-background-radius: 5em;
+}
+
+.text-area .scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
+.text-area .scroll-bar:vertical {
+    -fx-pref-width: 16.5;
+    -fx-padding: 3;
+}
+
+.text-area .scroll-bar:horizontal {
+    -fx-pref-height: 16.5;
+    -fx-padding: 3;
+}
+
+.text-area .scroll-bar, .scroll-bar:pressed, .text-area .scroll-bar:focused {
+    -fx-font-size: 15;
+}

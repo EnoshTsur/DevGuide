@@ -5,11 +5,15 @@ import com.devguide.jfx.utils.BasicUtils;
 import com.devguide.jfx.utils.OperationSystem;
 import com.devguide.jfx.utils.StringUtils;
 import io.vavr.Function1;
+import io.vavr.Function2;
+import io.vavr.control.Try;
+import javafx.scene.control.ComboBox;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -19,6 +23,7 @@ import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.utils.FileSystem.*;
 import static com.devguide.jfx.utils.OperationSystem.*;
 import static com.devguide.jfx.utils.StringUtils.*;
+import static com.devguide.jfx.view.components.console.Console.*;
 import static com.devguide.jfx.view.components.console.ConsoleUtils.*;
 
 public class ConsoleState {
@@ -29,7 +34,7 @@ public class ConsoleState {
 
     private File location;
 
-    private List<String> history = new ArrayList<>( basicCommands.asJava() );
+    private List<String> history = new ArrayList<>(basicCommands.asJava());
 
 
     /***
@@ -47,12 +52,12 @@ public class ConsoleState {
      * Set Default Commands by Operation System
      */
     private Runnable setDefaultCommands = () -> {
-                if (doesItEqualTo.apply(operationSystem, LINUX)) {
-                    history.addAll(linuxCommands.asJava());
-                    return;
-                }
-                history.addAll(windowsCommands.asJava());
-            };
+        if (doesItEqualTo.apply(operationSystem, LINUX)) {
+            history.addAll(linuxCommands.asJava());
+            return;
+        }
+        history.addAll(windowsCommands.asJava());
+    };
 
 
     /***
@@ -132,8 +137,11 @@ public class ConsoleState {
      */
     public Runnable clearHistorySoft = () -> new ArrayList<>(
             history = basicCommands.push(
-            "cd", "../"
-    ).asJava());
+                    "cd", "../"
+            ).asJava());
+
+//    public Runnable navigateBackwards = () ->
+
 
     /***
      * Clear History include Git Commands
@@ -143,38 +151,37 @@ public class ConsoleState {
     /***
      * Navigate to New Path if exists
      */
-    public Consumer<String> navigate = path -> {
+    public BiConsumer<String, ComboBox<String>> navigate = (path, input) -> {
         if (isEmpty.apply(path)) return;
 
-        if (doesItEqualTo.apply(path, BACKWARDS)) {
-            File parent = new File(location.getParent());
-            location = ( isNotNull.apply(parent) && parent.exists() )
-                    ? parent : location;
-            return;
+        // Is it Backwards
+        if (isItBackwards.test(path)) {
+                Try<File> parent = Try.of(() -> new File(location.getParent()));
+                if (parent.isEmpty()) return;
+                location = (isNotNull.apply(parent) && parent.get().exists())
+                        ? parent.get() : location;
+                input.setPromptText(location.getPath());
+                return;
         }
 
-        if (path.contains(FORWARD_SLASH)) {
+        if (doesItContains.apply(FORWARD_SLASH, path)) {
             String[] folders = path.split(FORWARD_SLASH);
 
             Stream.of(folders).forEach(folder -> {
-                if (!isNotOneOfChildren.apply(folder))return;
-
-                File next = new File(f("{0}/{1}",
-                        location.getPath(),
-                        folder)
-                );
-                if (!next.exists() || !next.isDirectory()) return;
-
-                location = next;
-                return;
+                Try<File> child = Try.of(() -> new File(location, folder));
+                if (!child.isEmpty() && child.get().isDirectory()) {
+                    location = child.get();
+                    input.setPromptText(location.getPath());
+                }
             });
-
+            return;
         }
 
         File destination = new File(path);
         if (!destination.exists()) return;
 
         location = destination;
+        input.setPromptText(location.getPath());
     };
 
 

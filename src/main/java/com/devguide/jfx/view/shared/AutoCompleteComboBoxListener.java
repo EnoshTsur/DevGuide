@@ -1,6 +1,7 @@
 package com.devguide.jfx.view.shared;
 
 
+import com.devguide.jfx.utils.StringUtils;
 import io.vavr.Function1;
 import io.vavr.Function2;
 import io.vavr.collection.List;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.utils.KeyBoardUtils.*;
+import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.ComboBoxAPI.*;
 import static javafx.collections.FXCollections.*;
 
