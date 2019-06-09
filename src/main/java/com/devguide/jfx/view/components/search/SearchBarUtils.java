@@ -1,6 +1,7 @@
 package com.devguide.jfx.view.components.search;
 
 import io.vavr.Function1;
+import io.vavr.Function2;
 import io.vavr.collection.List;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -29,8 +30,8 @@ public interface SearchBarUtils {
     String HEADER_TEXT = "Search";
     String INPUT_MESSAGE = "Buzz Words\nSuch as React / VM...";
 
-    int TEXT_FIELD_INPUT_WIDTH = 200;
-    int TEXT_FIELD_INPUT_HEIGHT = 40;
+    double COMBOBOX_INPUT_WIDTH = 200;
+    double COMBOBOX_INPUT_HEIGHT = 40;
 
     /****
      * Search Bar Utils
@@ -54,9 +55,9 @@ public interface SearchBarUtils {
     /***
      * Set Combo Box Styles
      */
-    Function1<ComboBox<String>, ComboBox<String>> setComboBoxStyles =
-            combobox -> {
-                combobox.setTooltip(createToolTip.apply(INPUT_MESSAGE));
+    Function2<ComboBox<String>, Tooltip,  ComboBox<String>> setComboBoxStyles =
+            (combobox, tooltip) -> {
+                combobox.setTooltip(tooltip);
                 combobox.setFocusTraversable(false);
                 combobox.setEditable(true);
                 setBackgroundColor.accept(combobox.getEditor(), DARKEST);
@@ -72,7 +73,7 @@ public interface SearchBarUtils {
      * Text Field styles
      */
     Function1<ComboBox<String>, ComboBox<String>> setInputTextStyles = input -> {
-        setComboBoxStyles.apply(input);
+        setComboBoxStyles.apply(input, createToolTip.apply(INPUT_MESSAGE));
         input.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {

@@ -7,6 +7,7 @@ import com.devguide.jfx.view.UI.PaneTypes;
 import com.devguide.jfx.view.components.console.Console;
 import io.vavr.Function1;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.utils.StringUtils.*;
@@ -18,13 +19,13 @@ import static com.devguide.jfx.view.components.choice.ChoiceUtils.setContainerSt
  */
 public interface ChoiceView {
 
-    // Components
-    Console console = new Console();
-
     /***
      * View Function
      */
+    VBox console = Console.view.get();
+
     Function1<String, GridPane> buildComponent = str -> {
+
         GridPane container = (GridPane) createPaneWithRule.apply(
                 setContainerStyles,
                 PaneTypes.GRID_PANE

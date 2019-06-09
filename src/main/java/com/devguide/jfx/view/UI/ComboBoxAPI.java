@@ -7,8 +7,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.KeyEvent;
 
 import java.util.function.Consumer;
+
+import static com.devguide.jfx.utils.BasicUtils.*;
 
 
 /***
@@ -26,8 +29,8 @@ public interface ComboBoxAPI {
      */
     Function4<Function1<ComboBox<String>, ComboBox<String>>,
             List<String>,
-                    Tuple2<Integer, Integer>,
-                    Consumer<Event>,
+                    Tuple2<Double, Double>,
+                    Consumer<KeyEvent>,
                     ComboBox<String>> createComboBoxWithRule =
 
             (rule,list, widthAndHeight, eventHandler ) -> {
@@ -36,9 +39,22 @@ public interface ComboBoxAPI {
                 ComboBox<String> comboBox = new ComboBox<>(data);
                 comboBox.setMinWidth(widthAndHeight._1);
                 comboBox.setMinHeight(widthAndHeight._2);
-                comboBox.setOnKeyPressed( event -> eventHandler.accept(event));
-                if (BasicUtils.isNotNull.apply(rule)) return rule.apply(comboBox);
+                if (isNotNull.apply(eventHandler))comboBox
+                        .setOnKeyPressed( event -> eventHandler.accept(event));
+                if (isNotNull.apply(rule)) return rule.apply(comboBox);
                 return comboBox;
             };
+
+    /***
+     * Get Combo box editor text
+     */
+    Function1<ComboBox, String> getComboEditorText = comboBox ->
+            comboBox.getEditor().getText();
+
+    /**
+     * Get Caret Position
+     */
+    Function1<ComboBox<String>, Integer> getCaretPoisition =
+            input -> input.getEditor().getCaretPosition();
 
 }

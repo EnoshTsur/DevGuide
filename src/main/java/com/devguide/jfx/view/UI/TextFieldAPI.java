@@ -21,23 +21,20 @@ public interface TextFieldAPI {
      * Function Text Filed = Rule
      * Tuple2 Integer = Size ( width, height )
      * String = Prompt Text
-     * Consumer Event = On key pressed
      * Returns:
      * New Text Field
      */
-    Function4<Function1<TextField, TextField>, Tuple2<Integer, Integer>,
+    Function3<Function1<TextField, TextField>, Tuple2<Double, Double>,
             String,
-            Consumer<Event>,
             TextField>
 
-        createTextFieldWithRule = (rule, size, promptText, eventHandler) -> {
+        createTextFieldWithRule = (rule, size, promptText) -> {
         TextField textField = new TextField();
 
         if (isNotNull.apply(promptText) && isNotEmpty.apply(promptText))
             textField.setPromptText(promptText);
 
         textField.setMaxSize(size._1, size._2);
-        textField.setOnKeyPressed( event -> eventHandler.accept(event));
 
         if (isNull.apply(rule)) return textField;
         return rule.apply(textField);
@@ -51,7 +48,7 @@ public interface TextFieldAPI {
      * Returns:
      * New Text Field
      */
-    Function3<Tuple2<Integer, Integer>, String, Consumer<Event>, TextField>
+    Function2<Tuple2<Double, Double>, String, TextField>
             createTextField = createTextFieldWithRule.apply(null);
 
     /***

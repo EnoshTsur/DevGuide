@@ -37,4 +37,11 @@ public interface StringUtils {
      * Return true if String is not empty
      */
     Function1<String, Boolean> isNotEmpty = not.apply(isEmpty);
+
+    /***
+     * Trim & Lower
+     */
+    Function1<String, String> trimAndLower = str -> str.trim().toLowerCase();
+
+
 }

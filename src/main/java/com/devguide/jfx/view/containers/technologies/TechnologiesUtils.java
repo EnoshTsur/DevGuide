@@ -50,6 +50,21 @@ public interface TechnologiesUtils {
     );
 
     /***
+     * Installations list
+     */
+    List<String> installations = List.of(
+            "Intellij",
+            "Git",
+            "Git Shortcuts",
+            "Yarn Shortcuts",
+            "VS Code",
+            "Web Storm",
+            "Node JS",
+            "Java8",
+            "Java11"
+    );
+
+    /***
      * All data
      */
     List<String> frontAndBack = List.ofAll(
@@ -68,11 +83,13 @@ public interface TechnologiesUtils {
 
     String FRONT = "Frontend";
     String BACK = "Backend";
+    String INSTALL = "Install";
 
     /***
      * Header Label Styles
      */
     Function1<Label, Label> setLabelStyles = label -> {
+        label.setPadding(DEFAULT_INSETS);
         setLabelFont.apply(label, HAARETZ_TITLE_FONT);
         setLabelTextColor.apply(label, TEXT_COLOR);
         return label;
@@ -82,8 +99,8 @@ public interface TechnologiesUtils {
      * Set List View Styles
      */
     Function1<ListView<String>, ListView<String>> setListViewStyles = list -> {
-        list.setMaxWidth(180);
-        list.setMaxHeight(150);
+        list.setMaxWidth(200);
+        list.setMaxHeight(180);
         return list;
     };
 
@@ -92,7 +109,7 @@ public interface TechnologiesUtils {
      */
     Function1<Pane, ? extends Pane> setContainerStyles =
             pane -> {
-                pane.setPadding(DEFAULT_INSETS);
+                pane.setMinWidth(280);
                 setBackgroundColor.accept(pane, LIGHTEST);
 
                 return pane;

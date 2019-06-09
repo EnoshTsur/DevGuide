@@ -1,10 +1,7 @@
 package com.devguide.jfx.view.containers.technologies;
 
 import com.devguide.jfx.view.UI.PaneTypes;
-import io.vavr.Function1;
-import io.vavr.Function2;
-import io.vavr.Tuple;
-import io.vavr.Tuple2;
+import io.vavr.*;
 import io.vavr.collection.List;
 import javafx.collections.FXCollections;
 import javafx.scene.layout.VBox;
@@ -35,7 +32,7 @@ public interface Technologies {
      * View Builder
      */
     Function1<Function2<String, List<String>, VBox>,
-            Function1<Tuple2<String, String>, VBox>> buildView
+            Function1<Tuple3<String, String, String>, VBox>> buildView
 
             = createFunction ->  frontAndBackText ->
 
@@ -48,19 +45,25 @@ public interface Technologies {
                 frontAndBackText._2,
                 backTechnologies
         );
+
+        VBox devBox = createFunction.apply(
+                frontAndBackText._3,
+                installations
+        );
+
         VBox container = (VBox) createPane.apply(PaneTypes.VBOX);
-        container.getChildren().addAll(frontBox, backBox);
+        container.getChildren().addAll(frontBox, backBox, devBox);
         return container;
     };
 
     /***
      * Creates The Actual View
      */
-    Function1<Tuple2<String, String>, VBox> createTechView =
+    Function1<Tuple3<String, String, String>, VBox> createTechView =
             buildView.apply(createComponentView);
 
     /***
      * View
      */
-    VBox view = createTechView.apply(Tuple.of(FRONT, BACK));
+    VBox view = createTechView.apply(Tuple.of(FRONT, BACK, INSTALL));
 }

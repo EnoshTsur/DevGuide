@@ -42,8 +42,9 @@ public class MyApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         Stage alert = createAlertWithButtons.apply(
-                StringUtils.f("Is exists {0}", FileSystem.getAbsolutePath.apply("com/devguide/jfx/style.css")),
+                System.getProperty("user.home"),
                 FileSystem.getOperationSystem.get(),
 
                 new HashMap<Button, Consumer<Event>>() {{

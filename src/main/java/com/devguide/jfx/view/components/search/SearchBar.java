@@ -1,10 +1,10 @@
 package com.devguide.jfx.view.components.search;
 
-import com.devguide.jfx.view.containers.technologies.Technologies;
+import com.devguide.jfx.view.components.console.Console;
 import com.devguide.jfx.view.containers.technologies.TechnologiesUtils;
 import com.devguide.jfx.view.shared.AutoCompleteComboBoxListener;
 import io.vavr.Tuple;
-import io.vavr.control.Option;
+import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -36,19 +36,26 @@ public class SearchBar {
                         HEADER_TEXT
                 );
 
-        // Text Field
+        // Combo Box
         ComboBox<String> input = createComboBoxWithRule
                 .apply(
                         setInputTextStyles,
                         TechnologiesUtils.frontAndBack,
 
                         Tuple.of(
-                                TEXT_FIELD_INPUT_WIDTH,
-                                TEXT_FIELD_INPUT_HEIGHT
+                                COMBOBOX_INPUT_WIDTH,
+                                COMBOBOX_INPUT_HEIGHT
                         ),
                         System.out::println
                 );
-        new AutoCompleteComboBoxListener<>(input);
+        input.setItems(
+                FXCollections.observableArrayList(
+                        TechnologiesUtils
+                                .frontAndBack
+                                .asJava()
+                )
+        );
+        new AutoCompleteComboBoxListener(input);
 
         // Button
         Button submit = createButtonWithBackground

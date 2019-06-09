@@ -17,7 +17,7 @@ public interface ChoiceUtils {
      */
     Function1<Pane, ? extends Pane> setContainerStyles = container -> {
         container.setPadding(DEFAULT_INSETS);
-        container.setPrefSize(500, 300);
+        container.setPrefSize(700, 500);
         addManyStyles.accept(container, List.of(
                 createBgColorStyle.apply(DARKEST)
         ));

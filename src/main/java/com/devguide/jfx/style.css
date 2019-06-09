@@ -55,7 +55,7 @@
 
 .text-area {
     -fx-font-family: Consolas;
-    -fx-font-size: 15;
+    -fx-font-size: 18px;
     -fx-text-fill: #4db8ff;
     -fx-font-family: Monospaced;
     -fx-display-caret:true;
@@ -70,6 +70,8 @@
 .text-field {
     -fx-background-color: #302f37 , #000000;
     -fx-text-fill: #4db8ff;
+    -fx-font-family: Monospaced;
+    -fx-font-size: 18px;
 }
 
 .text-field:focused {

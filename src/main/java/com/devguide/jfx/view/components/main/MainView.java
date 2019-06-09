@@ -1,7 +1,5 @@
 package com.devguide.jfx.view.components.main;
 
-import com.devguide.jfx.utils.FileSystem;
-import com.devguide.jfx.utils.StringUtils;
 import com.devguide.jfx.view.components.footer.FooterView;
 import com.devguide.jfx.view.components.titlebar.TitleBar;
 import com.devguide.jfx.view.UI.BorderPaneAlignment;
@@ -14,8 +12,7 @@ import javafx.stage.StageStyle;
 
 import java.util.HashMap;
 
-import static com.devguide.jfx.utils.FileSystem.getAbsolutePath;
-import static com.devguide.jfx.utils.FileSystem.setAbsoluePath;
+import static com.devguide.jfx.utils.FileSystem.setAbsolutePath;
 import static com.devguide.jfx.utils.KeyBoardUtils.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
@@ -79,7 +76,7 @@ public class MainView {
         mainPane.setOnKeyPressed(e -> handleKeyboard.apply(e, mainPane, window));
         Scene scene = new Scene(mainPane);
         scene.setFill(Color.TRANSPARENT);
-        scene.getStylesheets().add(setAbsoluePath.apply(CSS_RELTIVE_PATH)); // file:/home/ibo1.com/enosh.tsur/com.devguide/src/main/java/com/devguide/jfx/style.css
+        scene.getStylesheets().add(setAbsolutePath.apply(CSS_RELATIVE_PATH)); // file:/home/ibo1.com/enosh.tsur/com.devguide/src/main/java/com/devguide/jfx/style.css
         setStageDraggable(mainPane, window, offsets, true);
         window.setScene(scene);
          return window;

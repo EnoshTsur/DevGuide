@@ -4,6 +4,7 @@ import com.devguide.jfx.view.UI.ButtonAPI;
 import io.vavr.Function1;
 import io.vavr.Function2;
 import io.vavr.Function3;
+import io.vavr.collection.List;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -57,6 +58,11 @@ public interface KeyBoardUtils {
     Function2<KeyEvent, KeyCode, Boolean> isThisKeyIs =
             ((keyEvent, keyCode) -> keyEvent.getCode().equals(keyCode));
 
+    /***
+     * Returns true if key is in list of key codes
+     */
+    Function2<KeyEvent, List<KeyCode>, Boolean> isThisKeyIn =
+            (key, listOf) -> listOf.contains(key.getCode());
     /***
      * Handle key Board output
      */

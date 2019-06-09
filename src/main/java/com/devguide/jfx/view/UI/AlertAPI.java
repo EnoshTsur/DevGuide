@@ -225,7 +225,11 @@ public interface AlertAPI {
      * **************************
      * *************************
      */
-    Function3<String, String, Map<Button, Consumer<Event>>, Stage> createAlertWithButtons =
+    Function3<String,
+            String,
+            Map<Button, Consumer<Event>>,
+            Stage
+            > createAlertWithButtons =
             (title, text, options) -> {
 
                 // Size

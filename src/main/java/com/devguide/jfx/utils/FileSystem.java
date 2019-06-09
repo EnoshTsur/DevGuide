@@ -4,6 +4,7 @@ import io.vavr.Function1;
 
 import java.io.File;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import static com.devguide.jfx.utils.StringUtils.*;
 
@@ -12,12 +13,16 @@ import static com.devguide.jfx.utils.StringUtils.*;
  */
 public interface FileSystem {
 
-    String SYSTEM_NAME = "os.name";
+    String OS_NAME = "os.name";
+    String USER_DIR = "user.dir";
+    String BACKWARDS = "../";
+    String CD = "cd";
+    String FORWARD_SLASH = "/";
 
-    Supplier<String> getOperationSystem = () -> {
-        System.getProperties().list(System.out);
-        return System.getProperty(SYSTEM_NAME);
-    };
+    String SYSTEM_NAME = System.getProperty(OS_NAME);
+    String USER_HOME = System.getProperty(USER_DIR);
+
+    Supplier<String> getOperationSystem = () -> System.getProperty(OS_NAME);
 
     Function1<String, File> getAbsolutePath =
             path -> new File(path).getAbsoluteFile();
@@ -27,5 +32,14 @@ public interface FileSystem {
             .replace('\\','/');
 
 
-    Function1<String, String> setAbsoluePath = setFilePath.apply(getAbsolutePath);
+    Function1<String, String> setAbsolutePath = setFilePath.apply(getAbsolutePath);
+
+    /***
+     * Returns true if file / directory
+     */
+    Function1<String, Boolean> isFileOrDirExist = address -> {
+        File destination = new File(address);
+        return destination.exists();
+    };
+
 }

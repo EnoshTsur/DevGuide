@@ -1,93 +1,135 @@
 package com.devguide.jfx.view.shared;
 
 
-import javafx.collections.FXCollections;
+import io.vavr.Function1;
+import io.vavr.Function2;
+import io.vavr.collection.List;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.util.stream.Collectors;
+
+import static com.devguide.jfx.utils.BasicUtils.*;
+import static com.devguide.jfx.utils.KeyBoardUtils.*;
+import static com.devguide.jfx.view.UI.ComboBoxAPI.*;
+import static javafx.collections.FXCollections.*;
+
 /**
  * Auto Complete ComboBox
+ *
  * @author 'Enosh Tsur'
  */
 
-public class AutoCompleteComboBoxListener<T> implements EventHandler<KeyEvent> {
+public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
 
-    private ComboBox comboBox;
+    private ComboBox input;
     private StringBuilder sb;
-    private ObservableList<T> data;
+    private ObservableList<String> data;
     private boolean moveCaretToPos = false;
     private int caretPos;
 
+    private List<KeyCode> keysToReturn = List.of(
+            KeyCode.RIGHT, KeyCode.LEFT,
+            KeyCode.HOME, KeyCode.END, KeyCode.TAB
+    );
+
+    /***
+     * Returns Observable List of Strings
+     * Who contains Combo Box Text
+     */
+    private Function2<ComboBox<String>,
+            ObservableList<String>,
+            ObservableList<String>> getMatchItems = (input, data) ->
+            observableArrayList(data.stream().filter(
+                    item -> doesItContains.apply(
+                                    getComboEditorText.apply(input),
+                                    item
+                            )
+                    ).collect(Collectors.toList()));
+
+
     public AutoCompleteComboBoxListener(final ComboBox comboBox) {
-        this.comboBox = comboBox;
+        this.input = comboBox;
         sb = new StringBuilder();
         data = comboBox.getItems();
 
-        this.comboBox.setEditable(true);
-        this.comboBox.setOnKeyPressed(t -> comboBox.hide());
-        this.comboBox.setOnKeyReleased(AutoCompleteComboBoxListener.this);
+        this.input.setEditable(true);
+        this.input.setOnKeyPressed(t -> comboBox.hide());
+        this.input.setOnKeyReleased(AutoCompleteComboBoxListener.this);
     }
 
     @Override
     public void handle(KeyEvent event) {
 
-        if(event.getCode() == KeyCode.UP) {
+        if (event.getCode() == KeyCode.UP) {
             caretPos = -1;
-            moveCaret(comboBox.getEditor().getText().length());
+            moveCaretToPos = moveCaret.apply(
+                    input
+                            .getEditor()
+                            .getText()
+                            .length()
+            );
             return;
-        } else if(event.getCode() == KeyCode.DOWN) {
-            if(!comboBox.isShowing()) {
-                comboBox.show();
+
+
+        } else if (event.getCode() == KeyCode.DOWN) {
+            if (!input.isShowing()) {
+                input.show();
             }
             caretPos = -1;
-            moveCaret(comboBox.getEditor().getText().length());
+            moveCaretToPos = moveCaret.apply(
+                    input
+                            .getEditor()
+                            .getText()
+                            .length()
+            );
             return;
-        } else if(event.getCode() == KeyCode.BACK_SPACE) {
+
+        } else if (event.getCode() == KeyCode.ENTER) {
+            input.getEditor().setText(getComboEditorText.apply(input));
+            input.getSelectionModel().select(getComboEditorText.apply(input));
+            return;
+
+        } else if (event.getCode() == KeyCode.BACK_SPACE) {
             moveCaretToPos = true;
-            caretPos = comboBox.getEditor().getCaretPosition();
-        } else if(event.getCode() == KeyCode.DELETE) {
+            caretPos = input.getEditor().getCaretPosition();
+
+        } else if (event.getCode() == KeyCode.DELETE) {
             moveCaretToPos = true;
-            caretPos = comboBox.getEditor().getCaretPosition();
+            caretPos = input.getEditor().getCaretPosition();
         }
 
-        if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT
-                || event.isControlDown() || event.getCode() == KeyCode.HOME
-                || event.getCode() == KeyCode.END || event.getCode() == KeyCode.TAB) {
+        if (isThisKeyIn.apply(event, keysToReturn)) {
             return;
         }
 
-        ObservableList list = FXCollections.observableArrayList();
-        for (int i=0; i<data.size(); i++) {
-            if(data.get(i).toString().toLowerCase().contains(
-                    AutoCompleteComboBoxListener.this.comboBox
-                            .getEditor().getText().toLowerCase())) {
-                list.add(data.get(i));
-            }
-        }
-        String t = comboBox.getEditor().getText();
+        // Match Items
+        ObservableList<String> matchItems = getMatchItems.apply(input, data);
 
-        comboBox.setItems(list);
-        comboBox.getEditor().setText(t);
-        if(!moveCaretToPos) {
+        String t = input.getEditor().getText();
+
+        input.setItems(matchItems);
+        input.getEditor().setText(t);
+        if (!moveCaretToPos) {
             caretPos = -1;
         }
-        moveCaret(t.length());
-        if(!list.isEmpty()) {
-            comboBox.show();
+        moveCaretToPos = moveCaret.apply(t.length());
+        if (!matchItems.isEmpty()) {
+            input.show();
         }
     }
 
-    private void moveCaret(int textLength) {
-        if(caretPos == -1) {
-            comboBox.getEditor().positionCaret(textLength);
+    private Function1<Integer, Boolean> moveCaret = textLength -> {
+        if (caretPos == -1) {
+            input.getEditor().positionCaret(textLength);
         } else {
-            comboBox.getEditor().positionCaret(caretPos);
+            input.getEditor().positionCaret(caretPos);
         }
-        moveCaretToPos = false;
-    }
+        return false;
+    };
 
 }
 
