@@ -1,9 +1,11 @@
 package com.devguide.jfx.utils;
 
 import io.vavr.Function1;
+import io.vavr.collection.List;
 
 import java.io.File;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.devguide.jfx.utils.StringUtils.*;
@@ -24,14 +26,23 @@ public interface FileSystem {
 
     Supplier<String> getOperationSystem = () -> System.getProperty(OS_NAME);
 
+    /***
+     * Get Absolute Path by Relative
+     */
     Function1<String, File> getAbsolutePath =
             path -> new File(path).getAbsoluteFile();
 
+    /***
+     * Set File Path (file://) & Replace backward slash
+     */
     Function1<Function1<String, File>, Function1<String, String>>
     setFilePath = pathFunction -> path -> f("file:{0}", pathFunction.apply(path))
             .replace('\\','/');
 
 
+    /***
+     * Aet Absolute Path + Set File (file://)
+     */
     Function1<String, String> setAbsolutePath = setFilePath.apply(getAbsolutePath);
 
     /***
@@ -40,6 +51,22 @@ public interface FileSystem {
     Function1<String, Boolean> isFileOrDirExist = address -> {
         File destination = new File(address);
         return destination.exists();
+    };
+
+    /***
+     * Returns the last folder from the path
+     */
+    Function1<File, String> getLastFolder = fullPath -> {
+        String path = fullPath.getPath();
+        if (doesItContains.apply(FORWARD_SLASH, path)) {
+            List<String> lastTwo = List.ofAll(
+                    Stream.of(
+                            path.split(FORWARD_SLASH)
+                    ).collect(Collectors.toList())
+            );
+            return lastTwo.reduce((first, second) -> second);
+        }
+        return path;
     };
 
 }

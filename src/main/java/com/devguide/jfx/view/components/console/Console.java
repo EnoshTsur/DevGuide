@@ -4,6 +4,7 @@ import com.devguide.jfx.execute.Execute;
 import com.devguide.jfx.execute.ShellType;
 import com.devguide.jfx.utils.*;
 import com.devguide.jfx.view.UI.PaneTypes;
+import com.devguide.jfx.view.shared.Colors;
 import com.sun.org.apache.xpath.internal.compiler.Keywords;
 import io.vavr.*;
 import javafx.scene.control.ComboBox;
@@ -22,28 +23,32 @@ import java.util.stream.Stream;
 import static com.devguide.jfx.execute.Execute.*;
 import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.utils.FileSystem.*;
+import static com.devguide.jfx.utils.FileSystem.getLastFolder;
 import static com.devguide.jfx.utils.KeyBoardUtils.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.ComboBoxAPI.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.UI.TextAreaAPI.*;
 import static com.devguide.jfx.view.components.console.ConsoleUtils.*;
-import static com.devguide.jfx.view.components.console.ConsoleUtils.OUTPUT_HEIGHT;
 import static com.devguide.jfx.view.components.search.SearchBarUtils.*;
+import static com.devguide.jfx.view.shared.Colors.*;
+import static com.devguide.jfx.view.shared.Colors.COMBO_DARK_PURPLE;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 
 public interface Console {
+
+
 
 
     /***
      * Set Out Put
      */
     Function2<File, String, String> setOutput = (path, command) ->
-            f("{0}> {1}\n", path.getPath(), command);
+            f("{0}> {1}\n", getLastFolder.apply(path), command);
 
     // Console State
     ConsoleState consoleState =
-            new ConsoleState(OperationSystem.WINDOWS10, ShellType.CMD);
+            new ConsoleState(OperationSystem.LINUX, ShellType.BASH);
 
     /***
      * Run Command
@@ -251,6 +256,8 @@ public interface Console {
                 ));
             };
 
+
+
     /***
      * On Space
      */
@@ -288,13 +295,9 @@ public interface Console {
                     );
 
     /***
-     * View
+     * Create Console Output ( Text Area )
      */
-    Supplier<VBox> view = () -> {
-
-        File dir = new File(USER_HOME);
-        String initialMessage = f("{0}>", dir.getPath());
-
+    Supplier<TextArea> createConsoleOutput = () -> {
         // Output
         TextArea output = createConsoleTextArea.apply(
                 textArea -> {
@@ -309,10 +312,17 @@ public interface Console {
                 consoleState
                         .getLocation
                         .get(),
-                "Welcome Back!"
+                greetings.apply(null)
         ));
+        return output;
+    };
 
-        // Input
+    /***
+     * Create Console Input
+     */
+    Function1<TextArea, ComboBox<String>> createConsoleInput = output -> {
+        File dir = new File(USER_HOME);
+        String initialMessage = f("{0}>", dir.getPath());
         ComboBox<String> input = createComboBoxWithRule
                 .apply(
                         combobox -> setComboBoxStyles.apply(
@@ -328,7 +338,7 @@ public interface Console {
                         ),
                         null
                 );
-        setBackgroundColor.accept(input.getEditor(), "#0f0614");
+        setBackgroundColor.accept(input.getEditor(), COMBO_DARK_PURPLE);
         input.setPromptText(initialMessage);
         input.setOnKeyPressed(event -> input.hide());
         input.setOnKeyReleased(
@@ -338,24 +348,47 @@ public interface Console {
                         event
                 )
         );
+        return input;
+    };
+
+    /***
+     * Create Console Container
+     */
+    Function2<ComboBox<String>, TextArea, VBox> createConsoleContainer =
+            (input, output) -> {
+                VBox mainPane = (VBox) createPaneWithRule.apply(
+                        pane -> {
+                            pane.setMaxSize(
+                                    OUTPUT_WIDTH,
+                                    OUTPUT_HEIGHT + INPUT_HEIGHT
+                            );
+                            pane.setPadding(DEFAULT_INSETS);
+                            return pane;
+                        },
+                        PaneTypes.VBOX
+                );
+                mainPane.getChildren().addAll(output, input);
+                mainPane.setEffect(createShadow.apply("#0d001a"));
+                return mainPane;
+            };
+
+    /***
+     * View
+     */
+    Supplier<VBox> view = () -> {
+
+        // Output
+        TextArea output = createConsoleOutput.get();
+
+        // Input
+        ComboBox<String> input = createConsoleInput.apply(output);
 
         // Container
-        VBox mainPane = (VBox) createPaneWithRule.apply(
-                pane -> {
-                    pane.setMaxSize(
-                            OUTPUT_WIDTH,
-                            OUTPUT_HEIGHT + INPUT_HEIGHT
-                    );
-                    pane.setPadding(DEFAULT_INSETS);
-                    return pane;
-                },
-                PaneTypes.VBOX
-        );
-        mainPane.getChildren().addAll(output, input);
-        mainPane.setEffect(createShadow.apply("#0d001a"));
+        VBox mainPane = createConsoleContainer.apply(input, output);
 
         return mainPane;
     };
+
 
 
 }

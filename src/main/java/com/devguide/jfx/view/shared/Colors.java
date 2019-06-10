@@ -18,4 +18,5 @@ public interface Colors {
 
     String DARK_PURPLE_BLUE = "#3d0099";
     String LIGHT_PURPLE_BLUE = "#b380ff";
+    String COMBO_DARK_PURPLE = "#0f0614";
 }

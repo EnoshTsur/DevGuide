@@ -13,6 +13,16 @@ import static com.devguide.jfx.utils.StringUtils.*;
 
 public interface ConsoleUtils {
 
+    /***
+     * Greetings
+     */
+    Function1<String, String> greetings = name -> {
+        System.out.println(System.getProperty("user.name"));
+        return doesItNullOrEmpty.test(name) ?
+                f("Welcome Back {0}!", System.getProperty("user.name")) :
+                f("Welcome Back {0}!", name);
+    };
+
     /**
      * Get all drivers ( A B C )
      */

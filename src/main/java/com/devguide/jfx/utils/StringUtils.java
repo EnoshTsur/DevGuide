@@ -62,7 +62,7 @@ public interface StringUtils {
      * Returns true if String is null or empty
      */
     Predicate<String> doesItNullOrEmpty = str ->
-            isEmpty.apply(str) || BasicUtils.isNull.apply(str);
+            BasicUtils.isNull.apply(str) || isEmpty.apply(str);
 
 
 
