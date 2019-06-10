@@ -70,6 +70,31 @@ public interface ListViewCellImageFix {
                 break;
             case "GraphQL":
                 icon.setImage(createImageUnderAssets.apply("graphql.png"));
+                break;
+            case "Intellij":
+                icon.setImage(createImageUnderAssets.apply("intellij.png"));
+                break;
+            case "Git":
+                icon.setImage(createImageUnderAssets.apply("git.png"));
+                break;
+            case "Git Shortcuts":
+                icon.setImage(createImageUnderAssets.apply("git.png"));
+                break;
+            case "Yarn Shortcuts":
+                icon.setImage(createImageUnderAssets.apply("shortcut.png"));
+                break;
+            case "Java 8":
+                icon.setImage(createImageUnderAssets.apply("java.png"));
+                break;
+            case "Java 11":
+                icon.setImage(createImageUnderAssets.apply("java.png"));
+                break;
+            case "VS Code":
+                icon.setImage(createImageUnderAssets.apply("vscode.png"));
+                break;
+            case "Web Storm":
+                icon.setImage(createImageUnderAssets.apply("webstorm.png"));
+                break;
         }
 
         icon.setFitHeight(ICON_HEIGHT);

@@ -60,8 +60,8 @@ public interface TechnologiesUtils {
             "VS Code",
             "Web Storm",
             "Node JS",
-            "Java8",
-            "Java11"
+            "Java 8",
+            "Java 11"
     );
 
     /***
