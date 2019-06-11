@@ -16,6 +16,8 @@ public interface StringUtils {
 
     String EMPTY_STRING = "";
 
+    String SPACE = " ";
+
     /***
      * Formatting String by index inside braces {0} {1}
      * @param freeText

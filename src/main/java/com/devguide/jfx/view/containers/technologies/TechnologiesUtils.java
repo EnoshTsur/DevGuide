@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 import static com.devguide.jfx.view.UI.LabelAPI.*;
 import static com.devguide.jfx.view.UI.PaneAPI.createPaneWithRule;
 import static com.devguide.jfx.view.shared.Colors.*;
-import static com.devguide.jfx.view.shared.Colors.LIGHTEST;
+import static com.devguide.jfx.view.shared.Colors.PRIMARY_MIDDLE;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 import static com.devguide.jfx.view.shared.SharedUtils.DEFAULT_INSETS;
 import static com.devguide.jfx.view.shared.SharedUtils.setBackgroundColor;
@@ -110,7 +110,7 @@ public interface TechnologiesUtils {
     Function1<Pane, ? extends Pane> setContainerStyles =
             pane -> {
                 pane.setMinWidth(280);
-                setBackgroundColor.accept(pane, LIGHTEST);
+                setBackgroundColor.accept(pane, PRIMARY_MIDDLE);
 
                 return pane;
             };

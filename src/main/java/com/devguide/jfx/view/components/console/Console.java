@@ -7,6 +7,7 @@ import com.devguide.jfx.view.UI.PaneTypes;
 import com.devguide.jfx.view.shared.Colors;
 import com.sun.org.apache.xpath.internal.compiler.Keywords;
 import io.vavr.*;
+import io.vavr.control.Try;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
@@ -36,8 +37,6 @@ import static com.devguide.jfx.view.shared.Colors.COMBO_DARK_PURPLE;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 
 public interface Console {
-
-
 
 
     /***
@@ -124,7 +123,7 @@ public interface Console {
      */
     Consumer3<ComboBox<String>, TextArea, String> moveBackwards =
             (input, output, command) -> {
-                consoleState.navigate.accept(BACKWARDS, input);
+                consoleState.navigate.apply(BACKWARDS, input);
                 output.appendText(setOutput.apply(
                         consoleState
                                 .getLocation
@@ -138,28 +137,32 @@ public interface Console {
      */
     Consumer3<ComboBox<String>, TextArea, String> changeDirectory =
             (input, output, command) -> {
-                final String SPACE = " ";
                 String[] cdAndPath = command.split(SPACE);
                 String path = isNotNull.apply(cdAndPath[1])
                         ? cdAndPath[1] : EMPTY_STRING;
+
+                // Get a new location
+                String location = consoleState
+                        .navigate
+                        .apply(path, input);
+
+                // Assign location to variable
+                File dir = new File(location);
+
+                // Append output
+                output.appendText(setOutput.apply(
+                        dir,
+                        EMPTY_STRING
+                ));
+
                 // Run
                 run.apply(
                         command,
-                        consoleState
-                                .getLocation
-                                .get(),
+                        dir,
                         consoleState
                                 .getShellType
                                 .get()
                 );
-
-                consoleState.navigate.accept(path, input);
-                output.appendText(setOutput.apply(
-                        consoleState
-                                .getLocation
-                                .get(),
-                        EMPTY_STRING
-                ));
             };
 
 
@@ -176,7 +179,7 @@ public interface Console {
                     return;
                 }
                 // Navigate
-                consoleState.navigate.accept(
+                consoleState.navigate.apply(
                         drive.getPath(),
                         input
                 );
@@ -191,12 +194,74 @@ public interface Console {
                 return;
             };
 
+    /***
+     * Change Drive
+     */
+    Consumer3<ComboBox<String>, TextArea, String> clearScreen =
+            (input, output, command) -> output.setText(
+                    setOutput.apply(consoleState.getLocation.get(), EMPTY_STRING)
+            );
+
+    /***
+     * Change console colors
+     */
+    Consumer3<ComboBox<String>, TextArea, String> changeColor =
+            (input, output, command) -> {
+                String[] commandAndColor = command.split(SPACE);
+
+                // Getting text color
+                Try<String> textColor = Try.of(() -> commandAndColor[1]);
+
+                // Getting background color
+                Try<String> backgroundColor = Try.of(() -> commandAndColor[2]);
+
+                // Getting background color
+                Try<String> backgroundColor2 = Try.of(() -> commandAndColor[3]);
+
+                // Painting text color
+                if (!textColor.isEmpty()) setTextColor.accept(output, textColor.get());
+
+                // Checking linear gradient
+                if (!backgroundColor2.isEmpty()) {
+
+                    // Set Background
+                    setBackgroundLinearGradient.apply(
+                            output,
+                            backgroundColor.get(),
+                            backgroundColor2.get()
+                    );
+                    return;
+                }
+
+                // Painting background color
+                if (!backgroundColor.isEmpty()) addStyle
+                        .accept(
+                                output,
+                                createBgColorStyle
+                                        .apply(backgroundColor.get())
+                        );
+
+            };
+
 
     /**
      * Returns True if commands starts with C: / D: ...
      */
     Predicate<String> isOneOfDrivers = command ->
             allDrivers.contains(trimAndLower.apply(command));
+
+    /***
+     * Returns True if command equals to cls / clear
+     */
+    Predicate<String> isClearOrCls = command ->
+            doesItEqualTo.apply(trimAndLower.apply(command), Commands.CLEAR) ||
+                    doesItEqualTo.apply(trimAndLower.apply(command), Commands.CLS);
+
+    /***
+     *
+     */
+    Predicate<String> isColorChange = command ->
+            trimAndLower.apply(command).startsWith("color");
 
 
     /***
@@ -245,6 +310,27 @@ public interface Console {
                 );
                 if (oneOfDrivers) return;
 
+                // Clear Screen
+                boolean clearOutput = ifTrueThan.apply(
+                        isClearOrCls,
+                        clearScreen,
+                        command,
+                        input,
+                        output
+                );
+                if (clearOutput) return;
+
+
+                // Color Change
+                boolean colorChange = ifTrueThan.apply(
+                        isColorChange,
+                        changeColor,
+                        command,
+                        input,
+                        output
+                );
+                if (colorChange) return;
+
 
                 List<String> ans = run.apply(
                         command,
@@ -255,7 +341,6 @@ public interface Console {
                         setOutput.apply(directory, line)
                 ));
             };
-
 
 
     /***
@@ -368,7 +453,7 @@ public interface Console {
                         PaneTypes.VBOX
                 );
                 mainPane.getChildren().addAll(output, input);
-                mainPane.setEffect(createShadow.apply("#0d001a"));
+                mainPane.setEffect(createShadow.apply(COMBO_DARK_PURPLE));
                 return mainPane;
             };
 
@@ -388,7 +473,6 @@ public interface Console {
 
         return mainPane;
     };
-
 
 
 }

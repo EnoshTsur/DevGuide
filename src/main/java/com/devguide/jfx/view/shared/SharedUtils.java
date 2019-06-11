@@ -1,5 +1,6 @@
 package com.devguide.jfx.view.shared;
 
+import com.devguide.jfx.utils.StringUtils;
 import io.vavr.*;
 import io.vavr.collection.List;
 import javafx.geometry.Insets;
@@ -22,7 +23,6 @@ import static com.devguide.jfx.utils.StringUtils.*;
  */
 public interface SharedUtils {
 
-
     String APP_NAME = "Dev Bible";
     String DEFAULT_FONT_TYPE = "Droid Sans Fallback";
     String HEADER_FONT_TYPE = "Sans Typewriter";
@@ -31,6 +31,8 @@ public interface SharedUtils {
     int DEFAULT_SPACING = 10;
     int HEADER_FONT_SIZE = 18;
     int TITLE_FONT_SIZE = 15;
+
+
 
     String SHADOW_STYLE = "-fx-effect: dropshadow(three-pass-box, " +
             "rgba(0,0,0,0.8), 10, 0, 0, 0);";
@@ -205,5 +207,8 @@ public interface SharedUtils {
                 "-fx-shape: M24 1h-24v16.981h4v5.019l7-5.019h13;");
         return tooltip;
     };
+
+    BiConsumer<Region, String> setTextColor = (javafxObject, color) ->
+            addStyle.accept(javafxObject, f("-fx-text-fill: {0}", color));
 
 }

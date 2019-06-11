@@ -27,7 +27,7 @@ public class FooterView {
                     // Background
                     setBackgroundColor.accept(
                             pane,
-                            LIGHTEST
+                            PRIMARY_MIDDLE
                     );
 
                     return pane;

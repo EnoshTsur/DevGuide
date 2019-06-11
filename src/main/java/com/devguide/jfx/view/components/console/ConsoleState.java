@@ -151,19 +151,20 @@ public class ConsoleState {
     /***
      * Navigate to New Path if exists
      */
-    public BiConsumer<String, ComboBox<String>> navigate = (path, input) -> {
-        if (isEmpty.apply(path)) return;
+    public Function2<String, ComboBox<String>, String> navigate = (path, input) -> {
+        if (isEmpty.apply(path)) return location.getPath();
 
         // Is it Backwards
         if (isItBackwards.test(path)) {
                 Try<File> parent = Try.of(() -> new File(location.getParent()));
-                if (parent.isEmpty()) return;
+                if (parent.isEmpty()) return location.getPath();
                 location = (isNotNull.apply(parent) && parent.get().exists())
                         ? parent.get() : location;
                 input.setPromptText(location.getPath());
-                return;
+                return location.getPath();
         }
 
+        // Contains Forward Slash
         if (doesItContains.apply(FORWARD_SLASH, path)) {
             String[] folders = path.split(FORWARD_SLASH);
 
@@ -174,14 +175,17 @@ public class ConsoleState {
                     input.setPromptText(location.getPath());
                 }
             });
-            return;
+            return location.getPath();
         }
 
+        //  Continue
         File destination = new File(path);
-        if (!destination.exists()) return;
+        File fullPath = destination.getAbsoluteFile();
+        if (!fullPath.exists()) return location.getPath();
 
-        location = destination;
+        location = fullPath;
         input.setPromptText(location.getPath());
+        return location.getPath();
     };
 
 
