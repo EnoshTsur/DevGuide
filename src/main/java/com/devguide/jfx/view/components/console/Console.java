@@ -1,8 +1,11 @@
 package com.devguide.jfx.view.components.console;
 
+import com.devguide.jfx.browsers.LoginPage;
+import com.devguide.jfx.browsers.WebActions;
 import com.devguide.jfx.execute.Execute;
 import com.devguide.jfx.execute.ShellType;
 import com.devguide.jfx.utils.*;
+import com.devguide.jfx.view.UI.ButtonAPI;
 import com.devguide.jfx.view.UI.PaneTypes;
 import com.devguide.jfx.view.shared.Colors;
 import com.sun.org.apache.xpath.internal.compiler.Keywords;
@@ -13,6 +16,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 import java.util.List;
@@ -21,6 +26,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.devguide.jfx.browsers.WebActions.*;
 import static com.devguide.jfx.execute.Execute.*;
 import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.utils.FileSystem.*;
@@ -30,6 +36,7 @@ import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.ComboBoxAPI.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.UI.TextAreaAPI.*;
+import static com.devguide.jfx.view.components.console.Commands.*;
 import static com.devguide.jfx.view.components.console.ConsoleUtils.*;
 import static com.devguide.jfx.view.components.search.SearchBarUtils.*;
 import static com.devguide.jfx.view.shared.Colors.*;
@@ -212,37 +219,25 @@ public interface Console {
                 // Getting text color
                 Try<String> textColor = Try.of(() -> commandAndColor[1]);
 
-                // Getting background color
-                Try<String> backgroundColor = Try.of(() -> commandAndColor[2]);
-
-                // Getting background color
-                Try<String> backgroundColor2 = Try.of(() -> commandAndColor[3]);
-
                 // Painting text color
                 if (!textColor.isEmpty()) setTextColor.accept(output, textColor.get());
 
-                // Checking linear gradient
-                if (!backgroundColor2.isEmpty()) {
-
-                    // Set Background
-                    setBackgroundLinearGradient.apply(
-                            output,
-                            backgroundColor.get(),
-                            backgroundColor2.get()
-                    );
-                    return;
-                }
-
-                // Painting background color
-                if (!backgroundColor.isEmpty()) addStyle
-                        .accept(
-                                output,
-                                createBgColorStyle
-                                        .apply(backgroundColor.get())
-                        );
-
             };
 
+    /***
+     * Closing the app
+     */
+    Consumer3<ComboBox<String>, TextArea, String> closeProgram =
+            (input, output, command) -> output.getScene().getWindow().hide();
+
+    /***
+     * Do Login -> navigate to site and send keys in order to login
+     */
+    Consumer3<ComboBox<String>, TextArea, String> doLogin =
+            (input, output, command) -> {
+                WebDriver driver = setDriver.get();
+                navigateTo.apply("https://frontendmasters.com/login/", driver);
+            };
 
     /**
      * Returns True if commands starts with C: / D: ...
@@ -254,14 +249,24 @@ public interface Console {
      * Returns True if command equals to cls / clear
      */
     Predicate<String> isClearOrCls = command ->
-            doesItEqualTo.apply(trimAndLower.apply(command), Commands.CLEAR) ||
-                    doesItEqualTo.apply(trimAndLower.apply(command), Commands.CLS);
+            doesItEqualTo.apply(trimAndLower.apply(command), CLEAR) ||
+                    doesItEqualTo.apply(trimAndLower.apply(command), CLS);
 
     /***
-     *
+     * Returns True if command starts with color
      */
     Predicate<String> isColorChange = command ->
             trimAndLower.apply(command).startsWith("color");
+
+    /***
+     * Returns True if command is equals to exit
+     */
+    Predicate<String> isExit = command -> doesItEqualTo.apply(trimAndLower.apply(command), EXIT);
+
+    /***
+     * Returns True if command is equals to login
+     */
+    Predicate<String> isLogin = command -> doesItEqualTo.apply(trimAndLower.apply(command), LOGIN);
 
 
     /***
@@ -330,6 +335,26 @@ public interface Console {
                         output
                 );
                 if (colorChange) return;
+
+                // Exit
+                boolean exit = ifTrueThan.apply(
+                        isExit,
+                        closeProgram,
+                        command,
+                        input,
+                        output
+                );
+                if (exit) return;
+
+                // Login
+                boolean login = ifTrueThan.apply(
+                        isLogin,
+                        doLogin,
+                        command,
+                        input,
+                        output
+                );
+                if (login) return;
 
 
                 List<String> ans = run.apply(

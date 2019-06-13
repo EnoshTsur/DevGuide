@@ -178,13 +178,15 @@ public class ConsoleState {
             return location.getPath();
         }
 
-        //  Continue
-        File destination = new File(path);
-        File fullPath = destination.getAbsoluteFile();
-        if (!fullPath.exists()) return location.getPath();
-
-        location = fullPath;
-        input.setPromptText(location.getPath());
+        // No Forward slash
+        String[] folders = path.split(FORWARD_SLASH);
+        Stream.of(folders).forEach(folder -> {
+            Try<File> child = Try.of(() -> new File(location, folder));
+            if (!child.isEmpty() && child.get().isDirectory()) {
+                location = child.get();
+                input.setPromptText(location.getPath());
+            }
+        });
         return location.getPath();
     };
 

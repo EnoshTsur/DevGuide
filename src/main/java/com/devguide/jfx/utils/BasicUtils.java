@@ -54,7 +54,6 @@ public interface BasicUtils {
     Function1<Number, Boolean> isZero = number -> number.equals(0);
 
 
-
     /***
      * Returns true if equal
      */
