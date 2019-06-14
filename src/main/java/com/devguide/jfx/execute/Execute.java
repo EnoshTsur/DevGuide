@@ -1,6 +1,10 @@
 package com.devguide.jfx.execute;
 
 import io.vavr.*;
+import io.vavr.control.Try;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -52,11 +56,8 @@ public interface Execute {
      */
     Function3<String, File, ShellType, List<String>> run =
             (action, path, shell) -> {
-
                 List<String> message = new ArrayList<>();
-
                 try {
-
                     ProcessBuilder processBuilder = buildProcess.apply(action, shell, path);
 
                     // Process
@@ -71,7 +72,6 @@ public interface Execute {
                         message.add(line);
                         System.out.println(line);
                     }
-
                     // Close
                     br.close();
 
@@ -84,8 +84,33 @@ public interface Execute {
                     e.printStackTrace();
                 }
                 return message;
+            };
 
+    /***
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * !! Executing command with thread !!
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     */
+    Function3<String, File, ShellType, List<String>> runOnThread =
+            (action, path, shellType) -> {
+                List<String> message = new ArrayList<>();
+                Task<List<String>> task = new Task<List<String>>() {
+                    @Override
+                    protected List<String> call() {
+                        return run.apply(action, path, shellType);
+                    }
+                };
+                Thread exe = new Thread(task);
+                task.setOnSucceeded(t -> task.getValue().forEach(message::add));
+                task.setOnFailed(t -> System.out.println(task.getException()));
+                exe.start();
+                Try.run(() -> exe.join());
+                return message;
             };
 
 
 }
+
+
+
+

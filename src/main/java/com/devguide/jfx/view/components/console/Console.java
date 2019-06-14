@@ -1,30 +1,23 @@
 package com.devguide.jfx.view.components.console;
 
-import com.devguide.jfx.browsers.LoginPage;
-import com.devguide.jfx.browsers.WebActions;
-import com.devguide.jfx.execute.Execute;
 import com.devguide.jfx.execute.ShellType;
 import com.devguide.jfx.utils.*;
-import com.devguide.jfx.view.UI.ButtonAPI;
 import com.devguide.jfx.view.UI.PaneTypes;
-import com.devguide.jfx.view.shared.Colors;
-import com.sun.org.apache.xpath.internal.compiler.Keywords;
 import io.vavr.*;
 import io.vavr.control.Try;
+import javafx.concurrent.Task;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import jdk.nashorn.tools.Shell;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static com.devguide.jfx.browsers.WebActions.*;
 import static com.devguide.jfx.execute.Execute.*;
@@ -39,22 +32,45 @@ import static com.devguide.jfx.view.UI.TextAreaAPI.*;
 import static com.devguide.jfx.view.components.console.Commands.*;
 import static com.devguide.jfx.view.components.console.ConsoleUtils.*;
 import static com.devguide.jfx.view.components.search.SearchBarUtils.*;
-import static com.devguide.jfx.view.shared.Colors.*;
 import static com.devguide.jfx.view.shared.Colors.COMBO_DARK_PURPLE;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 
 public interface Console {
 
-
-    /***
-     * Set Out Put
-     */
-    Function2<File, String, String> setOutput = (path, command) ->
-            f("{0}> {1}\n", getLastFolder.apply(path), command);
-
     // Console State
     ConsoleState consoleState =
-            new ConsoleState(OperationSystem.LINUX, ShellType.BASH);
+            new ConsoleState(OperationSystem.WINDOWS10, ShellType.CMD);
+
+    /***
+     * Set Output content
+     */
+    Function2<File, String, String> setOutputContent = (path, command) ->
+            f("{0}> {1}\n", getLastFolder.apply(path), command);
+
+    /***
+     * Set output after execution
+     */
+    BiConsumer<TextArea, String> setOutPutAfterExecution =
+            (output, command ) -> {
+                File directory = consoleState.getLocation.get();
+                ShellType shellType = consoleState.getShellType.get();
+                Task<List<String>> task = new Task<List<String>>() {
+                    @Override
+                    protected List<String> call() {
+                        return run.apply(
+                                command,
+                                directory,
+                                shellType
+                        );
+                    }
+                };
+                Thread exe = new Thread(task);
+                task.setOnSucceeded(t -> task.getValue().forEach(line ->
+                        output.appendText(setOutputContent.apply(directory, line)))
+                );
+                task.setOnFailed(t -> output.appendText(task.getException().getMessage()));
+                exe.start();
+            };
 
     /***
      * Run Command
@@ -75,7 +91,7 @@ public interface Console {
      */
     BiConsumer<String, TextArea> printOutput = (command, output) -> {
         runCommand.apply(command).forEach(
-                line -> output.appendText(setOutput.apply(
+                line -> output.appendText(setOutputContent.apply(
                         consoleState
                                 .getLocation
                                 .get(),
@@ -131,12 +147,7 @@ public interface Console {
     Consumer3<ComboBox<String>, TextArea, String> moveBackwards =
             (input, output, command) -> {
                 consoleState.navigate.apply(BACKWARDS, input);
-                output.appendText(setOutput.apply(
-                        consoleState
-                                .getLocation
-                                .get(),
-                        EMPTY_STRING
-                ));
+                setOutPutAfterExecution.accept(output, command);
             };
 
     /***
@@ -157,19 +168,7 @@ public interface Console {
                 File dir = new File(location);
 
                 // Append output
-                output.appendText(setOutput.apply(
-                        dir,
-                        EMPTY_STRING
-                ));
-
-                // Run
-                run.apply(
-                        command,
-                        dir,
-                        consoleState
-                                .getShellType
-                                .get()
-                );
+                setOutPutAfterExecution.accept(output, command);
             };
 
 
@@ -191,13 +190,7 @@ public interface Console {
                         input
                 );
                 // Run
-                run.apply(command, drive, consoleState.getShellType.get());
-
-                // Output
-                output.appendText(setOutput.apply(
-                        drive,
-                        EMPTY_STRING
-                ));
+                setOutPutAfterExecution.accept(output, command);
                 return;
             };
 
@@ -206,7 +199,7 @@ public interface Console {
      */
     Consumer3<ComboBox<String>, TextArea, String> clearScreen =
             (input, output, command) -> output.setText(
-                    setOutput.apply(consoleState.getLocation.get(), EMPTY_STRING)
+                    setOutputContent.apply(consoleState.getLocation.get(), EMPTY_STRING)
             );
 
     /***
@@ -272,7 +265,7 @@ public interface Console {
     /***
      * On Send
      */
-    BiConsumer<ComboBox<String>, TextArea> onSend =
+    BiConsumer<ComboBox<String>, TextArea> onEnter =
             (input, output) -> {
                 // Attributes
                 String command = input.getEditor().getText();
@@ -280,7 +273,7 @@ public interface Console {
                 ShellType shellType = consoleState.getShellType.get();
 
                 // Appending text
-                output.appendText(setOutput.apply(directory, command));
+                output.appendText(setOutputContent.apply(directory, command));
 
                 // Checking command exits
                 if (doesItNullOrEmpty.test(command)) return;
@@ -356,15 +349,7 @@ public interface Console {
                 );
                 if (login) return;
 
-
-                List<String> ans = run.apply(
-                        command,
-                        directory,
-                        shellType
-                );
-                ans.forEach(line -> output.appendText(
-                        setOutput.apply(directory, line)
-                ));
+                setOutPutAfterExecution.accept(output, command);
             };
 
 
@@ -380,7 +365,7 @@ public interface Console {
             (input, output, keyEvent) -> {
 
                 if (isThisKeyIs.apply(keyEvent, KeyCode.ENTER)) {
-                    onSend.accept(input, output);
+                    onEnter.accept(input, output);
                     input.getEditor().clear();
                     return;
                 } else if (isThisKeyIs.apply(keyEvent, KeyCode.SPACE)) {
@@ -418,7 +403,7 @@ public interface Console {
                 OUTPUT_HEIGHT
 
         );
-        output.appendText(setOutput.apply(
+        output.appendText(setOutputContent.apply(
                 consoleState
                         .getLocation
                         .get(),
