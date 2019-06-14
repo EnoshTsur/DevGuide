@@ -1,6 +1,6 @@
 package com.devguide.jfx.view.components.search;
 
-import com.devguide.jfx.view.components.console.Console;
+import com.devguide.jfx.browsers.FrontendPage;
 import com.devguide.jfx.view.containers.technologies.TechnologiesUtils;
 import com.devguide.jfx.view.shared.AutoCompleteComboBoxListener;
 import io.vavr.Tuple;
@@ -62,10 +62,23 @@ public class SearchBar {
                 .apply(
                         SEARCH_ICON_PATH,
                         EMPTY_STRING,
-                        setButtonStyles,
+                        setSearchButtonStyles,
                         event -> {
                             // TODO://
                         }
+                );
+
+        Button frontEndMasters = createButtonWithBackground
+                .apply(
+                        FRONTEND_ICON_PATH,
+                        EMPTY_STRING,
+                        setFrontendButtonStyles,
+                        event ->FrontendPage.login.apply(
+                                "https://frontendmasters.com/login/",
+                                "Eran.Meshulam",
+                                "EM1234"
+                        )
+
                 );
 
         // Pane
@@ -75,10 +88,11 @@ public class SearchBar {
                         GRID_PANE
                 );
 
-        pane.getChildren().addAll(searchText, input, submit);
+        pane.getChildren().addAll(searchText, input, submit, frontEndMasters);
         GridPane.setConstraints(input, 0, 0);
         GridPane.setConstraints(submit, 1, 0);
-        pane.setHgap(10);
+        GridPane.setConstraints(frontEndMasters, 2, 0);
+        pane.setHgap(25);
         return pane;
     }
 }

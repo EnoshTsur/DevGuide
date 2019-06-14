@@ -1,30 +1,38 @@
 package com.devguide.jfx.view.components.console;
 
 import com.devguide.jfx.execute.ShellType;
-import com.devguide.jfx.utils.BasicUtils;
-import com.devguide.jfx.utils.OperationSystem;
-import com.devguide.jfx.utils.StringUtils;
+import com.devguide.jfx.utils.*;
 import io.vavr.Function1;
 import io.vavr.Function2;
 import io.vavr.control.Try;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.utils.FileSystem.*;
+import static com.devguide.jfx.utils.ListUtils.*;
 import static com.devguide.jfx.utils.OperationSystem.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.components.console.Console.*;
 import static com.devguide.jfx.view.components.console.ConsoleUtils.*;
+import static javafx.collections.FXCollections.*;
 
 public class ConsoleState {
 
@@ -34,37 +42,56 @@ public class ConsoleState {
 
     private File location;
 
-    private List<String> history = new ArrayList<>(basicCommands.asJava());
+    private ComboBox<String> input;
+
+    private ObservableList<String> history;
+
+    List<String> historyList;
+
+    private TextArea output;
+
+    private List<String> commands;
 
 
     /***
      * Console State
      * @param operationSystem
      */
-    public ConsoleState(OperationSystem operationSystem, ShellType shellType) {
+    public ConsoleState(
+            OperationSystem operationSystem,
+            ShellType shellType,
+            List<String> commands
+    ) {
         this.operationSystem = operationSystem;
         this.shellType = shellType;
+        this.history = observableArrayList(commands);
+        this.historyList = new ArrayList<>(history);
         this.location = new File(USER_HOME);
-        setDefaultCommands.run();
+
     }
 
     /**
      * Set Default Commands by Operation System
      */
-    private Runnable setDefaultCommands = () -> {
+    private Supplier<List<String>> setDefaultCommands = () -> {
         if (doesItEqualTo.apply(operationSystem, LINUX)) {
             history.addAll(linuxCommands.asJava());
-            return;
+            return history;
         }
         history.addAll(windowsCommands.asJava());
+        return history;
     };
 
 
     /***
      * Get History
      */
-    public Supplier<List<String>> getHistory = () ->
-            new ArrayList<>(history);
+    public Supplier<ListProperty<String>> getHistory = () -> {
+        ListProperty property = new SimpleListProperty();
+        property.set(observableArrayList(history));
+        return property;
+    };
+
 
     /***
      * Get Shell Type
@@ -101,7 +128,7 @@ public class ConsoleState {
     /***
      * Checks if command exist in history
      */
-    public Function1<String, Boolean> existInHistory = command ->
+    public Predicate<String> existInHistory = command ->
             history.contains(trimAndLower.apply(command));
 
     /***
@@ -135,18 +162,14 @@ public class ConsoleState {
     /***
      * Clear History exclude Git Commands
      */
-    public Runnable clearHistorySoft = () -> new ArrayList<>(
-            history = basicCommands.push(
-                    "cd", "../"
-            ).asJava());
-
-//    public Runnable navigateBackwards = () ->
+    public Runnable clearHistorySoft = () ->
+            history = FXCollections.observableArrayList(setDefaultCommands.get());
 
 
     /***
      * Clear History include Git Commands
      */
-    public Runnable clearHistoryHard = () -> history = new ArrayList<>();
+    public Runnable clearHistoryHard = () -> history = FXCollections.observableArrayList();
 
     /***
      * Navigate to New Path if exists
@@ -156,12 +179,12 @@ public class ConsoleState {
 
         // Is it Backwards
         if (isItBackwards.test(path)) {
-                Try<File> parent = Try.of(() -> new File(location.getParent()));
-                if (parent.isEmpty()) return location.getPath();
-                location = (isNotNull.apply(parent) && parent.get().exists())
-                        ? parent.get() : location;
-                input.setPromptText(location.getPath());
-                return location.getPath();
+            Try<File> parent = Try.of(() -> new File(location.getParent()));
+            if (parent.isEmpty()) return location.getPath();
+            location = (isNotNull.apply(parent) && parent.get().exists())
+                    ? parent.get() : location;
+            input.setPromptText(location.getPath());
+            return location.getPath();
         }
 
         // Contains Forward Slash
@@ -191,6 +214,40 @@ public class ConsoleState {
     };
 
 
+    /***
+     * Init State
+     */
+    public BiConsumer<ComboBox<String>, TextArea> initState = (input, output) -> {
+        this.input = input;
+        this.output = output;
+        this.commands = setDefaultCommands.get();
+        history.addListener((ListChangeListener<Object>) change -> {
+            input.getItems().clear();
+            history.forEach(item -> input.getItems().add(item));
+        });
+    };
+
+    /***
+     * Update State
+     */
+    public Consumer<String> updateState = command -> {
+        if (isNotOneOfUtil.apply(command, historyList)) {
+            historyList.add(command);
+            history = FXCollections.observableArrayList(historyList);
+            history.sort(String::compareTo);
+        }
+        historyList = new ArrayList<>(history);
+    };
+
+
+    private Function2<Integer, Integer, Boolean> moveCaret = (textLength, caretPos) -> {
+        if (caretPos == -1) {
+            input.getEditor().positionCaret(textLength);
+        } else {
+            input.getEditor().positionCaret(caretPos);
+        }
+        return false;
+    };
 
     @Override
     public String toString() {

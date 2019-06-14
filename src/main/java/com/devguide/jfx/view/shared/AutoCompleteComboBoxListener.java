@@ -13,7 +13,6 @@ import javafx.scene.input.KeyEvent;
 
 import java.util.stream.Collectors;
 
-import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.utils.KeyBoardUtils.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.ComboBoxAPI.*;

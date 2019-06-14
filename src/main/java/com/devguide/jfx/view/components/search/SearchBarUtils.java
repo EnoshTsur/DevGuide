@@ -1,5 +1,6 @@
 package com.devguide.jfx.view.components.search;
 
+import com.devguide.jfx.utils.BasicUtils;
 import io.vavr.Function1;
 import io.vavr.Function2;
 import io.vavr.collection.List;
@@ -26,6 +27,7 @@ public interface SearchBarUtils {
 
 
     String SEARCH_ICON_PATH = "assets/search.png";
+    String FRONTEND_ICON_PATH = "assets/frontendmasterslogo.png";
 
     String HEADER_TEXT = "Search";
     String INPUT_MESSAGE = "Buzz Words\nSuch as React / VM...";
@@ -103,8 +105,18 @@ public interface SearchBarUtils {
      * Search Bar Utils
      * Button styles
      */
-    Consumer<Button> setButtonStyles = button -> {
+    Consumer<Button> setSearchButtonStyles = button -> {
         button.setMaxSize(30, 30);
+        setCursorPointer.accept(button);
+    };
+
+
+    /****
+     * Search Bar Utils
+     * Button styles
+     */
+    Consumer<Button> setFrontendButtonStyles = button -> {
+        button.setMinSize(120, 50);
         setCursorPointer.accept(button);
     };
 

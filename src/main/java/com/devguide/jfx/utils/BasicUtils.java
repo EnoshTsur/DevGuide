@@ -59,4 +59,6 @@ public interface BasicUtils {
      */
     Function2<Object,Object, Boolean> doesItEqualTo = Object::equals;
 
+
+
 }

@@ -1,5 +1,7 @@
 package com.devguide.jfx.view.components.console;
 
+import com.devguide.jfx.browsers.BotFn;
+import com.devguide.jfx.browsers.FrontendPage;
 import com.devguide.jfx.execute.ShellType;
 import com.devguide.jfx.utils.*;
 import com.devguide.jfx.view.UI.PaneTypes;
@@ -11,20 +13,17 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import jdk.nashorn.tools.Shell;
-import org.openqa.selenium.WebDriver;
-
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.*;
 
-import static com.devguide.jfx.browsers.WebActions.*;
 import static com.devguide.jfx.execute.Execute.*;
+import static com.devguide.jfx.execute.ShellType.*;
 import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.utils.FileSystem.*;
 import static com.devguide.jfx.utils.FileSystem.getLastFolder;
 import static com.devguide.jfx.utils.KeyBoardUtils.*;
+import static com.devguide.jfx.utils.OperationSystem.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.ComboBoxAPI.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
@@ -38,8 +37,7 @@ import static com.devguide.jfx.view.shared.SharedUtils.*;
 public interface Console {
 
     // Console State
-    ConsoleState consoleState =
-            new ConsoleState(OperationSystem.WINDOWS10, ShellType.CMD);
+    ConsoleState consoleState = new ConsoleState(WINDOWS10, CMD, basicCommands.asJava());
 
     /***
      * Set Output content
@@ -168,7 +166,10 @@ public interface Console {
                 File dir = new File(location);
 
                 // Append output
-                setOutPutAfterExecution.accept(output, command);
+                output.appendText(setOutputContent.apply(dir, EMPTY_STRING));
+
+                // Run
+                run.apply(command, dir, consoleState.getShellType.get());
             };
 
 
@@ -190,7 +191,12 @@ public interface Console {
                         input
                 );
                 // Run
-                setOutPutAfterExecution.accept(output, command);
+                run.apply(command, drive, consoleState.getShellType.get());
+                // Output
+                output.appendText(setOutputContent.apply(
+                        drive,
+                        EMPTY_STRING
+                ));
                 return;
             };
 
@@ -227,10 +233,12 @@ public interface Console {
      * Do Login -> navigate to site and send keys in order to login
      */
     Consumer3<ComboBox<String>, TextArea, String> doLogin =
-            (input, output, command) -> {
-                WebDriver driver = setDriver.get();
-                navigateTo.apply("https://frontendmasters.com/login/", driver);
-            };
+            (input, output, command) -> FrontendPage.login.apply(
+                        "https://frontendmasters.com/login/",
+                        "Eran.Meshulam",
+                        "EM1234"
+                );
+
 
     /**
      * Returns True if commands starts with C: / D: ...
@@ -271,6 +279,8 @@ public interface Console {
                 String command = input.getEditor().getText();
                 File directory = consoleState.getLocation.get();
                 ShellType shellType = consoleState.getShellType.get();
+
+                consoleState.updateState.accept(command);
 
                 // Appending text
                 output.appendText(setOutputContent.apply(directory, command));
@@ -356,7 +366,16 @@ public interface Console {
     /***
      * On Space
      */
-    Consumer<ComboBox<String>> onSpace = input -> System.out.println("Space");
+    Consumer<ComboBox<String>> onUp = input -> {
+        input.show();
+//        try {
+//            Thread.sleep(TimeUnit.SECONDS.toMillis(1));
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } finally {
+//            input.show();
+//        }
+    };
 
     /***
      * Keu Released Event handler
@@ -368,8 +387,10 @@ public interface Console {
                     onEnter.accept(input, output);
                     input.getEditor().clear();
                     return;
-                } else if (isThisKeyIs.apply(keyEvent, KeyCode.SPACE)) {
-                    onSpace.accept(input);
+                } else if (isThisKeyIs.apply(keyEvent, KeyCode.UP)) {
+                    onUp.accept(input);
+                } else {
+
                 }
             };
 
@@ -434,6 +455,8 @@ public interface Console {
                         null
                 );
         setBackgroundColor.accept(input.getEditor(), COMBO_DARK_PURPLE);
+        // Console State
+        consoleState.initState.accept(input, output);
         input.setPromptText(initialMessage);
         input.setOnKeyPressed(event -> input.hide());
         input.setOnKeyReleased(
