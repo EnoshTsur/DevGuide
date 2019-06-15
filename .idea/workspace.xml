@@ -1,43 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7ae3e1e-dbaa-47b1-ad79-0adc782bb765" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/GithubPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/GithubUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileContent/fileContent.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/MyApp$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/MyApp$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/MyApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/MyApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/browsers/BotFn.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/browsers/BotFn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/browsers/FrontendPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/browsers/FrontendPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/utils/FileSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/utils/FileSystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/utils/OperationSystem$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/utils/OperationSystem$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/utils/OperationSystem$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/utils/OperationSystem$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/utils/OperationSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/utils/OperationSystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/utils/StringUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/utils/StringUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/view/components/console/ConsoleState.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/view/components/console/ConsoleState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/view/components/console/ConsoleUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/view/components/console/ConsoleUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/view/containers/technologies/TechnologiesUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/view/containers/technologies/TechnologiesUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/view/shared/ListViewCellImageFix$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/devguide/jfx/view/shared/ListViewCellImageFix.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/BotFn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/BotFn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/FrontendPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/FrontendPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/FileSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/FileSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/OperationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/OperationSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/StringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/containers/technologies/TechnologiesUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/containers/technologies/TechnologiesUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/shared/ListViewCellImageFix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/containers/technologies/TechnologyInitCell.java" afterDir="false" />
-    </list>
+    <list default="true" id="e7ae3e1e-dbaa-47b1-ad79-0adc782bb765" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -78,10 +42,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-525">
+            <state relative-caret-position="-7307">
               <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -183,7 +147,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/containers/technologies/TechnologyInitCell.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="290">
@@ -681,7 +645,7 @@
       <workItem from="1559848851425" duration="8496000" />
       <workItem from="1559905785691" duration="72311000" />
       <workItem from="1560151788630" duration="19562000" />
-      <workItem from="1560462553406" duration="44734000" />
+      <workItem from="1560462553406" duration="45056000" />
     </task>
     <servers />
   </component>
@@ -709,7 +673,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="427215000" />
+    <option name="totallyTimeSpent" value="427537000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -731,7 +695,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.3286119" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32073435" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3201133" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50201344" side_tool="true" weight="0.5495751" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49932885" weight="0.325054" />
@@ -1223,16 +1187,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-525">
-          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -1274,6 +1228,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="128" column="42" selection-start-line="128" selection-start-column="42" selection-end-line="128" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7307">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
