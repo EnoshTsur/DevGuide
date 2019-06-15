@@ -45,7 +45,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7307">
+            <state relative-caret-position="-8518">
               <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -258,7 +258,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="240" />
     <option name="y" value="128" />
     <option name="width" value="1440" />
@@ -645,7 +645,7 @@
       <workItem from="1559848851425" duration="8496000" />
       <workItem from="1559905785691" duration="72311000" />
       <workItem from="1560151788630" duration="19562000" />
-      <workItem from="1560462553406" duration="45056000" />
+      <workItem from="1560462553406" duration="45190000" />
     </task>
     <servers />
   </component>
@@ -673,10 +673,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="427537000" />
+    <option name="totallyTimeSpent" value="427671000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18926175" />
@@ -1236,7 +1236,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7307">
+        <state relative-caret-position="-8518">
           <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
