@@ -4,6 +4,7 @@ import io.vavr.Function1;
 import io.vavr.collection.List;
 
 import java.io.File;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -24,7 +25,16 @@ public interface FileSystem {
     String SYSTEM_NAME = System.getProperty(OS_NAME);
     String USER_HOME = System.getProperty(USER_DIR);
 
-    Supplier<String> getOperationSystem = () -> System.getProperty(OS_NAME);
+    Supplier<String> operationSystem = () -> System.getProperty(OS_NAME);
+
+    /***
+     * Checking if my operation system is equals to given enum
+     * Both names getting trim & Upper case
+     * Windows 10 || Linux
+     */
+    Predicate<OperationSystem> isMyOperationSystemIs = kind ->
+            trimAndUpper.apply(operationSystem.get())
+                    .equals(trimAndUpper.apply(kind.getName()));
 
     /***
      * Get Absolute Path by Relative

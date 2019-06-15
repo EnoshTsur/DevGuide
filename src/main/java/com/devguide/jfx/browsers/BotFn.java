@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
-import static com.devguide.jfx.browsers.FrontendUtils.*;
 
 /**
  * Bot in order to act on pages
@@ -76,7 +75,6 @@ public interface BotFn {
         return driver;
     };
 
-
     /***
      * Sending keys
      */
@@ -97,6 +95,8 @@ public interface BotFn {
 
     /***
      * Set up - Driver , Wait, Actions
+     * Creating new instances of Web Driver, Wait & Actions
+     * Navigate to given URL
      */
     Function1<String, Tuple3<WebDriver, WebDriverWait, Actions>> setUp = url -> {
         WebDriver driver = setDriver.get();
@@ -110,13 +110,14 @@ public interface BotFn {
 
     /***
      * Set Input text
+     * Send Keys to an Input by locator
      */
     Function3<Tuple3<WebDriver, WebDriverWait, Actions>, By, String,
             Tuple3<WebDriver, WebDriverWait, Actions>> setInputText
             = (tools, locator, text) -> {
         WebDriver driver = tools._1;
         WebDriverWait wait = tools._2;
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(USER_NAME)));
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(locator)));
         sendKeys.apply(tools, locator, text);
         return tools;
     };

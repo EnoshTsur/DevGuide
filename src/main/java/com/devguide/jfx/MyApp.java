@@ -1,11 +1,7 @@
 package com.devguide.jfx;
 
-import com.devguide.jfx.execute.Execute;
-import com.devguide.jfx.execute.ShellType;
 import com.devguide.jfx.utils.FileSystem;
-import com.devguide.jfx.utils.StringUtils;
 import com.devguide.jfx.view.components.main.MainView;
-import io.vavr.control.Try;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.scene.control.Button;
@@ -14,7 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
@@ -45,7 +40,7 @@ public class MyApp extends Application {
 
         Stage alert = createAlertWithButtons.apply(
                 System.getProperty("user.home"),
-                FileSystem.getOperationSystem.get(),
+                FileSystem.operationSystem.get(),
 
                 new HashMap<Button, Consumer<Event>>() {{
                     put(new Button("Close"), handleCloseRequest);
@@ -60,7 +55,7 @@ public class MyApp extends Application {
         Stage window = mainView.getView();
         window.show();
         System.out.println(javafx.scene.text.Font.getFamilies());
-        System.out.println(FileSystem.getOperationSystem.get());
+        System.out.println(FileSystem.operationSystem.get());
         // Execute.run.apply("git s", new File("/home/ibo1.com/enosh.tsur"), ShellType.BASH);
     }
 

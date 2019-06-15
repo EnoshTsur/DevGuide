@@ -6,6 +6,7 @@ import io.vavr.Function2;
 import java.text.MessageFormat;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /***
  * String Utils Functions
@@ -45,14 +46,19 @@ public interface StringUtils {
     Function1<String, Boolean> isNotEmpty = not.apply(isEmpty);
 
     /***
+     * Returns String trim
+     */
+    Function1<String, String> trim = String::trim;
+
+    /***
      * Trim & Lower
      */
-    Function1<String, String> trimAndLower = str -> str.trim().toLowerCase();
+    Function1<String, String> trimAndLower = str -> trim.apply(str).toLowerCase();
 
     /***
      * Trim & Upper
      */
-    Function1<String, String> trimAndUpper = str -> str.trim().toUpperCase();
+    Function1<String, String> trimAndUpper = str -> trim.apply(str).toUpperCase();
 
     /***
      * Return true if second string contains the first one

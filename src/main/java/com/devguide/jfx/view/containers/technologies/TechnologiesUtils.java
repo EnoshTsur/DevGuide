@@ -1,7 +1,6 @@
 package com.devguide.jfx.view.containers.technologies;
 
 import com.devguide.jfx.view.UI.PaneTypes;
-import com.devguide.jfx.view.shared.ListViewCellImageFix;
 import io.vavr.Function1;
 import io.vavr.Function2;
 import io.vavr.Tuple;
@@ -136,8 +135,8 @@ public interface TechnologiesUtils {
                 );
 
                 // List
-                ListView<String> techList = ListViewCellImageFix
-                        .seListViewtIcons
+                ListView<String> techList = TechnologyInitCell
+                        .seListViewIcons
                         .apply(
                                 FXCollections.observableArrayList(data)
                         );

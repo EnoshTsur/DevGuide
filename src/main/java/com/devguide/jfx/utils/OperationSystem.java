@@ -4,17 +4,17 @@ import java.util.function.Supplier;
 
 public enum OperationSystem {
 
-    WINDOWS10{
+    WINDOWS10 {
         @Override
-        String getName() {
+        public String getName() {
             return "Windows 10";
         }
-    }, LINUX{
+    }, LINUX {
         @Override
-        String getName() {
+        public String getName() {
             return "Linux";
         }
     };
 
-     abstract String getName();
+    public abstract String getName();
 }

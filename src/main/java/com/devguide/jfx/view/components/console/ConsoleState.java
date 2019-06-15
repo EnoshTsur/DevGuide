@@ -228,6 +228,11 @@ public class ConsoleState {
     };
 
     /***
+     * Get Console output
+     */
+    public Supplier<TextArea> consoleOutPut = () -> output;
+
+    /***
      * Update State
      */
     public Consumer<String> updateState = command -> {
@@ -240,14 +245,6 @@ public class ConsoleState {
     };
 
 
-    private Function2<Integer, Integer, Boolean> moveCaret = (textLength, caretPos) -> {
-        if (caretPos == -1) {
-            input.getEditor().positionCaret(textLength);
-        } else {
-            input.getEditor().positionCaret(caretPos);
-        }
-        return false;
-    };
 
     @Override
     public String toString() {

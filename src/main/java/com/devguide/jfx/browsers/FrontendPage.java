@@ -34,7 +34,6 @@ public interface FrontendPage {
                         ), REMEMBER_ME
                 ), LOGIN_BUTTON
         );
-
         return () -> System.out.println("run");
     };
 }
