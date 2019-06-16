@@ -1,26 +1,18 @@
 package com.devguide.jfx.view.components.console;
 
-import com.devguide.jfx.browsers.pages.frontend.FrontendPage;
 import com.devguide.jfx.execute.ShellType;
 import com.devguide.jfx.utils.*;
 import com.devguide.jfx.view.UI.PaneTypes;
-import com.google.common.primitives.Booleans;
 import io.vavr.*;
-import io.vavr.control.Try;
 import javafx.concurrent.Task;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import static com.devguide.jfx.execute.Execute.*;
 import static com.devguide.jfx.execute.ShellType.*;
 import static com.devguide.jfx.utils.BasicUtils.*;
@@ -32,7 +24,6 @@ import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.ComboBoxAPI.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.UI.TextAreaAPI.*;
-import static com.devguide.jfx.view.components.console.Commands.*;
 import static com.devguide.jfx.view.components.console.ConsoleActions.*;
 import static com.devguide.jfx.view.components.console.ConsoleUtils.*;
 import static com.devguide.jfx.view.components.search.SearchBarUtils.*;
@@ -145,136 +136,6 @@ public interface Console {
                 if (pass) handler.accept(input, output, command);
                 return pass;
             };
-
-    /***
-     * Move Backwards
-     */
-    Consumer3<ComboBox<String>, TextArea, String> moveBackwards =
-            (input, output, command) -> {
-                consoleState.navigate.apply(BACKWARDS, input);
-                setOutPutAfterExecution.accept(output, command);
-            };
-
-    /***
-     * Move Backwards
-     */
-    Consumer3<ComboBox<String>, TextArea, String> changeDirectory =
-            (input, output, command) -> {
-                String[] cdAndPath = command.split(SPACE);
-                String path = isNotNull.apply(cdAndPath[1])
-                        ? cdAndPath[1] : EMPTY_STRING;
-
-                // Get a new location
-                String location = consoleState
-                        .navigate
-                        .apply(path, input);
-
-                // Assign location to variable
-                File dir = new File(location);
-
-                // Append output
-                output.appendText(setOutputContent.apply(dir, EMPTY_STRING));
-
-                // Run
-                run.apply(command, dir, consoleState.getShellType.get());
-            };
-
-
-    /***
-     * Change Drive
-     */
-    Consumer3<ComboBox<String>, TextArea, String> changeDrive =
-            (input, output, command) -> {
-                File drive = new File(trimAndUpper.apply(command));
-
-                // Check existence
-                if (!drive.exists()) {
-                    printOutput.accept(command, output);
-                    return;
-                }
-                // Navigate
-                consoleState.navigate.apply(
-                        drive.getPath(),
-                        input
-                );
-                // Run
-                run.apply(command, drive, consoleState.getShellType.get());
-                // Output
-                output.appendText(setOutputContent.apply(
-                        drive,
-                        EMPTY_STRING
-                ));
-                return;
-            };
-
-    /***
-     * Change Drive
-     */
-    Consumer3<ComboBox<String>, TextArea, String> clearScreen =
-            (input, output, command) -> output.setText(
-                    setOutputContent.apply(consoleState.getLocation.get(), EMPTY_STRING)
-            );
-
-    /***
-     * Change console colors
-     */
-    Consumer3<ComboBox<String>, TextArea, String> changeColor =
-            (input, output, command) -> {
-                String[] commandAndColor = command.split(SPACE);
-
-                // Getting text color
-                Try<String> textColor = Try.of(() -> commandAndColor[1]);
-
-                // Painting text color
-                if (!textColor.isEmpty()) setTextColor.accept(output, textColor.get());
-
-            };
-
-    /***
-     * Closing the app
-     */
-    Consumer3<ComboBox<String>, TextArea, String> closeProgram =
-            (input, output, command) -> output.getScene().getWindow().hide();
-
-    /***
-     * Do Login -> navigate to site and send keys in order to login
-     */
-    Consumer3<ComboBox<String>, TextArea, String> doLogin =
-            (input, output, command) -> FrontendPage.login.accept(
-                    "https://frontendmasters.com/login/",
-                    "Eran.Meshulam",
-                    "EM1234"
-            );
-
-
-    /**
-     * Returns True if commands starts with C: / D: ...
-     */
-    Predicate<String> isOneOfDrivers = command ->
-            allDrivers.contains(trimAndLower.apply(command));
-
-    /***
-     * Returns True if command equals to cls / clear
-     */
-    Predicate<String> isClearOrCls = command ->
-            doesItEqualTo.apply(trimAndLower.apply(command), CLEAR) ||
-                    doesItEqualTo.apply(trimAndLower.apply(command), CLS);
-
-    /***
-     * Returns True if command starts with color
-     */
-    Predicate<String> isColorChange = command ->
-            trimAndLower.apply(command).startsWith("color");
-
-    /***
-     * Returns True if command is equals to exit
-     */
-    Predicate<String> isExit = command -> doesItEqualTo.apply(trimAndLower.apply(command), EXIT);
-
-    /***
-     * Returns True if command is equals to login
-     */
-    Predicate<String> isLogin = command -> doesItEqualTo.apply(trimAndLower.apply(command), LOGIN);
 
 
     /***

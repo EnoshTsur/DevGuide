@@ -26,6 +26,7 @@ public interface TechnologiesUtils {
 
     String GIT = "git";
     String VS_CODE = "vs code";
+    String INTELLIJ = "intellij";
 
 
     /***

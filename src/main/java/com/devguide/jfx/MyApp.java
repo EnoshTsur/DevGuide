@@ -37,26 +37,8 @@ public class MyApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        Stage alert = createAlertWithButtons.apply(
-                System.getProperty("user.home"),
-                FileSystem.operationSystem.get(),
-
-                new HashMap<Button, Consumer<Event>>() {{
-                    put(new Button("Close"), handleCloseRequest);
-                    put(new Button("Hide"), handleMinimizeRequest);
-                }}
-        );
-
-        alert.showAndWait();
-
-
-
         Stage window = mainView.getView();
         window.show();
-        System.out.println(javafx.scene.text.Font.getFamilies());
-        System.out.println(FileSystem.operationSystem.get());
-        // Execute.run.apply("git s", new File("/home/ibo1.com/enosh.tsur"), ShellType.BASH);
     }
 
     @Override

@@ -108,7 +108,7 @@ public interface TechnologyInitCell {
     };
 
     /**
-     * Set Action listener
+     * Set Action listener to cell by its name
      */
     Function2<ListCell,String, ListCell> setActionListener = (cell, name) -> {
         final String fixedName = trimAndLower.apply(name);
@@ -125,6 +125,7 @@ public interface TechnologyInitCell {
                     downloadVSCode.accept(output);
                 });
                 break;
+
 
         }
         return cell;

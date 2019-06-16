@@ -1,13 +1,9 @@
 package com.devguide.jfx.view.UI;
 
-import com.devguide.jfx.utils.BasicUtils;
 import io.vavr.*;
-import io.vavr.collection.List;
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-
-import java.util.HashMap;
 import java.util.Map;
 
 import static com.devguide.jfx.utils.BasicUtils.*;

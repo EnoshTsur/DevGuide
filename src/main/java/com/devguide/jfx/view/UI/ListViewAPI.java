@@ -16,9 +16,9 @@ public interface ListViewAPI {
     /**
      * Create List View with rule
      */
-    Function2<Function1<ListView<String>, ListView<String>>, ObservableList<String>, ListView<String>>
-        createListViewWithRule = (rule, data) -> {
-
+    Function2<Function1<ListView<String>, ListView<String>>,
+            ObservableList<String>,
+            ListView<String>> createListViewWithRule = (rule, data) -> {
         if (isNull.apply(rule) && data.isEmpty()) return new ListView<>();
         if (isNull.apply(rule) && !data.isEmpty()) return new ListView<>(data);
         if (data.isEmpty()) return rule.apply(new ListView<>());

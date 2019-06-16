@@ -1,7 +1,6 @@
 package com.devguide.jfx.view.shared;
 
 
-import com.devguide.jfx.utils.StringUtils;
 import io.vavr.Function1;
 import io.vavr.Function2;
 import io.vavr.collection.List;
@@ -27,15 +26,11 @@ import static javafx.collections.FXCollections.*;
 public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
 
     private ComboBox input;
-    private StringBuilder sb;
     private ObservableList<String> data;
     private boolean moveCaretToPos = false;
     private int caretPos;
 
-    private List<KeyCode> keysToReturn = List.of(
-            KeyCode.RIGHT, KeyCode.LEFT,
-            KeyCode.HOME, KeyCode.END, KeyCode.TAB
-    );
+    private List<KeyCode> keysToReturn = List.of(KeyCode.RIGHT, KeyCode.LEFT, KeyCode.HOME, KeyCode.END, KeyCode.TAB);
 
     /***
      * Returns Observable List of Strings
@@ -44,19 +39,17 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
     private Function2<ComboBox<String>,
             ObservableList<String>,
             ObservableList<String>> getMatchItems = (input, data) ->
-            observableArrayList(data.stream().filter(
-                    item -> doesItContains.apply(
-                                    getComboEditorText.apply(input),
-                                    item
-                            )
+            observableArrayList(data
+                    .stream()
+                    .filter(item -> doesItContains.apply(
+                            getComboEditorText.apply(input),
+                            item)
                     ).collect(Collectors.toList()));
 
 
     public AutoCompleteComboBoxListener(final ComboBox comboBox) {
         this.input = comboBox;
-        sb = new StringBuilder();
-        data = comboBox.getItems();
-
+        this.data = comboBox.getItems();
         this.input.setEditable(true);
         this.input.setOnKeyPressed(t -> comboBox.hide());
         this.input.setOnKeyReleased(AutoCompleteComboBoxListener.this);
@@ -65,50 +58,45 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent event) {
 
-        if (event.getCode() == KeyCode.UP) {
+        // UP
+        if (isThisKeyIs.apply(event, KeyCode.UP)) {
             caretPos = -1;
-            moveCaretToPos = moveCaret.apply(
-                    input
-                            .getEditor()
-                            .getText()
-                            .length()
-            );
+            moveCaretToPos = moveCaret.apply(input.getEditor().getText().length());
             return;
 
-
-        } else if (event.getCode() == KeyCode.DOWN) {
+        // DOWN
+        } else if (isThisKeyIs.apply(event, KeyCode.DOWN)) {
             if (!input.isShowing()) {
                 input.show();
             }
             caretPos = -1;
-            moveCaretToPos = moveCaret.apply(
-                    input
-                            .getEditor()
-                            .getText()
-                            .length()
-            );
+            moveCaretToPos = moveCaret.apply(input.getEditor().getText().length());
             return;
 
-        } else if (event.getCode() == KeyCode.ENTER) {
+        // ENTER
+        } else if (isThisKeyIs.apply(event, KeyCode.ENTER)) {
             input.getEditor().setText(getComboEditorText.apply(input));
             input.getSelectionModel().select(getComboEditorText.apply(input));
             return;
 
-        } else if (event.getCode() == KeyCode.BACK_SPACE) {
+        // SPACE
+        } else if (isThisKeyIs.apply(event, KeyCode.SPACE)) {
             moveCaretToPos = true;
             caretPos = input.getEditor().getCaretPosition();
 
-        } else if (event.getCode() == KeyCode.DELETE) {
+        // DELETE
+        } else if (isThisKeyIs.apply(event, KeyCode.DELETE)) {
             moveCaretToPos = true;
             caretPos = input.getEditor().getCaretPosition();
         }
 
+        // OTHERS...
         if (isThisKeyIn.apply(event, keysToReturn)) {
             return;
         }
 
         // Match Items
-        ObservableList<String> matchItems = getMatchItems.apply(input, data);
+        ObservableList matchItems = getMatchItems.apply(input, data);
 
         String t = input.getEditor().getText();
 
@@ -123,6 +111,9 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
         }
     }
 
+    /***
+     * Move caret
+     */
     private Function1<Integer, Boolean> moveCaret = textLength -> {
         if (caretPos == -1) {
             input.getEditor().positionCaret(textLength);
