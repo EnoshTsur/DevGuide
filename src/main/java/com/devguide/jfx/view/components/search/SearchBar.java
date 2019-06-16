@@ -1,6 +1,6 @@
 package com.devguide.jfx.view.components.search;
 
-import com.devguide.jfx.browsers.FrontendPage;
+import com.devguide.jfx.browsers.pages.frontend.FrontendPage;
 import com.devguide.jfx.view.containers.technologies.TechnologiesUtils;
 import com.devguide.jfx.view.shared.AutoCompleteComboBoxListener;
 import io.vavr.Tuple;
@@ -73,7 +73,7 @@ public class SearchBar {
                         FRONTEND_ICON_PATH,
                         EMPTY_STRING,
                         setFrontendButtonStyles,
-                        event ->FrontendPage.login.apply(
+                        event ->FrontendPage.login.accept(
                                 "https://frontendmasters.com/login/",
                                 "Eran.Meshulam",
                                 "EM1234"

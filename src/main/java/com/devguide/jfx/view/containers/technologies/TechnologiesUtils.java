@@ -24,6 +24,9 @@ import static com.devguide.jfx.view.shared.SharedUtils.setBackgroundColor;
 
 public interface TechnologiesUtils {
 
+    String GIT = "git";
+    String VS_CODE = "vs code";
+
 
     /***
      * Front list

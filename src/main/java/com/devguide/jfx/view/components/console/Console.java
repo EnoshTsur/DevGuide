@@ -1,10 +1,10 @@
 package com.devguide.jfx.view.components.console;
 
-import com.devguide.jfx.browsers.BotFn;
-import com.devguide.jfx.browsers.FrontendPage;
+import com.devguide.jfx.browsers.pages.frontend.FrontendPage;
 import com.devguide.jfx.execute.ShellType;
 import com.devguide.jfx.utils.*;
 import com.devguide.jfx.view.UI.PaneTypes;
+import com.google.common.primitives.Booleans;
 import io.vavr.*;
 import io.vavr.control.Try;
 import javafx.concurrent.Task;
@@ -13,9 +13,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.devguide.jfx.execute.Execute.*;
 import static com.devguide.jfx.execute.ShellType.*;
@@ -29,6 +33,7 @@ import static com.devguide.jfx.view.UI.ComboBoxAPI.*;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.UI.TextAreaAPI.*;
 import static com.devguide.jfx.view.components.console.Commands.*;
+import static com.devguide.jfx.view.components.console.ConsoleActions.*;
 import static com.devguide.jfx.view.components.console.ConsoleUtils.*;
 import static com.devguide.jfx.view.components.search.SearchBarUtils.*;
 import static com.devguide.jfx.view.shared.Colors.COMBO_DARK_PURPLE;
@@ -37,7 +42,9 @@ import static com.devguide.jfx.view.shared.SharedUtils.*;
 public interface Console {
 
     // Console State
-    ConsoleState consoleState = new ConsoleState(WINDOWS10, CMD, basicCommands.asJava());
+    ConsoleState consoleState = isMyOperationSystem.test(WINDOWS10) ?
+            new ConsoleState(WINDOWS10, CMD, gitCommands.asJava()) :
+            new ConsoleState(LINUX, BASH, gitCommands.asJava());
 
     /***
      * Set Output content
@@ -49,7 +56,7 @@ public interface Console {
      * Set output after execution
      */
     BiConsumer<TextArea, String> setOutPutAfterExecution =
-            (output, command ) -> {
+            (output, command) -> {
                 File directory = consoleState.getLocation.get();
                 ShellType shellType = consoleState.getShellType.get();
                 Task<List<String>> task = new Task<List<String>>() {
@@ -233,11 +240,11 @@ public interface Console {
      * Do Login -> navigate to site and send keys in order to login
      */
     Consumer3<ComboBox<String>, TextArea, String> doLogin =
-            (input, output, command) -> FrontendPage.login.apply(
-                        "https://frontendmasters.com/login/",
-                        "Eran.Meshulam",
-                        "EM1234"
-                );
+            (input, output, command) -> FrontendPage.login.accept(
+                    "https://frontendmasters.com/login/",
+                    "Eran.Meshulam",
+                    "EM1234"
+            );
 
 
     /**
@@ -288,76 +295,7 @@ public interface Console {
                 // Checking command exits
                 if (doesItNullOrEmpty.test(command)) return;
 
-                // Navigating Backwards
-                boolean backwards = ifTrueThan.apply(
-                        isItBackwards,
-                        moveBackwards,
-                        command,
-                        input,
-                        output
-                );
-                if (backwards) return;
-
-                // Starts with CD
-                boolean startsWithCD = ifTrueThan.apply(
-                        isStartsWithCD,
-                        changeDirectory,
-                        command,
-                        input,
-                        output
-                );
-                if (startsWithCD) return;
-
-                // Check if Command is Drive change
-                boolean oneOfDrivers = ifTrueThan.apply(
-                        isOneOfDrivers,
-                        changeDrive,
-                        command,
-                        input,
-                        output
-                );
-                if (oneOfDrivers) return;
-
-                // Clear Screen
-                boolean clearOutput = ifTrueThan.apply(
-                        isClearOrCls,
-                        clearScreen,
-                        command,
-                        input,
-                        output
-                );
-                if (clearOutput) return;
-
-
-                // Color Change
-                boolean colorChange = ifTrueThan.apply(
-                        isColorChange,
-                        changeColor,
-                        command,
-                        input,
-                        output
-                );
-                if (colorChange) return;
-
-                // Exit
-                boolean exit = ifTrueThan.apply(
-                        isExit,
-                        closeProgram,
-                        command,
-                        input,
-                        output
-                );
-                if (exit) return;
-
-                // Login
-                boolean login = ifTrueThan.apply(
-                        isLogin,
-                        doLogin,
-                        command,
-                        input,
-                        output
-                );
-                if (login) return;
+                if (isOneOfActions.apply(command, input, output)) return;
 
                 setOutPutAfterExecution.accept(output, command);
             };
@@ -368,17 +306,10 @@ public interface Console {
      */
     Consumer<ComboBox<String>> onUp = input -> {
         input.show();
-//        try {
-//            Thread.sleep(TimeUnit.SECONDS.toMillis(1));
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } finally {
-//            input.show();
-//        }
     };
 
     /***
-     * Keu Released Event handler
+     * Key Released Event handler
      */
     Consumer3<ComboBox<String>, TextArea, KeyEvent> handleEvent =
             (input, output, keyEvent) -> {
@@ -389,6 +320,7 @@ public interface Console {
                     return;
                 } else if (isThisKeyIs.apply(keyEvent, KeyCode.UP)) {
                     onUp.accept(input);
+                    return;
                 } else {
 
                 }
@@ -447,7 +379,7 @@ public interface Console {
                                         ConsoleUtils.INPUT_MESSAGE
                                 )
                         ),
-                        basicCommands,
+                        gitCommands,
                         Tuple.of(
                                 INPUT_WIDTH,
                                 INPUT_HEIGHT

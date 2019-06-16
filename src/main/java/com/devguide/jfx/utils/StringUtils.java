@@ -61,6 +61,11 @@ public interface StringUtils {
     Function1<String, String> trimAndUpper = str -> trim.apply(str).toUpperCase();
 
     /***
+     * Returns True if both strings are equal
+     */
+    Function2<String, String, Boolean> doesItEqualsTo = (str1, str2) -> str1.equals(str2);
+
+    /***
      * Return true if second string contains the first one
      */
     Function2<String, String, Boolean> doesItContains = (str1, str2) ->

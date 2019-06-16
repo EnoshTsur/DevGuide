@@ -1,9 +1,7 @@
 package com.devguide.jfx.view.containers.technologies;
 
-import com.devguide.jfx.browsers.GithubPage;
-import com.devguide.jfx.utils.Consumer3;
-import com.devguide.jfx.utils.StringUtils;
-import com.devguide.jfx.view.components.console.Console;
+import com.devguide.jfx.browsers.pages.vscode.VSCodePage;
+import com.devguide.jfx.browsers.pages.vscode.VSCodeUtils;
 import io.vavr.Function1;
 import io.vavr.Function2;
 import io.vavr.Function3;
@@ -14,9 +12,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import static com.devguide.jfx.browsers.GithubPage.*;
+import static com.devguide.jfx.browsers.pages.git.GithubPage.*;
+import static com.devguide.jfx.browsers.pages.vscode.VSCodePage.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.components.console.Console.*;
+import static com.devguide.jfx.view.containers.technologies.TechnologiesUtils.*;
 
 /***
  * Tool to initial List View with Images
@@ -111,11 +111,21 @@ public interface TechnologyInitCell {
      * Set Action listener
      */
     Function2<ListCell,String, ListCell> setActionListener = (cell, name) -> {
-        if (trimAndLower.apply(name).equals("git")) {
-            cell.setOnMouseClicked( event ->  {
-                TextArea output = consoleState.consoleOutPut.get();
-                downloadGit.accept(output);
-            });
+        final String fixedName = trimAndLower.apply(name);
+        switch (fixedName) {
+            case GIT:
+                cell.setOnMouseClicked( event ->  {
+                    TextArea output = consoleState.consoleOutPut.get();
+                    downloadGit.accept(output);
+                });
+                break;
+            case VS_CODE:
+                cell.setOnMouseClicked( event ->  {
+                    TextArea output = consoleState.consoleOutPut.get();
+                    downloadVSCode.accept(output);
+                });
+                break;
+
         }
         return cell;
     };

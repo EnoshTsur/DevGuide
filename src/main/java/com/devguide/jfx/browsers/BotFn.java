@@ -26,7 +26,7 @@ public interface BotFn {
         // Setting properties
         System.setProperty(
                 "webdriver.chrome.driver",
-                "src/main/java/com/devguide/jfx/browsers/chromedriver3.exe"
+                "src/main/java/com/devguide/jfx/browsers/chromedriver"
         );
         // Setting Driver
         WebDriver driver = new ChromeDriver();
@@ -52,6 +52,8 @@ public interface BotFn {
     Function2<Tuple3<WebDriver, WebDriverWait, Actions>, By,
             Tuple3<WebDriver, WebDriverWait, Actions>> clickOn = (tools, locator) -> {
         WebDriver driver = tools._1;
+        WebDriverWait wait = tools._2;
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
         driver.findElement(locator).click();
         return tools;
     };

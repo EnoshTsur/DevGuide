@@ -32,7 +32,7 @@ public interface FileSystem {
      * Both names getting trim & Upper case
      * Windows 10 || Linux
      */
-    Predicate<OperationSystem> isMyOperationSystemIs = kind ->
+    Predicate<OperationSystem> isMyOperationSystem = kind ->
             trimAndUpper.apply(operationSystem.get())
                     .equals(trimAndUpper.apply(kind.getName()));
 

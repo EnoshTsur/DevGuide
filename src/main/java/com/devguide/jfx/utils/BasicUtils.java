@@ -2,23 +2,21 @@ package com.devguide.jfx.utils;
 
 import io.vavr.Function1;
 import io.vavr.Function2;
-import io.vavr.collection.List;
-import javafx.event.Event;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import org.springframework.beans.factory.config.BeanPostProcessor;
+
 
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.stream.IntStream;
+
 
 /***
  * Basic Utils
  */
 public interface BasicUtils {
 
-    Object Nothing = null;
+    /***
+     * Returns true if its true
+     */
+    Predicate<Boolean> isItTrue = bool -> bool == true;
 
     Function1<Double, Double> addOne = number -> number + 0.1;
     Function1<Double, Double> minusOne = number -> number - 0.1;

@@ -70,7 +70,7 @@ public interface ConsoleUtils {
             INPUT_HEIGHT = 40;
 
 
-    List<String> basicCommands = List.of(
+    List<String> gitCommands = List.of(
             "git init",
             "git status",
             "git add .",
