@@ -4,15 +4,53 @@ import com.devguide.jfx.view.UI.PaneTypes;
 import io.vavr.*;
 import io.vavr.collection.List;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
+
+import static com.devguide.jfx.view.UI.LabelAPI.createLabelWithRule;
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 import static com.devguide.jfx.view.containers.technologies.TechnologiesUtils.*;
+import static com.devguide.jfx.view.containers.technologies.TechnologyInitCell.*;
+import static javafx.collections.FXCollections.*;
 
 /***
  * Technologies section
  * Front & Back
  */
 public interface Technologies {
+
+    /***
+     * Takes - List Data & Label's title
+     * Create VBox contains list view & label header ( VBox  )
+     * @return VBox
+     */
+    Function2<ObservableList<String>, String, VBox> createView =
+            (data, title) -> {
+
+                // Container
+                VBox container = (VBox) createPaneWithRule.apply(
+                        setContainerStyles,
+                        PaneTypes.VBOX
+                );
+
+                // Title
+                Label header = createLabelWithRule.apply(
+                        setLabelStyles,
+                        title
+                );
+
+                // List
+                ListView<String> techList = seListViewIcons.apply(observableArrayList(data));
+
+                setListViewStyles.apply(techList);
+
+                // Adding stuff
+                container.getChildren().addAll(header, techList);
+
+                return container;
+            };
 
 
     /***
@@ -22,7 +60,7 @@ public interface Technologies {
      */
     Function2<String, List<String>, VBox> createComponentView = (name, data) ->
             createView.apply(
-                    FXCollections.observableArrayList(
+                    observableArrayList(
                     data.asJava()
             ),
             name

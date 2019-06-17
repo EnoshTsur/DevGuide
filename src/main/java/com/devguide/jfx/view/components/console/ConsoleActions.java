@@ -31,7 +31,7 @@ public interface ConsoleActions {
     Consumer3<ComboBox<String>, TextArea, String> moveBackwards =
             (input, output, command) -> {
                 consoleState.navigate.apply(BACKWARDS, input);
-                setOutPutAfterExecution.accept(output, command);
+                setOutputAfterExecution.accept(output, command);
             };
 
     /***

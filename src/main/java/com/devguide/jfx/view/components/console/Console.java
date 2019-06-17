@@ -10,9 +10,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+
 import java.io.File;
 import java.util.List;
 import java.util.function.*;
+
 import static com.devguide.jfx.execute.Execute.*;
 import static com.devguide.jfx.execute.ShellType.*;
 import static com.devguide.jfx.utils.BasicUtils.*;
@@ -46,7 +48,7 @@ public interface Console {
     /***
      * Set output after execution
      */
-    BiConsumer<TextArea, String> setOutPutAfterExecution =
+    BiConsumer<TextArea, String> setOutputAfterExecution =
             (output, command) -> {
                 File directory = consoleState.getLocation.get();
                 ShellType shellType = consoleState.getShellType.get();
@@ -64,6 +66,34 @@ public interface Console {
                 task.setOnSucceeded(t -> task.getValue().forEach(line ->
                         output.appendText(setOutputContent.apply(directory, line)))
                 );
+                task.setOnFailed(t -> output.appendText(task.getException().getMessage()));
+                exe.start();
+            };
+
+    /***
+     * Set output after execution
+     */
+    Consumer3<TextArea, String, Runnable> setOutputAndRunAfterExecution =
+            (output, command, action) -> {
+                File directory = consoleState.getLocation.get();
+                ShellType shellType = consoleState.getShellType.get();
+                Task<List<String>> task = new Task<List<String>>() {
+                    @Override
+                    protected List<String> call() {
+                        return run.apply(
+                                command,
+                                directory,
+                                shellType
+                        );
+                    }
+                };
+                Thread exe = new Thread(task);
+
+                task.setOnSucceeded(event -> {
+                            task.getValue().forEach(line -> output.appendText(setOutputContent.apply(directory, line)));
+                            action.run();
+                        });
+
                 task.setOnFailed(t -> output.appendText(task.getException().getMessage()));
                 exe.start();
             };
@@ -158,7 +188,7 @@ public interface Console {
 
                 if (isOneOfActions.apply(command, input, output)) return;
 
-                setOutPutAfterExecution.accept(output, command);
+                setOutputAfterExecution.accept(output, command);
             };
 
 

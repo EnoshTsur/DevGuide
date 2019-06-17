@@ -125,6 +125,11 @@ public class ConsoleState {
             new File(location.getPath());
 
     /***
+     * Set Location
+     */
+    public Consumer<File> setLocation = file -> location = file;
+
+    /***
      * Checks if command exist in history
      */
     public Predicate<String> existInHistory = command ->

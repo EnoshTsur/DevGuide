@@ -1,21 +1,14 @@
 package com.devguide.jfx.view.containers.technologies;
 
-import com.devguide.jfx.view.UI.PaneTypes;
 import io.vavr.Function1;
-import io.vavr.Function2;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import io.vavr.collection.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import java.util.stream.Stream;
-
 import static com.devguide.jfx.view.UI.LabelAPI.*;
-import static com.devguide.jfx.view.UI.PaneAPI.createPaneWithRule;
 import static com.devguide.jfx.view.shared.Colors.*;
 import static com.devguide.jfx.view.shared.Colors.PRIMARY_MIDDLE;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
@@ -23,11 +16,6 @@ import static com.devguide.jfx.view.shared.SharedUtils.DEFAULT_INSETS;
 import static com.devguide.jfx.view.shared.SharedUtils.setBackgroundColor;
 
 public interface TechnologiesUtils {
-
-    String GIT = "git";
-    String VS_CODE = "vs code";
-    String INTELLIJ = "intellij";
-
 
     /***
      * Front list
@@ -118,38 +106,5 @@ public interface TechnologiesUtils {
                 return pane;
             };
 
-    /***
-     * Takes - List Data & Label's title
-     * Create VBox contains list view & label header ( VBox  )
-     * @return VBox
-     */
-    Function2<ObservableList<String>, String, VBox> createView =
-            (data, title) -> {
-
-                // Container
-                VBox container = (VBox) createPaneWithRule.apply(
-                        setContainerStyles,
-                        PaneTypes.VBOX
-                );
-
-                // Title
-                Label header = createLabelWithRule.apply(
-                        setLabelStyles,
-                        title
-                );
-
-                // List
-                ListView<String> techList = TechnologyInitCell
-                        .seListViewIcons
-                        .apply(
-                                FXCollections.observableArrayList(data)
-                        );
-                setListViewStyles.apply(techList);
-
-                // Adding stuff
-                container.getChildren().addAll(header, techList);
-
-                return container;
-            };
 
 }

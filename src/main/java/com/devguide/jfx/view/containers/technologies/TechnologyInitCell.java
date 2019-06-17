@@ -1,7 +1,8 @@
 package com.devguide.jfx.view.containers.technologies;
 
-import com.devguide.jfx.browsers.pages.vscode.VSCodePage;
-import com.devguide.jfx.browsers.pages.vscode.VSCodeUtils;
+import com.devguide.jfx.browsers.pages.intellij.IntellijPage;
+import com.devguide.jfx.browsers.pages.webstorm.WebStormPage;
+import com.devguide.jfx.utils.Consumer3;
 import io.vavr.Function1;
 import io.vavr.Function2;
 import io.vavr.Function3;
@@ -12,11 +13,21 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
+import java.util.function.BiConsumer;
+import java.util.function.Predicate;
+
 import static com.devguide.jfx.browsers.pages.git.GithubPage.*;
+import static com.devguide.jfx.browsers.pages.intellij.IntellijPage.*;
 import static com.devguide.jfx.browsers.pages.vscode.VSCodePage.*;
+import static com.devguide.jfx.browsers.pages.webstorm.WebStormPage.*;
+import static com.devguide.jfx.utils.ErrorMessages.*;
+import static com.devguide.jfx.utils.FileSystem.*;
 import static com.devguide.jfx.utils.StringUtils.*;
+import static com.devguide.jfx.view.UI.PopupsAPI.*;
 import static com.devguide.jfx.view.components.console.Console.*;
-import static com.devguide.jfx.view.containers.technologies.TechnologiesUtils.*;
+import static com.devguide.jfx.view.components.main.MainView.*;
+import static com.devguide.jfx.view.containers.technologies.TechnologiesCommands.*;
 
 /***
  * Tool to initial List View with Images
@@ -38,6 +49,30 @@ public interface TechnologyInitCell {
      */
     Function1<String, Image> createImageUnderAssets =
             image -> createImageByPath.apply(f("assets/{0}", image));
+
+    /***
+     * Is File Chosen - Returns true if they picked a file
+     */
+    Predicate<File> isFileChosen = file -> {
+        if (isItNullOrNotExists.test(file)) {
+            File consoleLocation = consoleState.getLocation.get();
+            TextArea consoleOutput = consoleState.consoleOutPut.get();
+            consoleOutput.appendText(setOutputContent.apply(consoleLocation, NO_FILE_CHOSEN));
+            return false;
+        }
+        return true;
+    };
+
+    Consumer3<File, String, TextArea> handleFolderPick = (file, command, output) -> {
+        consoleState.setLocation.accept(file);
+        Runnable openFile = () -> openLocation.accept(file);
+        setOutputAndRunAfterExecution.accept(output, command, openFile);
+    };
+
+    /***
+     * No file Chosen - Returns true if they didnt picked up any file
+     */
+    Predicate<File> noFileChosen = isFileChosen.negate();
 
 
     /***
@@ -112,20 +147,52 @@ public interface TechnologyInitCell {
      */
     Function2<ListCell,String, ListCell> setActionListener = (cell, name) -> {
         final String fixedName = trimAndLower.apply(name);
+        final TextArea output = consoleState.consoleOutPut.get();
+
         switch (fixedName) {
-            case GIT:
-                cell.setOnMouseClicked( event ->  {
-                    TextArea output = consoleState.consoleOutPut.get();
-                    downloadGit.accept(output);
-                });
+
+            // Intellij
+            case INTELLIJ:
+                cell.setOnMouseClicked(event -> downloadIntellij.accept(output));
                 break;
+
+            // Web Storm
+            case WEBSTORM:
+                cell.setOnMouseClicked(event -> downloadWebStorm.accept(output));
+                break;
+
+            // Git
+            case GIT:
+                cell.setOnMouseClicked( event -> downloadGit.accept(output));
+                break;
+
+            // Visual Studio Code
             case VS_CODE:
-                cell.setOnMouseClicked( event ->  {
-                    TextArea output = consoleState.consoleOutPut.get();
-                    downloadVSCode.accept(output);
+                cell.setOnMouseClicked( event ->  downloadVSCode.accept(output));
+                break;
+
+            // Git Shortcuts
+            case GIT_SHORTCUTS:
+                cell.setOnMouseClicked( event -> {
+                    File location = new File(createDirectoryChooser.apply(window));
+
+                    // Validate null & existence
+                    if (noFileChosen.test(location)) return;
+                    handleFolderPick.accept(location, CLONE_GIT_SHORTCUTS, output);
                 });
                 break;
 
+            // Yarn Shortcuts
+            case YARN_SHORTCUTS:
+                cell.setOnMouseClicked( event -> {
+
+                    File location = new File(createDirectoryChooser.apply(window));
+
+                    // Validate null & existence
+                    if (noFileChosen.test(location)) return;
+                    handleFolderPick.accept(location, CLONE_YARN_SHORTCUTS, output);
+                });
+                break;
 
         }
         return cell;

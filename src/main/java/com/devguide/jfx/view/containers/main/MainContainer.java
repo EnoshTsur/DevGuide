@@ -5,10 +5,13 @@ import com.devguide.jfx.view.UI.PaneTypes;
 import com.devguide.jfx.view.components.choice.ChoiceView;
 import com.devguide.jfx.view.components.search.SearchBar;
 import com.devguide.jfx.view.containers.technologies.Technologies;
+import io.vavr.Function1;
 import io.vavr.Function3;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
+import java.util.function.Supplier;
 
 import static com.devguide.jfx.view.UI.PaneAPI.*;
 
@@ -37,7 +40,7 @@ public interface MainContainer {
     /***
      * Component View !!!
      */
-    BorderPane view = buildComponent.apply(
+    Supplier<BorderPane> view = () ->  buildComponent.apply(
             SearchBar.createSearchBar(),
             Technologies.view,
             ChoiceView.view

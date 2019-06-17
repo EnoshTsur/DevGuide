@@ -34,29 +34,27 @@ public class MainView {
     private static MainView instance = null;
 
     // Components
-    private final FooterView footerBar;
+    private static final FooterView footerBar = new FooterView();;
+
+    public static final Stage window = buildWindow();
 
     /***
      * Private CTOR - Singleton
      */
-    private MainView() {
-        footerBar = new FooterView();
-    }
+    private MainView() { }
 
 
     /***
      * Application Main View
      * @return Stage
      */
-    public final Stage getView() {
-        // Window
-        Stage window = buildWindow();
+    public static final Stage getView() {
 
         // Title Bar
         BorderPane titleView = TitleBar.view;
 
         // Main Container
-        BorderPane mainView = MainContainer.view;
+        BorderPane mainView = MainContainer.view.get();
 
         // Footer
         HBox footerView = footerBar.createFooter();
@@ -96,7 +94,7 @@ public class MainView {
      *  Initialize Stage Window
      * @return Stage Window
      */
-    private Stage buildWindow() {
+    private static Stage buildWindow() {
         Stage window = new Stage();
         window.setWidth(WIDTH);
         window.setHeight(HEIGHT);
