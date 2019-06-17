@@ -40,7 +40,7 @@ public interface ConsoleActions {
     Consumer3<ComboBox<String>, TextArea, String> changeDirectory =
             (input, output, command) -> {
                 String[] cdAndPath = command.split(SPACE);
-                String path = isNotNull.apply(cdAndPath[1])
+                String path = (cdAndPath.length > 1 && isNotNull.apply(cdAndPath[1]))
                         ? cdAndPath[1] : EMPTY_STRING;
 
                 // Get a new location

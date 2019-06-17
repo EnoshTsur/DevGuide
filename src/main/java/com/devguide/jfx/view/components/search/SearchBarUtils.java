@@ -116,7 +116,7 @@ public interface SearchBarUtils {
      * Button styles
      */
     Consumer<Button> setFrontendButtonStyles = button -> {
-        button.setMinSize(120, 50);
+        button.setMinSize(100, 50);
         setCursorPointer.accept(button);
     };
 

@@ -197,7 +197,7 @@ public class ConsoleState {
 
             Stream.of(folders).forEach(folder -> {
                 Try<File> child = Try.of(() -> new File(location, folder));
-                if (!child.isEmpty() && child.get().isDirectory()) {
+                if (!child.isEmpty() && child.get().isDirectory() &&  !folder.equals(".")) {
                     location = child.get();
                     input.setPromptText(location.getPath());
                 }
