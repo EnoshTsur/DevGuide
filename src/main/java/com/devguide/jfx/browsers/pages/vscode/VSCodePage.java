@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 
 import static com.devguide.jfx.browsers.BotFn.*;
 import static com.devguide.jfx.browsers.pages.vscode.VSCodeUtils.*;
-import static com.devguide.jfx.view.components.console.Console.*;
+import static com.devguide.jfx.view.components.console.ConsoleView.*;
 
 public interface VSCodePage {
 

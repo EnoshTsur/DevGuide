@@ -1,7 +1,5 @@
 package com.devguide.jfx.view.containers.technologies;
 
-import com.devguide.jfx.browsers.pages.intellij.IntellijPage;
-import com.devguide.jfx.browsers.pages.webstorm.WebStormPage;
 import com.devguide.jfx.utils.Consumer3;
 import io.vavr.Function1;
 import io.vavr.Function2;
@@ -14,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
-import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
 import static com.devguide.jfx.browsers.pages.git.GithubPage.*;
@@ -25,7 +22,7 @@ import static com.devguide.jfx.utils.ErrorMessages.*;
 import static com.devguide.jfx.utils.FileSystem.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.view.UI.PopupsAPI.*;
-import static com.devguide.jfx.view.components.console.Console.*;
+import static com.devguide.jfx.view.components.console.ConsoleView.*;
 import static com.devguide.jfx.view.components.main.MainView.*;
 import static com.devguide.jfx.view.containers.technologies.TechnologiesCommands.*;
 
@@ -118,8 +115,8 @@ public interface TechnologyInitCell {
             case "Intellij":
                 icon.setImage(createImageUnderAssets.apply("intellij.png"));
                 break;
-            case "Git":
-            case "Git Shortcuts":
+            case "GitWorkshop":
+            case "GitWorkshop Shortcuts":
                 icon.setImage(createImageUnderAssets.apply("git.png"));
                 break;
             case "Yarn Shortcuts":
@@ -161,7 +158,7 @@ public interface TechnologyInitCell {
                 cell.setOnMouseClicked(event -> downloadWebStorm.accept(output));
                 break;
 
-            // Git
+            // GitWorkshop
             case GIT:
                 cell.setOnMouseClicked( event -> downloadGit.accept(output));
                 break;
@@ -171,7 +168,7 @@ public interface TechnologyInitCell {
                 cell.setOnMouseClicked( event ->  downloadVSCode.accept(output));
                 break;
 
-            // Git Shortcuts
+            // GitWorkshop Shortcuts
             case GIT_SHORTCUTS:
                 cell.setOnMouseClicked( event -> {
                     File location = new File(createDirectoryChooser.apply(window));

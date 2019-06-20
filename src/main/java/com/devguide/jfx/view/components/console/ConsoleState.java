@@ -27,7 +27,7 @@ import static com.devguide.jfx.utils.FileSystem.*;
 import static com.devguide.jfx.utils.ListUtils.*;
 import static com.devguide.jfx.utils.OperationSystem.*;
 import static com.devguide.jfx.utils.StringUtils.*;
-import static com.devguide.jfx.view.components.console.Console.*;
+import static com.devguide.jfx.view.components.console.ConsoleActions.isItBackwards;
 import static com.devguide.jfx.view.components.console.ConsoleUtils.*;
 import static javafx.collections.FXCollections.*;
 
@@ -52,7 +52,7 @@ public class ConsoleState {
 
 
     /***
-     * Console State
+     * ConsoleView State
      * @param operationSystem
      */
     public ConsoleState(
@@ -163,14 +163,14 @@ public class ConsoleState {
             });
 
     /***
-     * Clear History exclude Git Commands
+     * Clear History exclude GitWorkshop Commands
      */
     public Runnable clearHistorySoft = () ->
             history = FXCollections.observableArrayList(setDefaultCommands.get());
 
 
     /***
-     * Clear History include Git Commands
+     * Clear History include GitWorkshop Commands
      */
     public Runnable clearHistoryHard = () -> history = FXCollections.observableArrayList();
 
@@ -231,7 +231,7 @@ public class ConsoleState {
     };
 
     /***
-     * Get Console output
+     * Get ConsoleView output
      */
     public Supplier<TextArea> consoleOutPut = () -> output;
 

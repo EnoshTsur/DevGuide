@@ -9,12 +9,12 @@ import java.util.function.Consumer;
 import static com.devguide.jfx.browsers.BotFn.setUp;
 import static com.devguide.jfx.browsers.pages.git.GithubUtils.*;
 import static com.devguide.jfx.utils.StringUtils.*;
-import static com.devguide.jfx.view.components.console.Console.*;
+import static com.devguide.jfx.view.components.console.ConsoleView.*;
 
 public interface GithubPage {
 
     /***
-     * Download Git by Operation system
+     * Download GitWorkshop by Operation system
      */
     Consumer<TextArea> downloadGit = output -> {
         File location = consoleState.getLocation.get();

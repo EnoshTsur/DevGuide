@@ -1,16 +1,11 @@
 package com.devguide.jfx.view.components.console;
 
 import com.devguide.jfx.browsers.pages.frontend.FrontendPage;
-import com.devguide.jfx.execute.Execute;
-import com.devguide.jfx.execute.ShellType;
 import com.devguide.jfx.utils.Consumer3;
 import com.devguide.jfx.utils.FileSystem;
-import com.devguide.jfx.utils.OperationSystem;
-import io.vavr.Function1;
 import io.vavr.Function3;
 import io.vavr.Tuple2;
 import io.vavr.collection.List;
-import io.vavr.collection.Map;
 import io.vavr.control.Try;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -26,9 +21,11 @@ import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.utils.StringUtils.trimAndLower;
 import static com.devguide.jfx.view.components.console.Commands.*;
 import static com.devguide.jfx.view.components.console.Commands.LOGIN;
-import static com.devguide.jfx.view.components.console.Console.*;
+import static com.devguide.jfx.view.components.console.ConsoleUtils.helpMessage;
+import static com.devguide.jfx.view.components.console.ConsoleView.*;
 import static com.devguide.jfx.view.components.console.ConsoleUtils.allDrivers;
 import static com.devguide.jfx.view.shared.SharedUtils.setTextColor;
+import static com.devguide.jfx.workshop.GitWorkshop.*;
 import static io.vavr.Tuple.*;
 
 public interface ConsoleActions {
@@ -153,35 +150,13 @@ public interface ConsoleActions {
      * Writing help message to console
      */
     Consumer3<ComboBox<String>, TextArea, String> getHelp =
-            (input, output, commands) -> setMultiLinesOutput.accept(List.of(
-                    "~~~~~~~~~~~~~~~~~~~~~~~~~",
-                    "~~ Console Application ~~",
-                    "~~~~~~~~~~~~~~~~~~~~~~~~~",
-                    EMPTY_STRING,
-                    "Console app - contains common console methods.",
-                    " few custom methods such as:",
-                    EMPTY_STRING,
-                    "1) open - Opens directory location",
-                    "   Directory's location is next to the console output )",
-                    EMPTY_STRING,
-                    "2) color - Change console text color.",
-                    "   Example: color red.",
-                    EMPTY_STRING,
-                    "3) login - Performs login to Frontend Masters",
-                    "   In order to watch courses online.",
-                    EMPTY_STRING,
-                    "4) exit - Quit program",
-                    EMPTY_STRING,
-                    "5) help - Provides informative help message ( this )",
-                    EMPTY_STRING,
-                    EMPTY_STRING,
-                    "*************************************************************************",
-                    "*** Important! The original commands depends on your operation system ***",
-                    "*** Example: On Linux: 'pwd', on Windows: 'echo %cd%'                 ***",
-                    "**************************************************************************"
-                    ),
-                    output
-            );
+            (input, output, commands) -> setMultiLinesOutput.accept(helpMessage.get(), output);
+
+    /***
+     * Opens directory in console state location
+     */
+    Consumer3<ComboBox<String>, TextArea, String> runGitTraining =
+            (input, output, command) -> runGitWorkshop.accept(input, output);
 
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -189,6 +164,29 @@ public interface ConsoleActions {
     //!!!!!!!! PREDICATES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    /***
+     *  Check out if given path is cd ../
+     */
+    Predicate<String> isItCDBackwards = path -> doesItEqualTo.apply(
+            trimAndLower.apply(path),
+            f("{0} {1}", CD, BACKWARDS)
+    );
+
+    /***
+     * Check out if given path is ../
+     */
+    Predicate<String> isItBackwards = path -> doesItEqualTo.apply(
+            trimAndLower.apply(path),
+            BACKWARDS
+    );
+
+    /***
+     *  Returns true if String starts with cd
+     */
+    Predicate<String> isStartsWithCD = command -> trimAndLower.
+            apply(command)
+            .startsWith(CD);
 
 
     /**
@@ -232,6 +230,11 @@ public interface ConsoleActions {
      */
     Predicate<String> isHelp = command -> doesItEqualsTo.apply(trimAndLower.apply(command), HELP);
 
+    /***
+     * Returns True if command is equals to git training
+     */
+    Predicate<String> isGitTraining = command -> doesItEqualsTo.apply(trimAndLower.apply(command), GIT_TRAINING);
+
 
     // Actions
     List<Tuple2<Predicate<String>, Consumer3<ComboBox<String>, TextArea, String>>> actions = List.of(
@@ -244,6 +247,7 @@ public interface ConsoleActions {
             of(isLogin, doLogin),
             of(isOpen, openDirectory),
             of(isHelp, getHelp)
+//            of(isGitTraining, runGitTraining)
     );
 
 
@@ -252,6 +256,7 @@ public interface ConsoleActions {
      */
     Function3<String, ComboBox<String>, TextArea, Boolean> isOneOfActions
             = (command, input, output) ->
+
             actions.map(pair -> ifTrueThan.apply(pair._1, pair._2, command, input, output))
                     .collect(Collectors.toList()).stream().anyMatch(condition -> isItTrue.test(condition));
 

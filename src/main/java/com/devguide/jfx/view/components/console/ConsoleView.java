@@ -32,9 +32,9 @@ import static com.devguide.jfx.view.components.search.SearchBarUtils.*;
 import static com.devguide.jfx.view.shared.Colors.COMBO_DARK_PURPLE;
 import static com.devguide.jfx.view.shared.SharedUtils.*;
 
-public interface Console {
+public interface ConsoleView {
 
-    // Console State
+    // ConsoleView State
     ConsoleState consoleState = isMyOperationSystem.test(WINDOWS10) ?
             new ConsoleState(WINDOWS10, CMD, gitCommands.asJava()) :
             new ConsoleState(LINUX, BASH, gitCommands.asJava());
@@ -51,7 +51,9 @@ public interface Console {
      * Set Multiple lines content
      */
     BiConsumer<io.vavr.collection.List<String>, TextArea> setMultiLinesOutput =
-            (lines, output) -> lines.forEach(line -> setOutputContent.apply(consoleState.getLocation.get(), line));
+            (lines, output) -> lines.forEach(line -> output.appendText(
+                    setOutputContent.apply(consoleState.getLocation.get(), line))
+            );
 
     /***
      * Set output after execution
@@ -133,28 +135,6 @@ public interface Console {
         );
     };
 
-    /***
-     *  Check out if given path is cd ../
-     */
-    Predicate<String> isItCDBackwards = path -> doesItEqualTo.apply(
-            trimAndLower.apply(path),
-            f("{0} {1}", CD, BACKWARDS)
-    );
-
-    /***
-     * Check out if given path is ../
-     */
-    Predicate<String> isItBackwards = path -> doesItEqualTo.apply(
-            trimAndLower.apply(path),
-            BACKWARDS
-    );
-
-    /***
-     *  Returns true if String starts with cd
-     */
-    Predicate<String> isStartsWithCD = command -> trimAndLower.
-            apply(command)
-            .startsWith(CD);
 
     /***
      * Checks if condition returns true by command and act
@@ -241,7 +221,7 @@ public interface Console {
                     );
 
     /***
-     * Create Console Output ( Text Area )
+     * Create ConsoleView Output ( Text Area )
      */
     Supplier<TextArea> createConsoleOutput = () -> {
         // Output
@@ -260,11 +240,12 @@ public interface Console {
                         .get(),
                 greetings.apply(null)
         ));
+        output.selectPositionCaret(output.getLength());
         return output;
     };
 
     /***
-     * Create Console Input
+     * Create ConsoleView Input
      */
     Function1<TextArea, ComboBox<String>> createConsoleInput = output -> {
         File dir = new File(USER_HOME);
@@ -285,7 +266,7 @@ public interface Console {
                         null
                 );
         setBackgroundColor.accept(input.getEditor(), COMBO_DARK_PURPLE);
-        // Console State
+        // ConsoleView State
         consoleState.initState.accept(input, output);
         input.setPromptText(initialMessage);
         input.setOnKeyPressed(event -> input.hide());
@@ -300,7 +281,7 @@ public interface Console {
     };
 
     /***
-     * Create Console Container
+     * Create ConsoleView Container
      */
     Function2<ComboBox<String>, TextArea, VBox> createConsoleContainer =
             (input, output) -> {

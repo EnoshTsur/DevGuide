@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7ae3e1e-dbaa-47b1-ad79-0adc782bb765" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/MyApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/MyApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/Commands.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/Commands.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/Console$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/Console$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/Console$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/Console$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/Console.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/ConsoleActions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/ConsoleActions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/ConsoleState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/ConsoleState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/ConsoleUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/devguide/jfx/view/components/console/ConsoleUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/ListUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/ListUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleUtils.java" afterDir="false" />
-    </list>
+    <list default="true" id="e7ae3e1e-dbaa-47b1-ad79-0adc782bb765" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -56,11 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="187" column="35" selection-start-line="187" selection-start-column="35" selection-end-line="187" selection-end-column="35" />
+            <state relative-caret-position="187">
+              <caret line="150" column="14" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="241" column="20" lean-forward="true" selection-start-line="241" selection-start-column="20" selection-end-line="241" selection-end-column="20" />
+            <state relative-caret-position="191">
+              <caret line="183" column="18" selection-start-line="183" selection-start-column="18" selection-end-line="183" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -83,11 +65,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="155" column="53" lean-forward="true" selection-start-line="155" selection-start-column="53" selection-end-line="155" selection-end-column="53" />
+            <state relative-caret-position="1683">
+              <caret line="241" column="29" selection-start-line="241" selection-start-column="15" selection-end-line="241" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/workshop/GitWorkshop.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="627">
+              <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/containers/technologies/TechnologyInitCell.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-76">
+              <caret line="158" column="22" selection-start-line="158" selection-start-column="22" selection-end-line="158" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -96,7 +99,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/ListUtils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="410">
-              <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+              <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -104,62 +107,37 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Commands.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+            <state relative-caret-position="247">
+              <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/BasicUtils.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+            <state relative-caret-position="676">
+              <caret line="94" column="41" lean-forward="true" selection-start-line="94" selection-start-column="41" selection-end-line="94" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/UI/LoadingAPI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="107" column="40" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/Map.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="46" lean-forward="true" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/Consumer3.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar:///usr/java/jdk1.8.0_131/src.zip!/java/util/Collections.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="1432" column="27" selection-start-line="1432" selection-start-column="27" selection-end-line="1432" selection-end-column="27" />
-              <folding>
-                <element signature="e#59713#59714#0" expanded="true" />
-                <element signature="e#59760#59761#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -173,8 +151,8 @@
         <option value="FxmlFile" />
         <option value="CSS File" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -202,12 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/BrowserFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/Browser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/Bot.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/Pages.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/AbstractPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/LoginPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/DriverFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/WebActions.java" />
@@ -244,15 +216,21 @@
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/containers/technologies/TechnologiesCommands.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/containers/technologies/TechnologyInitCell.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/search/SearchBarUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Commands.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleState.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/Mao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/Map.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleActions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/ListUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleState.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/workshop/Git.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Commands.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/workshop/GitWorkshop.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleActions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/style.css" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/UI/Loading.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/UI/LoadingAPI.java" />
       </list>
     </option>
   </component>
@@ -310,87 +288,6 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="browsers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="browsers" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="browsers" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="browsers" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="git" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="browsers" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="intellij" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="browsers" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="vscode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="execute" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -402,17 +299,6 @@
               <item name="jfx" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="choice" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
@@ -424,92 +310,6 @@
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="console" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="footer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="search" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="titlebar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="technologies" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevGuide" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jfx" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="shared" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DevGuide" type="b2602c69:ProjectViewProjectNode" />
@@ -654,7 +454,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561010803689" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561042853466" />
     <property name="last.edited.regexp" value="hi im ${enohs} and ${90}" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/devguide/jfx/model" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../HTZ-HEB" />
@@ -769,7 +569,7 @@
       <workItem from="1559566463044" duration="1621000" />
       <workItem from="1559848851425" duration="8496000" />
       <workItem from="1559905785691" duration="72311000" />
-      <workItem from="1560151788630" duration="63210000" />
+      <workItem from="1560151788630" duration="73176000" />
     </task>
     <servers />
   </component>
@@ -797,11 +597,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="426129000" />
+    <option name="totallyTimeSpent" value="436095000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1987" y="231" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18649696" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -811,15 +610,15 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49798658" visible="true" weight="0.33693305" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32829374" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798658" weight="0.33693305" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.35313174" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.3297414" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32073435" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32073435" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50201344" side_tool="true" weight="0.5495751" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49932885" weight="0.325054" />
@@ -851,28 +650,28 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java</url>
-          <line>327</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleView.java</url>
+          <line>308</line>
           <properties />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleActions.java</url>
-          <line>57</line>
+          <line>54</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleActions.java</url>
-          <line>56</line>
+          <line>53</line>
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleActions.java</url>
-          <line>155</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/workshop/GitWorkshop.java</url>
+          <line>18</line>
           <properties />
-          <option name="timeStamp" value="27" />
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -939,28 +738,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/pages/git/GithubPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="33" column="103" selection-start-line="33" selection-start-column="103" selection-end-line="33" selection-end-column="103" />
-          <folding>
-            <element signature="e#796#953#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/pages/frontend/FrontendPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
-          <folding>
-            <element signature="e#795#1519#0" expanded="true" />
-            <element signature="e#1518#1519#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/browsers/pages/vscode/VSCodeUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -1073,13 +850,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1261,13 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/containers/technologies/TechnologyInitCell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="161" column="22" selection-start-line="161" selection-start-column="22" selection-end-line="161" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/UI/PaneAPI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-948">
@@ -1282,16 +1045,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="98" column="19" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1329,24 +1082,17 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/Map.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="18" column="46" lean-forward="true" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/MyApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Commands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -1361,40 +1107,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="155" column="53" lean-forward="true" selection-start-line="155" selection-start-column="53" selection-end-line="155" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/utils/ListUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
-          <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/containers/technologies/TechnologyInitCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-76">
+          <caret line="158" column="22" selection-start-line="158" selection-start-column="22" selection-end-line="158" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Commands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/workshop/GitWorkshop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="241" column="20" lean-forward="true" selection-start-line="241" selection-start-column="20" selection-end-line="241" selection-end-column="20" />
+        <state relative-caret-position="191">
+          <caret line="183" column="18" selection-start-line="183" selection-start-column="18" selection-end-line="183" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/Console.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="187" column="35" selection-start-line="187" selection-start-column="35" selection-end-line="187" selection-end-column="35" />
+        <state relative-caret-position="353">
+          <caret line="107" column="40" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="150" column="14" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/components/console/ConsoleActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1683">
+          <caret line="241" column="29" selection-start-line="241" selection-start-column="15" selection-end-line="241" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="94" column="41" lean-forward="true" selection-start-line="94" selection-start-column="41" selection-end-line="94" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/devguide/jfx/view/UI/LoadingAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
         </state>
       </provider>
     </entry>

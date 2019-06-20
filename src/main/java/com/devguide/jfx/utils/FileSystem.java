@@ -2,7 +2,6 @@ package com.devguide.jfx.utils;
 
 import com.devguide.jfx.execute.Execute;
 import com.devguide.jfx.execute.ShellType;
-import com.devguide.jfx.view.components.console.Console;
 import io.vavr.Function1;
 import io.vavr.collection.List;
 import io.vavr.control.Try;

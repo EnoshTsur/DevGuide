@@ -1,13 +1,9 @@
 package com.devguide.jfx.view.components.console;
 
-import com.devguide.jfx.utils.FileSystem;
-import com.devguide.jfx.utils.StringUtils;
+import com.devguide.jfx.utils.Consumer3;
 import io.vavr.Function1;
 import io.vavr.collection.List;
-
-import java.awt.*;
 import java.util.Date;
-import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -106,5 +102,41 @@ public interface ConsoleUtils {
      */
     Function1<String, String> logError = text ->
             f("[Error]{0}: {1}", new Date(), text);
+
+
+    /***
+     * Help Message by console functions
+     */
+    Supplier<List<String>> helpMessage = () -> List.of(
+              EMPTY_STRING,
+              EMPTY_STRING,
+              "~~~~~~~~~~~~~~~~~~~~~~~~~",
+              "~~ ConsoleView Application ~~",
+              "~~~~~~~~~~~~~~~~~~~~~~~~~",
+              EMPTY_STRING,
+              "ConsoleView app - contains common console methods.",
+              "And few custom methods such as:",
+              EMPTY_STRING,
+              "1) open - Opens directory location",
+              "   Directory's location is next to the console output )",
+              EMPTY_STRING,
+              "2) color - Change console text color.",
+              "   Example: color red",
+              EMPTY_STRING,
+              "3) login - Performs login to Frontend Masters",
+              "   In order to watch courses online.",
+              EMPTY_STRING,
+              "4) exit - Quit program",
+              EMPTY_STRING,
+              "5) help - Provides informative help message ( this )",
+              EMPTY_STRING,
+              EMPTY_STRING,
+              "*************************************************************************",
+              "***                                                                   ***",
+              "***   Important: Original commands depends on your operation system   ***",
+              "***   Example: On Linux: 'pwd', on Windows: 'echo %cd%'               ***",
+              "***                                                                   ***",
+              "*************************************************************************"
+      );
 
 }

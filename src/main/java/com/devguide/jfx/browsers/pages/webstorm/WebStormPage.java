@@ -13,8 +13,8 @@ import java.util.function.Consumer;
 import static com.devguide.jfx.browsers.BotFn.clickOn;
 import static com.devguide.jfx.browsers.BotFn.setUp;
 import static com.devguide.jfx.browsers.pages.webstorm.WebStormUtils.*;
-import static com.devguide.jfx.view.components.console.Console.consoleState;
-import static com.devguide.jfx.view.components.console.Console.setOutputContent;
+import static com.devguide.jfx.view.components.console.ConsoleView.consoleState;
+import static com.devguide.jfx.view.components.console.ConsoleView.setOutputContent;
 
 public interface WebStormPage {
 
