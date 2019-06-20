@@ -5,4 +5,6 @@ public interface Commands {
     String CLS = "cls";
     String EXIT = "exit";
     String LOGIN = "login";
+    String OPEN = "open";
+    String HELP = "help";
 }

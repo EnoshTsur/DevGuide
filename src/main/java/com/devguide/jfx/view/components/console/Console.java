@@ -39,11 +39,19 @@ public interface Console {
             new ConsoleState(WINDOWS10, CMD, gitCommands.asJava()) :
             new ConsoleState(LINUX, BASH, gitCommands.asJava());
 
+
+
     /***
      * Set Output content
      */
     Function2<File, String, String> setOutputContent = (path, command) ->
             f("{0}> {1}\n", getLastFolder.apply(path), command);
+
+    /***
+     * Set Multiple lines content
+     */
+    BiConsumer<io.vavr.collection.List<String>, TextArea> setMultiLinesOutput =
+            (lines, output) -> lines.forEach(line -> setOutputContent.apply(consoleState.getLocation.get(), line));
 
     /***
      * Set output after execution
@@ -176,7 +184,6 @@ public interface Console {
                 // Attributes
                 String command = input.getEditor().getText();
                 File directory = consoleState.getLocation.get();
-                ShellType shellType = consoleState.getShellType.get();
 
                 consoleState.updateState.accept(command);
 

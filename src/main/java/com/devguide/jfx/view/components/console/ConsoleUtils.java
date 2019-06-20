@@ -5,7 +5,9 @@ import com.devguide.jfx.utils.StringUtils;
 import io.vavr.Function1;
 import io.vavr.collection.List;
 
+import java.awt.*;
 import java.util.Date;
+import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -104,4 +106,5 @@ public interface ConsoleUtils {
      */
     Function1<String, String> logError = text ->
             f("[Error]{0}: {1}", new Date(), text);
+
 }

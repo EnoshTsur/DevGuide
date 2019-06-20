@@ -1,19 +1,27 @@
 package com.devguide.jfx.view.components.console;
 
 import com.devguide.jfx.browsers.pages.frontend.FrontendPage;
+import com.devguide.jfx.execute.Execute;
+import com.devguide.jfx.execute.ShellType;
 import com.devguide.jfx.utils.Consumer3;
+import com.devguide.jfx.utils.FileSystem;
+import com.devguide.jfx.utils.OperationSystem;
+import io.vavr.Function1;
 import io.vavr.Function3;
 import io.vavr.Tuple2;
 import io.vavr.collection.List;
+import io.vavr.collection.Map;
 import io.vavr.control.Try;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
+
 import java.io.File;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
 import static com.devguide.jfx.execute.Execute.run;
 import static com.devguide.jfx.utils.BasicUtils.*;
-import static com.devguide.jfx.utils.FileSystem.BACKWARDS;
+import static com.devguide.jfx.utils.FileSystem.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 import static com.devguide.jfx.utils.StringUtils.trimAndLower;
 import static com.devguide.jfx.view.components.console.Commands.*;
@@ -24,6 +32,13 @@ import static com.devguide.jfx.view.shared.SharedUtils.setTextColor;
 import static io.vavr.Tuple.*;
 
 public interface ConsoleActions {
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!! ACTIONS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
     /***
      * Move Backwards
@@ -125,12 +140,63 @@ public interface ConsoleActions {
                     "EM1234"
             );
 
+    /***
+     * Opens directory in console state location
+     */
+    Consumer3<ComboBox<String>, TextArea, String> openDirectory =
+            (input, output, command) -> {
+                File location = consoleState.getLocation.get();
+                FileSystem.openLocation.accept(location);
+            };
+
+    /***
+     * Writing help message to console
+     */
+    Consumer3<ComboBox<String>, TextArea, String> getHelp =
+            (input, output, commands) -> setMultiLinesOutput.accept(List.of(
+                    "~~~~~~~~~~~~~~~~~~~~~~~~~",
+                    "~~ Console Application ~~",
+                    "~~~~~~~~~~~~~~~~~~~~~~~~~",
+                    EMPTY_STRING,
+                    "Console app - contains common console methods.",
+                    " few custom methods such as:",
+                    EMPTY_STRING,
+                    "1) open - Opens directory location",
+                    "   Directory's location is next to the console output )",
+                    EMPTY_STRING,
+                    "2) color - Change console text color.",
+                    "   Example: color red.",
+                    EMPTY_STRING,
+                    "3) login - Performs login to Frontend Masters",
+                    "   In order to watch courses online.",
+                    EMPTY_STRING,
+                    "4) exit - Quit program",
+                    EMPTY_STRING,
+                    "5) help - Provides informative help message ( this )",
+                    EMPTY_STRING,
+                    EMPTY_STRING,
+                    "*************************************************************************",
+                    "*** Important! The original commands depends on your operation system ***",
+                    "*** Example: On Linux: 'pwd', on Windows: 'echo %cd%'                 ***",
+                    "**************************************************************************"
+                    ),
+                    output
+            );
+
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!! PREDICATES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
     /**
      * Returns True if commands starts with C: / D: ...
      */
     Predicate<String> isOneOfDrivers = command ->
             allDrivers.contains(trimAndLower.apply(command));
+
 
     /***
      * Returns True if command equals to cls / clear
@@ -156,6 +222,16 @@ public interface ConsoleActions {
     Predicate<String> isLogin = command -> doesItEqualTo.apply(trimAndLower.apply(command), LOGIN);
 
 
+    /***
+     * Returns True if command is equals to open
+     */
+    Predicate<String> isOpen = command -> doesItEqualsTo.apply(trimAndLower.apply(command), OPEN);
+
+    /***
+     * Returns True if command is equals to help
+     */
+    Predicate<String> isHelp = command -> doesItEqualsTo.apply(trimAndLower.apply(command), HELP);
+
 
     // Actions
     List<Tuple2<Predicate<String>, Consumer3<ComboBox<String>, TextArea, String>>> actions = List.of(
@@ -165,7 +241,9 @@ public interface ConsoleActions {
             of(isClearOrCls, clearScreen),
             of(isColorChange, changeColor),
             of(isExit, closeProgram),
-            of(isLogin, doLogin)
+            of(isLogin, doLogin),
+            of(isOpen, openDirectory),
+            of(isHelp, getHelp)
     );
 
 

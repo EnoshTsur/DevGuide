@@ -14,9 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -34,6 +32,7 @@ import static com.devguide.jfx.view.components.console.ConsoleUtils.*;
 import static javafx.collections.FXCollections.*;
 
 public class ConsoleState {
+
 
     private ShellType shellType;
 
@@ -240,7 +239,7 @@ public class ConsoleState {
      * Update State
      */
     public Consumer<String> updateState = command -> {
-        if (isNotOneOfUtil.apply(command, historyList)) {
+        if (isNotInJavaUtilList.apply(command, historyList)) {
             historyList.add(command);
             history = FXCollections.observableArrayList(historyList);
             history.sort(String::compareTo);
