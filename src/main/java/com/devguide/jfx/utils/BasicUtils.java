@@ -2,9 +2,12 @@ package com.devguide.jfx.utils;
 
 import io.vavr.Function1;
 import io.vavr.Function2;
+import io.vavr.control.Try;
 
 
 import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 
@@ -57,6 +60,16 @@ public interface BasicUtils {
      */
     Function2<Object,Object, Boolean> doesItEqualTo = Object::equals;
 
+
+    /***
+     * Throw error with message
+     */
+    Function<Throwable, RuntimeException> throwError = throwable -> new RuntimeException(throwable.getMessage());
+
+    /***
+     * Run or throw error
+     */
+    Consumer<Runnable> runOrThrowError = runnable -> Try.run( () -> runnable.run()).getOrElseThrow(throwError);
 
 
 }

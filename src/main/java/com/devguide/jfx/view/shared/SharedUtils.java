@@ -1,5 +1,6 @@
 package com.devguide.jfx.view.shared;
 
+import com.devguide.jfx.utils.BasicUtils;
 import com.devguide.jfx.utils.StringUtils;
 import io.vavr.*;
 import io.vavr.collection.List;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+import static com.devguide.jfx.utils.BasicUtils.*;
 import static com.devguide.jfx.utils.StringUtils.*;
 
 /***
@@ -75,6 +77,7 @@ public interface SharedUtils {
         BackgroundImage backgroundImage = createBackgroundImageByRegionSize.apply(javafxObject, image);
         javafxObject.setBackground(new Background(backgroundImage));
     };
+
 
     /***
      * Set style if exist

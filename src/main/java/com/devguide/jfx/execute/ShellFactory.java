@@ -13,7 +13,7 @@ public interface ShellFactory {
     Function1<ShellType, String[]> getShell = type -> {
 
         String[] cmd = new String[] {CMD, "/c", ""};
-        String[] bash = new String[] {BASH, "-c", ""};
+        String[] bash = new String[] {BASH, "--", ""};
 
         switch (type) {
             case CMD:

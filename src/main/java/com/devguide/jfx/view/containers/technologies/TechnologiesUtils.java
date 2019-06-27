@@ -45,8 +45,8 @@ public interface TechnologiesUtils {
      */
     List<String> installations = List.of(
             "Intellij",
-            "GitWorkshop",
-            "GitWorkshop Shortcuts",
+            "Git",
+            "Git Shortcuts",
             "Yarn Shortcuts",
             "VS Code",
             "Web Storm",

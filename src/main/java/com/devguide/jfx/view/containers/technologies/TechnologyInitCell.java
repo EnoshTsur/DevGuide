@@ -1,6 +1,7 @@
 package com.devguide.jfx.view.containers.technologies;
 
 import com.devguide.jfx.utils.Consumer3;
+import com.devguide.jfx.view.UI.LoadingAPI;
 import io.vavr.Function1;
 import io.vavr.Function2;
 import io.vavr.Function3;
@@ -115,8 +116,8 @@ public interface TechnologyInitCell {
             case "Intellij":
                 icon.setImage(createImageUnderAssets.apply("intellij.png"));
                 break;
-            case "GitWorkshop":
-            case "GitWorkshop Shortcuts":
+            case "Git":
+            case "Git Shortcuts":
                 icon.setImage(createImageUnderAssets.apply("git.png"));
                 break;
             case "Yarn Shortcuts":
@@ -142,7 +143,7 @@ public interface TechnologyInitCell {
     /**
      * Set Action listener to cell by its name
      */
-    Function2<ListCell,String, ListCell> setActionListener = (cell, name) -> {
+    Function3<ListCell,String, ImageView, ListCell> setActionListener = (cell, name, icon) -> {
         final String fixedName = trimAndLower.apply(name);
         final TextArea output = consoleState.consoleOutPut.get();
 
@@ -201,7 +202,7 @@ public interface TechnologyInitCell {
     Function3<ListCell, ImageView, String, ListCell> initialCell
             = (cell, icon, name) -> {
         setImageByTechnology.apply(icon, name);
-        setActionListener.apply(cell, name);
+        setActionListener.apply(cell, name, icon);
         cell.setText(name);
         cell.setGraphic(icon);
         return cell;
